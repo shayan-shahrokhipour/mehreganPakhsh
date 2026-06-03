@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/products.css">
+    <link rel="stylesheet" href="../assets/fontawsome/fontawesome-free-7.2.0-web (1)/fontawesome-free-7.2.0-web/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+     <main class="mainContainer">
+    <header>
+        <section class="topNav">
+            <section class="rightSide">
+                <button class="hamburgerButton"><i class="fa-solid fa-bars"></i></button>
+                <img class="brand" src="../assets/images/Screenshot_20260202-124953_Instagram.jpg" alt="">
+            </section>
+            <section class="center">
+                <input class="search" type="text" name="" id="" placeholder="جست و جوی سریع">
+                
+            </section>
+            <section class="leftSide">
+                <button><i class="fa-solid fa-user-plus"></i></button>
+            </section>
+        </section>
+        <nav class="navbar">
+           
+            <ul class="listMenu">
+                <li><a href="../index.html">صفحه اصلی</a></li>
+                <li><a href="./products.html">محصولات</a></li>
+               
+                <li><a href="./aboutus.html">درباره ما</a></li>
+                <li><a href="./contact.html">ارتباط با ما</a></li>
+            </ul>
+             <div class="close">
+                <button class="closeButton"><i class="fa-solid fa-close"></i></button>
+            </div>
+        </nav>
+    </header>
+     <section class="products">
+
+     </section>
+     <footer>
+        <div class="details aboutFooter">
+            <h3>مهرگان پخش:</h3>
+            <p>مهرگان پخش با بیش از 30 سال تجربه با هدف تأمین لوازم یدکی خودروهای ایران‌خودرو و سایپا، فعالیت خود را در زمینه فروش  باکیفیت آغاز کرده است. ما تلاش می‌کنیم با ارائه محصولات مطمئن، قیمت مناسب و پشتیبانی پاسخگو، تجربه‌ای ساده و قابل اعتماد برای مشتریان فراهم کنیم. عرضه انواع قطعات موتوری، جلوبندی، لوازم برقی، روغن موتور و سایر قطعات مصرفی، بخشی از خدمات مهرگان پخش است.</p>
+
+        </div>
+        <div class="details importantLinks">
+            <h3>لینک های مهم :</h3>
+            <ul>
+                <li><a href="../index.html">صفحه اصلی </a></li>
+                <li><a href="./products.html">محصولات</a></li>
+                <li><a href="../pages/aboutus.html">درباره ما</a></li>
+                <li><a href="./contact.html">تماس با ما</a></li>
+            </ul>
+        </div>
+        <div class="details callToUs">
+            <h3>تماس با ما :</h3>
+            <a href="tel:09190873814">09190873814</a>
+            <p>برای ارتباط  از طریق واتس اپ روی لوگوی واتس اپ کلیک کنید</p>
+            <a href="https://wa.me/989190873814"><i class="fa-brands fa-whatsapp"></i></a>
+            <p>ادرس:تهران خیابان آزادی خیابان حبیب الهی بلوار تیموری شرقی پلاک 42</p>
+            <a href="tel:02166023575">02166023575</a>
+            <a href="tel:02166024926">02166024926</a>
+            <a href="tel:02166024417">02166024417</a>
+            <p>9 صبح تا 9 شب</p>
+
+        </div>
+       </footer>
+      <section class="copyright">
+        <p>تمامی حقوق مادی و معنوی این سایت برای فروشگاه مهرگان پخش محفوظ است</p>
+      
+        <p>&copy 2026-1405 مهرگان پخش | طراحی و توسعه: Nexis.js</p>
+        <a href="tel:09192700682">09192700682</a>
+      </section>
+      
+    </main>
+               <div class="overlay"></div>    
+<script>
+        const navbar = document.querySelector('.navbar')
+        const hamburgerButton = document.querySelector('.hamburgerButton')
+        const closeButton = document.querySelector(".closeButton")
+         const overlay =document.querySelector('.overlay');
+          hamburgerButton.addEventListener('click',()=>{
+            if(navbar.classList.contains("navbar")){
+                navbar.classList.toggle('active')
+                 overlay.style.display='block'
+            }
+        })
+
+        closeButton.addEventListener('click',()=>{
+            if(navbar.classList.contains("active")){
+                navbar.classList.toggle("active")
+                overlay.style.display='none'
+
+            }
+        })
+    </script>
+    <script type="module" src="../js/productsPages.js"></script>
+</body>
+</html>
