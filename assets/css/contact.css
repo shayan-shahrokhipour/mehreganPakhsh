@@ -75,6 +75,12 @@ body{
     border-radius: 5px;
     
 }
+.signin{
+        font-family: vazir;
+
+    display: flex;
+    align-items: center;
+}
 
 .listMenu li a{
     text-decoration: none;

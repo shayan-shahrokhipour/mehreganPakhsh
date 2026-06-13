@@ -76,6 +76,13 @@ body{
     
 }
 
+.signin{
+        font-family: vazir;
+
+    display: flex;
+    align-items: center;
+}
+
 .listMenu li a{
     text-decoration: none;
     padding: 5px 10px;

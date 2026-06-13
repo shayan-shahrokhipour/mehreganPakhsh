@@ -20,7 +20,7 @@
                 <button class="searchButton" style="cursor: pointer;"><i class="fa-solid fa-search"></i></button>
             </section>
             <section class="leftSide">
-                <button><i class="fa-solid fa-user-plus"></i></button>
+                <button class="signin"><i class="fa-solid fa-user-plus"></i>ثبت نام</button>
             </section>
         </section>
         <nav class="navbar">
@@ -109,9 +109,7 @@
         })
 
          const myLocation = window.location.href
-                 console.log(myLocation);
         const navLink = document.querySelectorAll(".nav_link");
-       console.log(navLink);
         navLink.forEach(item =>{
          if(item.href===myLocation){
      item.classList.add("active")
