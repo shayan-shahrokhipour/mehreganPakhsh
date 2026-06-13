@@ -7,6 +7,7 @@ body{
     direction: rtl;
     font-family: vazir;
         background-color: #F7FBFA;
+        max-width: 1400px;
 
 }
 
@@ -50,6 +51,11 @@ body{
     border-radius: 10px;
     box-shadow: 1px 1px 10px #2C7A7B;
     font-family: vazir;
+    border: none;
+}
+
+.center input:focus{
+outline: none;
 }
 
 .center button{
@@ -73,8 +79,9 @@ body{
     align-items: center;
     background-color: #D9F2EB;
     border-radius: 5px;
-    
 }
+
+
 
 .listMenu li a{
     text-decoration: none;
@@ -82,6 +89,12 @@ body{
     border-radius: 5px;
     transition: 0.2s;
     color: #2C7A7B;
+}
+
+.nav_link.active{
+    color: #1F5E5F;
+    background-color: rgba(44, 122, 123, 0.12);
+    border-radius: 8px;
 }
 
 .listMenu li a:hover {
@@ -265,6 +278,7 @@ border-radius: 10px;
 .card p{
     color: #2C7A7B;
     text-align: center;
+    padding: 5px;
 }
 
 
@@ -303,6 +317,7 @@ border-radius: 10px;
 .description p{
     text-align: center;
     color: #2C7A7B;
+    padding: 5px;
 }
 
 .description a{

@@ -42,3 +42,10 @@ product.innerHTML=filtered.map(item=>`<div class="productsCard">
     </div>`).join('')
 console.log(product);
 
+//fetch api
+async function data() {    
+    const response = await fetch('http://192.168.1.103:8000/products/')
+    const json = await response.json()
+    
+}
+data()

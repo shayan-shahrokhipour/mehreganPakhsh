@@ -26,10 +26,10 @@
         <nav class="navbar">
            
             <ul class="listMenu">
-                <li><a href="./index.html">صفحه اصلی</a></li>
-                <li><a href="./pages/products.html">محصولات</a></li>
-                <li><a href="./pages/aboutus.html">درباره ما</a></li>
-                <li><a href="./pages/contact.html">ارتباط با ما</a></li>
+                <li><a class="nav_link" href="./index.html"><i class="fa fa-home"></i>صفحه اصلی</a></li>
+                <li><a class="nav_link" href="./pages/products.html"><i class="fa-solid fa-bag-shopping"></i>محصولات</a></li>
+                <li><a class="nav_link" href="./pages/aboutus.html"><i class="fa-solid fa-circle-info"></i>درباره ما</a></li>
+                <li><a class="nav_link" href="./pages/contact.html"><i class="fa-regular fa-address-card"></i>ارتباط با ما</a></li>
             </ul>
              <div class="close">
                 <button class="closeButton"><i class="fa-solid fa-close"></i></button>
@@ -177,7 +177,8 @@
          const secondBrand = document.querySelector('.secondBrand');
          const search = document.querySelector(".search");     
          const searchButton = document.querySelector(".searchButton")
-         
+          const myLocation = window.location.href
+        const navLink = document.querySelectorAll(".nav_link");
           searchButton.addEventListener('click',()=>{
             const searchVal=document.querySelector(".search").value;
            if(searchVal){
@@ -211,8 +212,18 @@
 
             }
         })
+     
+       
+        navLink.forEach(item =>{
+         if(item.href===myLocation){
+     item.classList.add("active")
 
+        }
+       }) 
+        
+       
 
+         
        </script> 
 </body>
 </html>

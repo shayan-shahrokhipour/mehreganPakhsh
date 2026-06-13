@@ -89,6 +89,14 @@ body{
     background-color: rgba(44, 122, 123, 0.12);
 }
 
+.nav_link.active{
+    
+    color: #1F5E5F;
+    background-color: rgba(44, 122, 123, 0.12);
+    border-radius: 8px;
+
+}
+
 .closeButton{
     display: none;
 }
