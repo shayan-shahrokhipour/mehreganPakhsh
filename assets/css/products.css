@@ -50,6 +50,7 @@ body{
     border-radius: 10px;
     box-shadow: 1px 1px 10px #2C7A7B;
     font-family: vazir;
+    border: none;
 }
 
 .center button{
@@ -75,6 +76,10 @@ body{
     border-radius: 5px;
     
 }
+.center input:focus{
+outline: none;
+}
+
 
 .signin{
         font-family: vazir;
