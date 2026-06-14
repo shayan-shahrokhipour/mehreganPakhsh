@@ -314,6 +314,12 @@ border-radius: 10px;
 
 }
 
+.description:hover{
+     background-color: #CFEAE3;
+    transform: translateY(3px);
+    transition:transform ease-in-out 200ms ;
+}
+
 .description img{
     width: 100%;
         border-radius: 25px;
@@ -437,7 +443,13 @@ background-color: #E6F7F1;
  text-align: center;
  border-radius: 5px;
  padding: 5px;
-    
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.08);
+}
+
+.same_css:hover{
+     background-color: #CFEAE3;
+    transform: translateY(3px);
+    transition:transform ease-in-out 200ms ;
 }
 
 .same_css i{
@@ -633,7 +645,6 @@ list-style: none;
         align-items: center;
         margin: 0 auto;
       }.best{
-        flex-direction: column;
         width: 90%;
         height: auto;
         margin: 0 auto;
