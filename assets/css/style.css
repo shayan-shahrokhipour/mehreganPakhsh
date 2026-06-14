@@ -7,7 +7,12 @@ body{
     direction: rtl;
     font-family: vazir;
         background-color: #F7FBFA;
+
+}
+
+.mainContainer{
         max-width: 1400px;
+        margin: 0 auto;
 
 }
 
@@ -302,7 +307,7 @@ border-radius: 10px;
     height: auto;
     display: flex;
     justify-content: space-around;
-   margin-top: 20px;
+   margin-top: 50px;
 }
 .description{
     width: 20%;
