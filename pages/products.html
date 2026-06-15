@@ -79,35 +79,7 @@
         <a href="tel:09192700682">09192700682</a>
       </section>
                <div class="overlay"></div>    
-<script>
-        const navbar = document.querySelector('.navbar')
-        const hamburgerButton = document.querySelector('.hamburgerButton')
-        const closeButton = document.querySelector(".closeButton")
-         const overlay =document.querySelector('.overlay');
-          hamburgerButton.addEventListener('click',()=>{
-            if(navbar.classList.contains("navbar")){
-                navbar.classList.toggle('active')
-                 overlay.style.display='block'
-            }
-        })
-
-        closeButton.addEventListener('click',()=>{
-            if(navbar.classList.contains("active")){
-                navbar.classList.toggle("active")
-                overlay.style.display='none'
-
-            }
-        })
-         const myLocation = window.location.href
-        const navLink = document.querySelectorAll(".nav_link");
-        navLink.forEach(item =>{
-         if(item.href===myLocation){
-       item.classList.add("active")
-
-        }
-       }) 
-        
-    </script>
+   <script src="../js/navbar.js"></script>
     <script type="module" src="../js/productsPages.js"></script>
 </body>
 </html>

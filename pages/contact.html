@@ -100,47 +100,6 @@
       
                <div class="overlay"></div>    
 
-     <script>
-        const navbar = document.querySelector('.navbar')
-        const hamburgerButton = document.querySelector('.hamburgerButton')
-        const closeButton = document.querySelector(".closeButton")
-         const overlay =document.querySelector('.overlay');
-         const search=document.querySelector(".search");
-         const searchButton =document.querySelector(".searchButton");
-
-         searchButton.addEventListener('click',()=>{
-            const searchVal = document.querySelector('.search').value
-            if(searchVal) {window.location.href=`products.html?search=${encodeURIComponent(searchVal)}`
-            console.log(searchVal);
-            }
-         })
-         
-            
-
-          hamburgerButton.addEventListener('click',()=>{
-            if(navbar.classList.contains("navbar")){
-                navbar.classList.toggle('active')
-                 overlay.style.display='block'
-            }
-        })
-
-        closeButton.addEventListener('click',()=>{
-            if(navbar.classList.contains("active")){
-                navbar.classList.toggle("active")
-                overlay.style.display='none'
-
-            }
-        })
-
-         const myLocation = window.location.href
-        const navLink = document.querySelectorAll(".nav_link");
-        navLink.forEach(item =>{
-         if(item.href===myLocation){
-     item.classList.add("active")
-
-        }
-       }) 
-        
-    </script>
+    <script src="../js/Contacts.js"></script>
 </body>
 </html>
