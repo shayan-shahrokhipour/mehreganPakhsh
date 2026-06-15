@@ -15,6 +15,11 @@ body{
     src: url(../fonts/vazirmatn-v33.003/webfonts/Vazirmatn-Regular.woff2);
 }
 
+.mainContainer{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .topNav{
   
     display: flex;
@@ -125,7 +130,9 @@ outline: none;
 }
 
 .products{
+    max-width: 1150px;
     width: 100%;
+    margin: 0 auto;
     height: auto;
     display: flex;
         flex-wrap: wrap;
@@ -299,5 +306,7 @@ list-style: none;
         height: auto;
     }.details{
         height: auto;
+    }.products{
+       max-width: 700px;
     }
 }

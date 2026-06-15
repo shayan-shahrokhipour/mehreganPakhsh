@@ -25,6 +25,10 @@ body{
     justify-content: space-around;
 }
 
+.mainContainer{
+   max-width:1400px;
+    margin: 0 auto;
+}
 
 .rightSide{
     width: 8%;
@@ -147,7 +151,7 @@ outline: none;
 .aboutUs p{
     text-align: center;
      color: #2C7A7B;
-
+    max-width: 1000px;
 }
 
 .aboutUs video{

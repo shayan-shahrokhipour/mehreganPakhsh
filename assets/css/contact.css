@@ -10,6 +10,11 @@ body{
 
 }
 
+.mainContainer{
+    max-width: 1400px;
+ margin: 0 auto;
+}
+
 @font-face {
     font-family: vazir;
     src: url(../fonts/vazirmatn-v33.003/webfonts/Vazirmatn-Regular.woff2);
