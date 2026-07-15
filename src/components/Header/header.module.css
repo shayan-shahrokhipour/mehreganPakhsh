@@ -2,94 +2,241 @@
     --primaryColor: #D8F3DC;
     --primaryLight: #E0F7E9;
     --buttonColor: #2C7A7B;
-    --buttonHover:#205E5F;
+    --buttonHover:#38A3A5;
     --textColor: #26125B;
     --secondaryText: #52796F;
+    --subMenu:  #205E5F;
+    --submenuText: #F1FAF2;
     --borderRadius:5px;
 }
 
 header{
     width: 100%;
-    height: 100px;
+    height: 80px;
     background-color: var(--primaryColor);
-    padding: 5px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+     justify-content: space-around;
 }
 
-.logo{
-    margin-top: 7px;
-}
- .logo img{
+ .hoverAnimation{
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    
+    padding: 10px; 
+    border-radius: var(--borderRadius);       
+    border: 1px solid transparent; 
+ }
+ 
+ 
+
+ .hoverAnimation:hover{
+    border: 1px solid var(--buttonHover);
+ }
+
+ 
+
+.logo {
     width: auto;
-    height: 90px;
-    background-color: transparent;
-    cursor: pointer;
-
+    height: 100%;
 }
 
 
-.logo:hover img{
-    outline: 1px solid var(--buttonColor);
-    border-radius: var(--borderRadius);
-}
 
-.selectCar{
+.logo img{
     width: auto;
-    height: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-
+    height: 60px;
 }
 
-.yourcar{
-        color: var(--secondaryText);
-    font-size: 12px;
+.hamburgerIcon{
+    display: none;
 }
 
-.car{
-    color: var(--textColor);
+
+
+.topText, .signInText .car, .accounts , .returns , .orders ,.signInTextDesktop , .signinAccountsdesktop {
+    font-size: 13px;
 }
 
-.selectCar:hover{
-    outline: 1px solid var(--buttonColor);
-    border-radius: var(--borderRadius);
+
+
+.shopIcon{
+    font-size: 25px;
 }
 
-.searchBox{
+.signInboxforMobile{
+   display: none;
+}
+
+.selectedLinks,.signinLinks,.returnsLink , .signinLinksDesktop{
+    text-decoration: none;
+}
+
+
+
+
+.inputHolder{
     width: 50%;
-    height: 100px;
+    height: auto;
     display: flex;
     align-items: center;
 }
 
 .searchInput{
-    width: 90%;
+    width: 85%;
     height: 40px;
+    padding: 10px;
+    border: none;
+}
+
+
+
+.searchInput:focus{
+    outline: 1px solid var(--subMenu);
+
 }
 
 .searchButton{
     width: 45px;
-    height: 40px;
-    background-color: var(--buttonColor);
-    border: none;
     border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+    height: 40px;
+    border: none;
+    background-color: var(--buttonColor);
+    color: var(--submenuText);
     cursor: pointer;
-    transition: background-color ease 200ms;
 }
 
 .searchButton:hover{
     background-color: var(--buttonHover);
+    transition: all 200ms;
+
 }
 
 .searchIcon{
     font-size: 30px;
+}
+
+.subMenuforDesktop{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+    background-color: var(--subMenu);
+    padding: 0 40px;
+}
+
+.subMenuforDesktop ul{
+    width: 95%;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+            gap: 10px;
+
+}
+.subMenuforDesktop .hamburgerIconforDesktop{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.subMenuforDesktop li{
+    display: flex;
+    align-items: center;
+        color: var(--submenuText);
+
+}
+
+.subMenuforDesktop li a{
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--submenuText);
+}
+
+.submenuforMobile{
+  width: 100%;
+height: 30px;
+    display: none;
+
+}
+
+.all{
+    font-size: 15px;
+}
+
+.shopiconDesk{
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.topText,.returns,.signInTextDesktop{
+    color: var(--secondaryText);
+}
+
+.car,.orders,.signinAccountsdesktop{
+    color: var(--buttonColor);
+}
+
+
+
+
+
+
+@media only screen and (max-width:767px){
+    .signinboxforDesktop , .returnBox, .shoppingCart,.subMenuforDesktop{
+        display: none;
+    }.hamburgerIcon{
+        display: block;
+        font-size: 50px;
+        color: var(--secondaryText);
+        cursor: pointer;
+    }.logo{
+        display: flex;
+        align-items: flex-start;
+        order: 1;
+    }header{
+        justify-content: space-between;
+        height: auto;
+        flex-wrap: wrap;
+    }.signInboxforMobile{
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        order: 2;
+    }.inputHolder{
+        width: 100%;
+        justify-content: center;
+        order: 3;
+    }.searchInput{
+        width: 90%;
+        height: 40px;
+    }.searchButton{
+        width: 40px;
+        height: 40px;
+    }.submenuforMobile{
+        display: block;
+                order: 4;
+            overflow-x: auto;
+           scrollbar-width: none;
+    }.submenuforMobile ul{
+        display: flex;
+        list-style: none;
+            width: max-content;
+            gap: 20px;
+            padding: 0 20px;
+    }.submenuforMobile ul li a{
+        text-decoration: none;
+        color: var(--secondaryText);
+    }.submenuforMobile::-webkit-scrollbar{
+    display: none;
+}.selectCar{
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    background-color: var(--buttonColor);
+     order: 5;
+}.shopIcon{
+    cursor: pointer;
+}.signinLinks{
+    color: var(--secondaryText);
+}.selectCar .topText ,.selectCar .car{
     color: #ffff;
+}
 }
