@@ -18,6 +18,32 @@ header{
      justify-content: space-around;
 }
 
+.drawerMenu{
+    width: 25%;
+    height: 100vh;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+        transform: translateX(125%);
+     transition: transform ease 400ms;
+}
+
+.drawerMenuActive{
+    
+        transform: translateX(0);
+        z-index: 200;
+}
+
+.closeIcon{
+    position: absolute;
+    right: 100%;
+    border: 1px solid #fff;
+    font-size: 35px;
+    color: #ffff;
+    cursor: pointer;
+}
+
  .hoverAnimation{
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
     
@@ -52,7 +78,7 @@ header{
 
 
 
-.topText, .signInText .car, .accounts , .returns , .orders ,.signInTextDesktop , .signinAccountsdesktop {
+.topText, .signInText, .car, .accounts , .returns , .orders ,.signInTextDesktop , .signinAccountsdesktop {
     font-size: 13px;
 }
 
@@ -102,11 +128,12 @@ header{
     background-color: var(--buttonColor);
     color: var(--submenuText);
     cursor: pointer;
+        transition: all 200ms;
+
 }
 
 .searchButton:hover{
     background-color: var(--buttonHover);
-    transition: all 200ms;
 
 }
 
@@ -152,9 +179,16 @@ header{
 
 .submenuforMobile{
   width: 100%;
-height: 30px;
+height: 60px;
     display: none;
 
+}
+
+.submenuforMobile ul{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
 }
 
 .all{
@@ -174,7 +208,20 @@ height: 30px;
     color: var(--buttonColor);
 }
 
-
+.overlay{
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+        opacity: 0;
+   transition: opacity ease 500ms;
+}
+.overlay.overlayActive{
+     width: 100%;
+    height: 100vh;
+    opacity: 1;
+}
 
 
 
@@ -238,5 +285,7 @@ height: 30px;
     color: var(--secondaryText);
 }.selectCar .topText ,.selectCar .car{
     color: #ffff;
+}.drawerMenuActive{
+    width: 80%;
 }
 }
