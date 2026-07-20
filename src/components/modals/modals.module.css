@@ -1,0 +1,111 @@
+:root {
+  --primaryColor: #d8f3dc;
+  --primaryLight: #e0f7e9;
+  --buttonColor: #2c7a7b;
+  --buttonHover: #38a3a5;
+  --textColor: #26125b;
+  --secondaryText: #52796f;
+  --subMenu: #205e5f;
+  --submenuText: #f1faf2;
+  --borderRadius: 5px;
+}
+
+.SelectCarModal{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    margin: 300px auto;
+   width: 400px;
+   height: auto;
+   background-color: var(--primaryLight);
+    z-index: 200;
+    border-radius: 5px;
+    
+}
+
+.CardModalHolder{
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid var(--buttonColor);
+    background-color: var(--primaryColor);
+    border-radius: 5px 5px 0 0;
+}
+
+.closeIcon{
+    font-size: 25px;
+    cursor: pointer;
+}
+.selectedcartInfo{
+ width: 100%;
+ max-width: 90%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin: 15px auto;
+}
+
+.selectedcartInfo p{
+    font-size: 12px;
+    text-align: center;
+}
+.signIn{
+    width: 90%;
+    height: 30px;
+    border-radius: 15px;
+    background-color: var(--buttonColor);
+            margin: 10px auto;
+        display: block;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+}
+
+
+.signIn:hover{ 
+    background-color: var(--buttonHover);
+}
+
+
+
+
+
+.firstLine,.secondLine{
+    width: 25%;
+    height: 1px;
+    background-color: #000;
+    margin: 0 auto;
+}
+
+.description{
+    font-size: 12px;
+    text-align: center;
+    padding: 15px;
+}
+
+.optionHolder select{
+    width: 90%;
+    height: 25px;
+    margin: 0 auto;
+    display: block;
+}
+
+/*SignInModal*/
+.signInmodal{
+    position: fixed;
+    left: 150px;
+    top: 65px;
+    width: 40%;
+    height: 400px;
+    background-color: aqua;
+    z-index: 200;
+}
+
+@media only screen and (max-width:767px){
+  .SelectCarModal{
+    width: 90%;
+  }
+}

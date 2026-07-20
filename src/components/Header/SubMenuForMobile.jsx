@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../Header/header.module.css";
+import styles from "../Header/headerstyles/header.module.css";
 
 const SubMenuForMobile = () => {
   return (

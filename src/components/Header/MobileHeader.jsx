@@ -1,6 +1,6 @@
 import React from "react";
 //module css
-import styles from "../Header/header.module.css";
+import styles from "../Header/headerstyles/header.module.css";
 
 //Icons
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -17,7 +17,7 @@ const MobileHeader = ({ drawerHandeler }) => {
         <a href="" className={styles.signinLinks}>
           <MdAccountCircle />
           <span className={styles.signInText}> ثبت نام</span>
-          <br />{" "}
+          <br />
         </a>
         <a href=""></a>
         <GiShoppingCart className={styles.shopIcon} />
