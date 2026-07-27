@@ -100,7 +100,7 @@
     top: 65px;
     width: 40%;
     height: 400px;
-    background-color: aqua;
+    background-color: var(--primaryLight);
     z-index: 200;
 }
 

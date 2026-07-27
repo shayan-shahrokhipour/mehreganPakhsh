@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header/Header'
 import { Route, Routes} from 'react-router-dom'
 import SelectCarModal from './components/modals/SelectCarModal'
+import Hero from './components/Hero/Hero'
 
 //use Reducer
 const initialState ={
@@ -52,8 +53,10 @@ const onmouseOver=()=>{
     
          <Header state={state} drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseOver={onmouseOver}/>
 
-
-       
+         <Hero/>         
+ 
+              
+     
     </>
   )
 }
