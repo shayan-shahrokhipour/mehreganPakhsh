@@ -4,7 +4,7 @@
     background: linear-gradient(to bottom , #A938FA 0%, #A938FA 50%,#fff 100%);
     position: relative;
     transition: all 200ms;
-    
+    overflow: hidden;
 }
 
 .sliderHolder.backgroundChanging{
@@ -13,8 +13,35 @@
  
 }
 
-.sliderHolder.animation{
-    transform: translateX(30px);
+.rightAnimation{
+    animation: slidingRight 400ms ease;
+}
+
+.leftAnimation{
+        animation: slidingLeft 400ms ease;
+
+}
+
+@keyframes slidingRight{
+ from{
+    opacity: 0;
+    transform: translateX(100%);
+
+ }to{
+    opacity: 1;
+    transform: translateX(0);
+ }
+}
+
+@keyframes slidingLeft{
+ from{
+    opacity: 0;
+    transform: translateX(-100%);
+
+ }to{
+    opacity: 1;
+    transform: translateX(0);
+ }
 }
 
 .imgBox{

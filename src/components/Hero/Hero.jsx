@@ -8,44 +8,44 @@ const Hero = () => {
   const slides =[
     {
     image:'/slider1.png',
-    classItem:styles.sliderHolder
+    classItem:styles.sliderHolder,
   },
   {
     image:'/slider2.png',
-        classItem:styles.backgroundChanging
+        classItem:styles.backgroundChanging,
 
   }
   ]
-
-  const [holders,setHolders]=useState(false)
-  console.log(holders);
+  
   
   const [index,setIndex]=useState(0);
-      console.log(slides[index].image);
-       console.log(slides.length);
-       console.log(slides[index].classItem);
-       
+  const [direction,setDirection]=useState(null)
   const rightFunction=()=>{
      if(index < slides.length -1){
+      setDirection('right')
       setIndex(index + 1)
-      console.log(index);
       
      }else{
       setIndex(0)
+        setDirection("right");
+
      }
   }
   const leftFunction=()=>{
     if(index > 0){
+      setDirection('left')
       setIndex(index - 1)
-      console.log(index);
     }else{
       setIndex(slides.length-1)
+        setDirection("left");
+
     }
   }
+  
   return (
     <section className={`${styles.sliderHolder} ${slides[index].classItem}`}>
-        <div className={styles.imgBox}>
-          <img src={slides[index].image} alt="hydrolic Hose" />
+        <div  className={styles.imgBox}>
+          <img key={index} className={direction === 'right' ?`  ${styles.rightAnimation}` : ` ${styles.leftAnimation} `}src={slides[index].image} alt="hydrolic Hose"/> 
         </div>
           <div onClick={rightFunction} className={`${styles.directionIcon} ${styles.rightAnchor}`}>
               <FaChevronRight />
