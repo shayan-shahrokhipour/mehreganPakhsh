@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../Hero/hero.module.css'
+import Firstrow from '../Main/Firstrow'
+
 //icons
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
@@ -8,7 +10,7 @@ const Hero = () => {
   const slides =[
     {
     image:'/slider1.png',
-    classItem:styles.sliderHolder,
+    classItem:styles.firstRowHolder,
   },
   {
     image:'/slider2.png',
@@ -43,7 +45,8 @@ const Hero = () => {
   }
   
   return (
-    <section className={`${styles.sliderHolder} ${slides[index].classItem}`}>
+    <>
+    <section className={`${styles.sliderHolder} `}>
         <div  className={styles.imgBox}>
           <img key={index} className={direction === 'right' ?`  ${styles.rightAnimation}` : ` ${styles.leftAnimation} `}src={slides[index].image} alt="hydrolic Hose"/> 
         </div>
@@ -53,7 +56,11 @@ const Hero = () => {
           <div onClick={leftFunction} className={`${styles.directionIcon} ${styles.leftAnchor}`}>
             <FaChevronLeft />
           </div>
+          
     </section>
+                         <Firstrow slides={slides[index]} /> 
+
+          </>
   )
 }
 

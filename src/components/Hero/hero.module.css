@@ -1,17 +1,28 @@
 .sliderHolder{
     width: 100%;
-    height: 750px;
-    background: linear-gradient(to bottom , #A938FA 0%, #A938FA 50%,#fff 100%);
+    height: 350px;
     position: relative;
     transition: all 200ms;
     overflow: hidden;
 }
+/*=====================================================*/
+/*=====changing background for Firstrow component======*/
+/*=====================================================*/
+.firstRowHolder{
+     width: 100%;
+    height: 350px;
+    background: linear-gradient(to bottom , #A938FA 0%, #A938FA 25%,#fff 100%);
+    transition: all 200ms;
+}
 
-.sliderHolder.backgroundChanging{
+.firstRowHolder.backgroundChanging{
     
         background: linear-gradient(to bottom , #D681FF 0%, #D681FF 50%,#fff 100%);
  
 }
+
+
+/*========================================================================================*/
 
 .rightAnimation{
     animation: slidingRight 400ms ease;
@@ -76,6 +87,8 @@
     width: 100%;
     height: 100%;
 }
+
+
 
 @media only screen and (max-width:767px){
     .directionIcon{
