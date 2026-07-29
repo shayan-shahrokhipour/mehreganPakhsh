@@ -8,10 +8,9 @@ import styles from "../Header/headerstyles/header.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosSearch } from "react-icons/io";
 import { GiShoppingCart } from "react-icons/gi";
-import { FaOpencart } from "react-icons/fa6";
 import { MdAccountCircle } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseOver}) => {
+const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
       
   return (
       <>
@@ -32,7 +31,7 @@ const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseO
           </button>
         </div>
         
-        <div onMouseEnter={onmouseEnter} onMouseLeave={onmouseOver}  className={`${styles.hoverAnimation} ${styles.signinboxforDesktop}`}>
+        <div onMouseEnter={onmouseEnter} onMouseLeave={onmouseLeave}  className={`${styles.hoverAnimation} ${styles.signinboxforDesktop}`}>
           <a  href="" className={styles.signinLinksDesktop}>
             <span className={styles.signInTextDesktop}> سلام , ثبت نام</span>
             <br />

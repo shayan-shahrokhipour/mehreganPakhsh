@@ -11,13 +11,13 @@
 .firstRowHolder{
      width: 100%;
     height: 350px;
-    background: linear-gradient(to bottom , #A938FA 0%, #A938FA 25%,#fff 100%);
+    background: linear-gradient(to bottom , #A938FA 0, #A938FA 87px,#fff 250px);
     transition: all 200ms;
 }
 
 .firstRowHolder.backgroundChanging{
     
-        background: linear-gradient(to bottom , #D681FF 0%, #D681FF 50%,#fff 100%);
+        background: linear-gradient(to bottom , #D681FF 0%, #D681FF 87px,#fff 250px);
  
 }
 

@@ -12,7 +12,7 @@ import SelectCarModal from "../modals/SelectCarModal";
 import SignInModal from "../modals/SignInModal";
 
 
-const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseOver}) => {
+const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
  
   const {drawer,modal,onmouse}=state
   return (
@@ -20,9 +20,9 @@ const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseOver}) =
       <DrawerMenu   drawerHandeler={drawerHandeler}
         state={state.drawer} />
 
-      <header className={onmouse ? styles.headerActive : null}>
+      <header className={onmouse ? styles.headerActive : ""}>
         {/*===============================================*/}
-        <DesktopHeader  drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseOver={onmouseOver}/>
+        <DesktopHeader  drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseLeave={onmouseLeave}/>
         {/*===============================================*/}
 
         <MobileHeader />
@@ -45,7 +45,7 @@ const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseOver}) =
         <SignInModal state={state.onmouse}/>
       <div
         className={`${styles.overlay} ${
-          state.drawer || state.modal || state.onmouse ? styles.overlayActive : null
+          state.drawer || state.modal || state.onmouse ? styles.overlayActive : ""
         }`}
       ></div>
       

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from '../Hero/hero.module.css'
 import Firstrow from '../Main/Firstrow'
-
 //icons
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 
+//context
 const Hero = () => {
+ 
+ 
   const slides =[
     {
     image:'/slider1.png',

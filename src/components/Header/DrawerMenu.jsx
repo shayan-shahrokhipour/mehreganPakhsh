@@ -6,7 +6,7 @@ const DrawerMenu = ({state,drawerHandeler,modalHandeler}) => {
 
    
   return (
-   <div className={`${styles.drawerMenu} ${state === true ? styles.drawerMenuActive : null}`}>
+   <div className={`${styles.drawerMenu} ${state === true ? styles.drawerMenuActive : ""}`}>
        <IoClose onClick={drawerHandeler} className={styles.closeIcon}/>
         
     </div>

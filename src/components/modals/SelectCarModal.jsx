@@ -29,6 +29,8 @@ const SelectCarModal = ({ state, modalHandeler }) => {
             <option value="همه">همه</option>
             <option value="206">206</option>
             <option value="405">405</option>
+            <option value="سمند">سمند</option>
+            <option value="پژو پارس">پژو پارس</option>
             <option value="پراید">پراید</option>
               <option value="تیبا">تیبا</option>
           </select>

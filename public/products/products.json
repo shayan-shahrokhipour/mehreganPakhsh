@@ -1,0 +1,107 @@
+[
+ {
+  "id":1,
+  "name":"شلنگ هیدرولیک ضعیف 405",
+  "category":"شلنگ هیدرولیک",
+  "brand":"MPCO",
+  "cars":["405","سمند","پارس"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+  "model":[]
+},
+{
+  "id":2,
+  "name":"شلنگ هیدرولیک قوی 405",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["405","سمند","پارس"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":[]
+
+},
+{
+  "id":3,
+  "name":"شلنگ هیدرولیک ضعیف 206",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["206"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+  "model":["91-96","96 به بالا ","86-89","89-92"]
+},
+{
+  "id":4,
+  "name":"شلنگ هیدرولیک قوی 206",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["206"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":["91-96","96 +","86-89","89-92"]
+
+},
+{
+  "id":5,
+  "name":"شلنگ هیدرولیک دوقلو پراید",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["پراید"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":[]
+
+},
+{
+  "id":6,
+  "name":"شلنگ هیدرولیک دوقلو تیبا",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["تیبا"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":[]
+
+},
+{
+  "id":7,
+  "name":"شلنگ هیدرولیک ضعیف 405",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["405"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":[]
+
+},
+{
+  "id":8,
+  "name":"شلنگ هیدرولیک ضعیف 405",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["405"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":[]
+
+},
+{
+  "id":9,
+  "name":"شلنگ هیدرولیک ضعیف 405",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["405"],
+  "price":500000,
+  "stock":true,
+  "img":"/products/zayif-405.webp",
+    "model":[]
+}
+]

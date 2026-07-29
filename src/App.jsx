@@ -4,7 +4,8 @@ import Header from './components/Header/Header'
 import { Route, Routes} from 'react-router-dom'
 import SelectCarModal from './components/modals/SelectCarModal'
 import Hero from './components/Hero/Hero'
-
+//context
+import ContextProvider from './context/ContextProvider'
 //use Reducer
 const initialState ={
   drawer:false,
@@ -44,16 +45,18 @@ const modalHandeler=()=>{
 const onmouseEnter=()=>{
  setTimeout(()=>{dispatch({type:"onmouseon"})},200)}
 
-const onmouseOver=()=>{
+const onmouseLeave=()=>{
   setTimeout(()=>{dispatch({type:"onmouseLeave"})},200)
 }
 
   return (
     <>
     
-         <Header state={state} drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseOver={onmouseOver}/>
+         <ContextProvider>
+          <Header state={state} drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseLeave={onmouseLeave}/>
 
-         <Hero/>         
+         <Hero/>   
+          </ContextProvider>      
  
      
     </>
