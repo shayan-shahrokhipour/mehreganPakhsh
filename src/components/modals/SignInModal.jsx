@@ -4,7 +4,6 @@ import React from 'react'
 import styles from '../modals/modals.module.css'
 const SignInModal = ({state}) => {
   
-  console.log(state);
   
   return (
    <>

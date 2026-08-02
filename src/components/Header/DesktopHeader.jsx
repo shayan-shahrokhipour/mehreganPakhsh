@@ -10,7 +10,7 @@ import { IoIosSearch } from "react-icons/io";
 import { GiShoppingCart } from "react-icons/gi";
 import { MdAccountCircle } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
+const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave,Model}) => {
       
   return (
       <>
@@ -22,7 +22,7 @@ const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseL
         </div>
         <div onClick={modalHandeler} className={`${styles.hoverAnimation} ${styles.selectCar}`}>
             <span className={styles.topText}>انتخاب خودرو:</span> <br />
-            <span className={styles.car}>پژو</span>
+            <span className={styles.car}>{Model}</span>
         </div>
         <div className={styles.inputHolder}>
           <input type="text" className={styles.searchInput} placeholder="جست و جو در مهرگان پخش ..."/>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 //module css
 import styles from "../Header/headerstyles/header.module.css";
 
@@ -10,10 +10,34 @@ import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import SelectCarModal from "../modals/SelectCarModal";
 import SignInModal from "../modals/SignInModal";
+import { ProductContext } from "../../context/ContextProvider";
 
 
 const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
- 
+ //Context
+   const getProducts=useContext(ProductContext)
+   const {id,name,cars}=getProducts
+   //states
+     const [Model,setModel]=useState("همه")
+     const [filterInfo,setFilterInfo]=useState([])
+     //functions
+     const chooseModel=(event)=>{
+      setModel(event.target.value)
+  }
+
+ const showInformation=()=>{
+    console.log(Model); 
+    
+setFilterInfo(getProducts.filter(item=> item.cars.includes(Model)))
+
+  
+        console.log(filterInfo);
+        
+
+  
+    
+ }
+ //destructures
   const {drawer,modal,onmouse}=state
   return (
     <>
@@ -22,7 +46,7 @@ const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) 
 
       <header className={onmouse ? styles.headerActive : ""}>
         {/*===============================================*/}
-        <DesktopHeader  drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseLeave={onmouseLeave}/>
+        <DesktopHeader  drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseLeave={onmouseLeave} Model={Model}/>
         {/*===============================================*/}
 
         <MobileHeader />
@@ -38,7 +62,7 @@ const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) 
 
         {/*==========================================*/}
 
-       <SelectCarModal state={state.modal} modalHandeler={modalHandeler}/>
+       <SelectCarModal state={state.modal} modalHandeler={modalHandeler} showInformation={showInformation} chooseModel={chooseModel}/>
 
        {/*==========================================*/}
 

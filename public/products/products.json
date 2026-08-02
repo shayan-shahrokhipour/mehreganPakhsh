@@ -7,8 +7,8 @@
   "cars":["405","سمند","پارس"],
   "price":500000,
   "stock":true,
-  "img":"/products/zayif-405.webp",
-  "model":[]
+  "img":"/products/productsImg/zayif-405.webp",
+  "model":""
 },
 {
   "id":2,
@@ -18,90 +18,99 @@
   "cars":["405","سمند","پارس"],
   "price":500000,
   "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":[]
+  "img":"/products/productsImg/ghavi-405.jpg",
+    "model":""
 
 },
 {
   "id":3,
-  "name":"شلنگ هیدرولیک ضعیف 206",
+  "name":"شلنگ هیدرولیک ضعیف 206 مدل 86 تا 90",
     "category":"شلنگ هیدرولیک",
     "brand":"MPCO",
   "cars":["206"],
   "price":500000,
   "stock":true,
-  "img":"/products/zayif-405.webp",
-  "model":["91-96","96 به بالا ","86-89","89-92"]
+ "img":"/products/productsImg/zayif-206-86-90.jpg",
+   "model":"86-90"
 },
 {
   "id":4,
-  "name":"شلنگ هیدرولیک قوی 206",
+  "name":"شلنگ هیدرولیک قوی 206 مدل 86 تا 90",
     "category":"شلنگ هیدرولیک",
     "brand":"MPCO",
   "cars":["206"],
   "price":500000,
   "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":["91-96","96 +","86-89","89-92"]
+ "img":"/products/productsImg/ghavi-206-86-90.jpg",
+     "model":"86-90"
 
 },
 {
   "id":5,
-  "name":"شلنگ هیدرولیک دوقلو پراید",
+  "name":"شلنگ هیدرولیک ضعیف 206 مدل 91 تا 96",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["206"],
+  "price":500000,
+  "stock":true,
+ "img":"/products/productsImg/zayif-206-91-96.jpg",
+     "model":"91-96"
+
+},
+{
+  "id":6,
+  "name":"شلنگ هیدرولیک قوی 206 مدل 91 تا 96",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["206"],
+  "price":500000,
+  "stock":true,
+ "img":"/products/productsImg/ghavi-206-91-96.jpg",
+     "model":"91-96"
+
+},
+{
+  "id":7,
+ "name":"شلنگ هیدرولیک ضعیف 206 مدل 96 به بالا ",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["206","رانا","TU5","SLX"],
+  "price":500000,
+  "stock":true,
+ "img":"/products/productsImg/zayif-206-96.jpg",
+"model":"96 +"
+},
+{
+"id":8,
+  "name":"شلنگ هیدرولیک قوی 206 مدل 96 به بالا ",
+    "category":"شلنگ هیدرولیک",
+    "brand":"MPCO",
+  "cars":["206","رانا","TU5","SLX"],
+  "price":500000,
+  "stock":true,
+ "img":"/products/productsImg/ghavi-206-96.jpg",
+"model":""
+},
+{
+  "id":9,
+ "name":"شلنگ هیدرولیک دوقلو پراید",
     "category":"شلنگ هیدرولیک",
     "brand":"MPCO",
   "cars":["پراید"],
   "price":500000,
   "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":[]
-
+ "img":"/products/productsImg/twice-pride.webp",
+"model":""
 },
 {
-  "id":6,
-  "name":"شلنگ هیدرولیک دوقلو تیبا",
+  "id":10,
+ "name":"شلنگ هیدرولیک دوقلو تیبا",
     "category":"شلنگ هیدرولیک",
     "brand":"MPCO",
-  "cars":["تیبا"],
+  "cars":["تیبا","تیبا 2","ساینا","کوییک","سهند"],
   "price":500000,
   "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":[]
-
-},
-{
-  "id":7,
-  "name":"شلنگ هیدرولیک ضعیف 405",
-    "category":"شلنگ هیدرولیک",
-    "brand":"MPCO",
-  "cars":["405"],
-  "price":500000,
-  "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":[]
-
-},
-{
-  "id":8,
-  "name":"شلنگ هیدرولیک ضعیف 405",
-    "category":"شلنگ هیدرولیک",
-    "brand":"MPCO",
-  "cars":["405"],
-  "price":500000,
-  "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":[]
-
-},
-{
-  "id":9,
-  "name":"شلنگ هیدرولیک ضعیف 405",
-    "category":"شلنگ هیدرولیک",
-    "brand":"MPCO",
-  "cars":["405"],
-  "price":500000,
-  "stock":true,
-  "img":"/products/zayif-405.webp",
-    "model":[]
+ "img":"/products/productsImg/twice-tiba.jpg",
+"model":""
 }
 ]

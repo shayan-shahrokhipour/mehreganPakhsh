@@ -2,12 +2,7 @@ import axios from 'axios'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 //context
 export const ProductContext = createContext()
-
-//custom hook
-// export const useProducts=()=>{
-//   return useContext(ProductContext)
-//  }
-//Context
+//Product Context
 const ContextProvider = ({children}) => {
     const [products,setProducts]=useState([])
     useEffect(()=>{
@@ -19,6 +14,7 @@ const ContextProvider = ({children}) => {
        }
        productdata()
     },[])
+   
   return (
     <ProductContext value={products}>
         {children}

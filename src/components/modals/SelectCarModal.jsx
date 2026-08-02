@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../modals/modals.module.css";
 //icons
 import { IoClose } from "react-icons/io5";
+// import { ProductContext } from "../../context/ContextProvider";
+const SelectCarModal = ({ state, modalHandeler,showInformation,chooseModel }) => {
+  // //Context
+  // const getProducts=useContext(ProductContext)
+  // const {id,name,cars}=getProducts
+  
+// //states
+//   const [Model,setModel]=useState("")
+//   const [filterInfo,setFilterInfo]=useState([])
+  
+//   const chooseModel=(event)=>{
+//       setModel(event.target.value)
+//   }
 
-const SelectCarModal = ({ state, modalHandeler }) => {
+//  const showInformation=()=>{
+//     console.log(Model); 
+    
+// setFilterInfo(getProducts.filter(item=> item.cars.includes(Model)))
+
+  
+//         console.log(filterInfo);
+        
+
+  
+    
+//  }
+  
   return (
     <>
       {state === true ? (
@@ -25,7 +50,7 @@ const SelectCarModal = ({ state, modalHandeler }) => {
             <div className={styles.secondLine}></div>
           </div>
           <div className={styles.optionHolder}>
-            <select id="cars" name="cars">
+            <select id="cars" name="cars" onChange={chooseModel}>
             <option value="همه">همه</option>
             <option value="206">206</option>
             <option value="405">405</option>
@@ -35,7 +60,7 @@ const SelectCarModal = ({ state, modalHandeler }) => {
               <option value="تیبا">تیبا</option>
           </select>
           </div>
-          <button className={styles.signIn}>کلیک کنید !</button>
+          <button onClick={showInformation} className={styles.signIn}>کلیک کنید !</button>
         </div>
       ) : null}
     </>

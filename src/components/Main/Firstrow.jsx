@@ -15,7 +15,7 @@ const Firstrow = ({slides}) => {
                 <img src={item.img} alt="" />
                 <p>{item.name}</p>
                 <p>{item.brand}</p>
-                 <Link to={`/productDetails/${item.id}`}>برای مطالعه جزئیات کلیک کنید</Link>
+                 <Link className={styles.detailsLinks} to={`/productDetails/${item.id}`}>برای مطالعه جزئیات کلیک کنید</Link>
                  
       </div>)}
    

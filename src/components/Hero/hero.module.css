@@ -40,16 +40,20 @@
 
 .cardHolder{
     width: 23%;
-    height: 300px;
+    height: 350px;
     background-color: #fff;
     box-shadow: 0 4px 15px rgba(38, 18, 91, 0.12);
  }
 
  
 
- .cardHolder p{
+ .cardHolder p,.detailsLinks{
        padding: 0 20px;
 
+ }
+ .detailsLinks{
+    text-decoration: none;
+    color: #000;
  }
 
  .cardHolder img{
@@ -132,6 +136,7 @@
         font-size: 25px;
     }.cardHolder{
         width: 90%;
+        height: auto;
     }.firstRowHolder{
         height: auto;
         flex-direction: column;
