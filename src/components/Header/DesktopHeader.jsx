@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 //module css
 import styles from "../Header/headerstyles/header.module.css";
 
@@ -10,8 +10,11 @@ import { IoIosSearch } from "react-icons/io";
 import { GiShoppingCart } from "react-icons/gi";
 import { MdAccountCircle } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave,Model}) => {
-      
+//import Context
+import { ProductContext } from '../../context/ContextProvider';
+const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
+      //Context
+         const {Model}=useContext(ProductContext)
   return (
       <>
       <div className={styles.logo}>

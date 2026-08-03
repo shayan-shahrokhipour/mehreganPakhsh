@@ -40,6 +40,8 @@ function App() {
 
 const modalHandeler=()=>{
     dispatch({type:"toggleModal"})
+     
+
 
 }
 

@@ -2,32 +2,30 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../modals/modals.module.css";
 //icons
 import { IoClose } from "react-icons/io5";
-// import { ProductContext } from "../../context/ContextProvider";
-const SelectCarModal = ({ state, modalHandeler,showInformation,chooseModel }) => {
-  // //Context
-  // const getProducts=useContext(ProductContext)
-  // const {id,name,cars}=getProducts
-  
-// //states
-//   const [Model,setModel]=useState("")
-//   const [filterInfo,setFilterInfo]=useState([])
-  
-//   const chooseModel=(event)=>{
-//       setModel(event.target.value)
-//   }
+import { ProductContext } from "../../context/ContextProvider";
+const SelectCarModal = ({ state, modalHandeler }) => {
+  //Context
+   const {products,setProduct,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
+   //functions
+     const chooseModel=(event)=>{
+   
 
-//  const showInformation=()=>{
-//     console.log(Model); 
+      setModel(event.target.value)
+      
+  }
+
+ const showInformation=()=>{
+    console.log(Model);
     
-// setFilterInfo(getProducts.filter(item=> item.cars.includes(Model)))
+            setFilterInfo(products.filter(item=> item.cars.includes(Model)))
 
-  
-//         console.log(filterInfo);
-        
+     
+      
+    //  modalHandeler()
 
-  
-    
-//  }
+
+        console.log(filterInfo); 
+ }
   
   return (
     <>
@@ -55,7 +53,7 @@ const SelectCarModal = ({ state, modalHandeler,showInformation,chooseModel }) =>
             <option value="206">206</option>
             <option value="405">405</option>
             <option value="سمند">سمند</option>
-            <option value="پژو پارس">پژو پارس</option>
+            <option value="پارس">پژو پارس</option>
             <option value="پراید">پراید</option>
               <option value="تیبا">تیبا</option>
           </select>

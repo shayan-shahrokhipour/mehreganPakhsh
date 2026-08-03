@@ -14,9 +14,11 @@ const ContextProvider = ({children}) => {
        }
        productdata()
     },[])
-   
+   //states
+        const [Model,setModel]=useState("همه")
+        const [filterInfo,setFilterInfo]=useState([])
   return (
-    <ProductContext value={products}>
+    <ProductContext value={{products,setProducts,Model,setModel,filterInfo,setFilterInfo}}>
         {children}
    </ProductContext>
   )

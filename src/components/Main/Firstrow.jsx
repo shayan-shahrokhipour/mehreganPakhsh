@@ -5,19 +5,29 @@ import styles from '../Hero/hero.module.css'
 //context
 import {ProductContext} from '../../context/ContextProvider'
 const Firstrow = ({slides}) => {
-      const getProducts=useContext(ProductContext)
- console.log(getProducts);
+      const {products,filterInfo,Model}=useContext(ProductContext)
   return (
     <div className={`${styles.firstRowHolder} ${slides.classItem} `}>
     
-       {getProducts.map(item=> <div key={item.id} className={styles.cardHolder}>
+       {Model==="همه" ?
+       products.map(item=> <div key={item.id} className={styles.cardHolder}>
                 <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
                 <img src={item.img} alt="" />
                 <p>{item.name}</p>
                 <p>{item.brand}</p>
                  <Link className={styles.detailsLinks} to={`/productDetails/${item.id}`}>برای مطالعه جزئیات کلیک کنید</Link>
                  
-      </div>)}
+      </div>)
+      :
+      filterInfo.map(item=><div key={item.id} className={styles.cardHolder}>
+                <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
+                <img src={item.img} alt="" />
+                <p>{item.name}</p>
+                <p>{item.brand}</p>
+                 <Link className={styles.detailsLinks} to={`/productDetails/${item.id}`}>برای مطالعه جزئیات کلیک کنید</Link>
+                 
+      </div>)
+      }
    
     </div>
   )

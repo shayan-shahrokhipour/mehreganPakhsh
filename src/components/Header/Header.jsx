@@ -15,28 +15,8 @@ import { ProductContext } from "../../context/ContextProvider";
 
 const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
  //Context
-   const getProducts=useContext(ProductContext)
-   const {id,name,cars}=getProducts
-   //states
-     const [Model,setModel]=useState("همه")
-     const [filterInfo,setFilterInfo]=useState([])
-     //functions
-     const chooseModel=(event)=>{
-      setModel(event.target.value)
-  }
-
- const showInformation=()=>{
-    console.log(Model); 
+   const {products,setProducts,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
     
-setFilterInfo(getProducts.filter(item=> item.cars.includes(Model)))
-
-  
-        console.log(filterInfo);
-        
-
-  
-    
- }
  //destructures
   const {drawer,modal,onmouse}=state
   return (
@@ -46,7 +26,7 @@ setFilterInfo(getProducts.filter(item=> item.cars.includes(Model)))
 
       <header className={onmouse ? styles.headerActive : ""}>
         {/*===============================================*/}
-        <DesktopHeader  drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseLeave={onmouseLeave} Model={Model}/>
+        <DesktopHeader  drawerHandeler={drawerHandeler} modalHandeler={modalHandeler} onmouseEnter={onmouseEnter} onmouseLeave={onmouseLeave}/>
         {/*===============================================*/}
 
         <MobileHeader />
@@ -62,7 +42,7 @@ setFilterInfo(getProducts.filter(item=> item.cars.includes(Model)))
 
         {/*==========================================*/}
 
-       <SelectCarModal state={state.modal} modalHandeler={modalHandeler} showInformation={showInformation} chooseModel={chooseModel}/>
+       <SelectCarModal state={state.modal} modalHandeler={modalHandeler} />
 
        {/*==========================================*/}
 
