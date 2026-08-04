@@ -4,11 +4,13 @@ import Firstrow from '../Main/Firstrow'
 //icons
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
+import { ProductContext } from '../../context/ContextProvider';
 
-//context
+
 const Hero = () => {
  
- 
+ //context
+const {products,setProduct,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
   const slides =[
     {
     image:'/slider1.png',
@@ -60,7 +62,7 @@ const Hero = () => {
           </div>
           
     </section>
-                         <Firstrow slides={slides[index]} /> 
+                          <Firstrow slides={slides[index]} /> 
 
           </>
   )

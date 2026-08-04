@@ -16,14 +16,20 @@ const SelectCarModal = ({ state, modalHandeler }) => {
 
  const showInformation=()=>{
     console.log(Model);
-    
-            setFilterInfo(products.filter(item=> item.cars.includes(Model)))
+      if(Model==="همه"){
+         
+                  setFilterInfo(products)
 
-     
+        
+      }else{
+         setFilterInfo(products.filter(item=> item.cars.includes(Model)))
+
+      }
+
       
-    //  modalHandeler()
+     modalHandeler()
 
-
+    
         console.log(filterInfo); 
  }
   
@@ -48,12 +54,14 @@ const SelectCarModal = ({ state, modalHandeler }) => {
             <div className={styles.secondLine}></div>
           </div>
           <div className={styles.optionHolder}>
-            <select id="cars" name="cars" onChange={chooseModel}>
+            <select id="cars" name="cars" value={Model} onChange={chooseModel}>
             <option value="همه">همه</option>
             <option value="206">206</option>
             <option value="405">405</option>
             <option value="سمند">سمند</option>
             <option value="پارس">پژو پارس</option>
+            <option value="تندر90">تندر90</option>
+            <option value="RD">RD-ROA</option>
             <option value="پراید">پراید</option>
               <option value="تیبا">تیبا</option>
           </select>

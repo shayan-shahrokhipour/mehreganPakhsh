@@ -9,17 +9,10 @@ const Firstrow = ({slides}) => {
   return (
     <div className={`${styles.firstRowHolder} ${slides.classItem} `}>
     
-       {Model==="همه" ?
-       products.map(item=> <div key={item.id} className={styles.cardHolder}>
-                <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
-                <img src={item.img} alt="" />
-                <p>{item.name}</p>
-                <p>{item.brand}</p>
-                 <Link className={styles.detailsLinks} to={`/productDetails/${item.id}`}>برای مطالعه جزئیات کلیک کنید</Link>
-                 
-      </div>)
-      :
-      filterInfo.map(item=><div key={item.id} className={styles.cardHolder}>
+       
+       
+      
+      {filterInfo.map(item=><div key={item.id} className={styles.cardHolder}>
                 <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
                 <img src={item.img} alt="" />
                 <p>{item.name}</p>
