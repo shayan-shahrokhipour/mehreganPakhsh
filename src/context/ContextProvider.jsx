@@ -1,36 +1,85 @@
-import axios from 'axios'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import axios from "axios";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
- 
-//context
-export const ProductContext = createContext()
+//--------//
+//context//
+//------//
+
+export const ProductContext = createContext();
 //Product Context
-const ContextProvider = ({children}) => {
-  //states
-    const [products,setProducts]=useState([])
-        const [Model,setModel]=useState("همه")
-        const [filterInfo,setFilterInfo]=useState([])
+const ContextProvider = ({ children }) => {
+  //--------------------//
+  //states for car model//
+  //-------------------//
 
-    useEffect(()=>{
-       const productdata=async()=>{
-         const response = await axios.get("/products/products.json")
-         setProducts(response.data)
-       
-                 
-       }
-       productdata()
-    },[])
-     useEffect(()=>{
+  const [products, setProducts] = useState([]);
+  const [Model, setModel] = useState("همه");
+  const [filterInfo, setFilterInfo] = useState([]);
+  //search with input
+  const [value, setValue] = useState("");
+
+  //---------------------//
+  //functions for input//
+  //------------------//
+
+  const getValue = (event) => {
+     const inputValue = event.target.value;
+
+    if(inputValue.length===0){
+
       setFilterInfo(products)
-    },[products])
+    }
+    setValue(inputValue);
+  };
+  const search = () => {
+    
+        setFilterInfo(products.filter((item) => item.name.includes(value)));
+    console.log(filterInfo);
+    
+  };
+
+  //------------------------//
+  //use effect for fetching//
+  //-----------------------//
+  
+ 
+
+  useEffect(() => {
+    const productdata = async () => {
+      const response = await axios.get("/products/products.json");
+      setProducts(response.data);
+    };
+    productdata();
+  }, []);
+
+  //------------------------------//
+  //use effect for set filter info//
+  //-----------------------------//
+
+  useEffect(() => {
+    setFilterInfo(products);
+  }, [products]);
   console.log(filterInfo);
 
- 
   return (
-    <ProductContext value={{products,setProducts,Model,setModel,filterInfo,setFilterInfo}}>
-        {children}
-   </ProductContext>
-  )
-}
+    <ProductContext
+      value={{
+        products,
+        setProducts,
+        Model,
+        setModel,
+        filterInfo,
+        setFilterInfo,
+        value,
+        setValue,
 
-export default ContextProvider
+        search,
+        getValue,
+      }}
+    >
+      {children}
+    </ProductContext>
+  );
+};
+
+export default ContextProvider;

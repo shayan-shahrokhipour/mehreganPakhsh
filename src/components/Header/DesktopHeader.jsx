@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 //module css
 import styles from "../Header/headerstyles/header.module.css";
 
@@ -14,22 +14,24 @@ import { IoClose } from "react-icons/io5";
 import { ProductContext } from '../../context/ContextProvider';
 const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
       //Context
-         const {Model}=useContext(ProductContext)
+         const {Model,products,value,setValue,searchcap,setSearchcap,search,getValue}=useContext(ProductContext)
+        
+         
   return (
       <>
       <div className={styles.logo}>
           <span  onClick={drawerHandeler} className={styles.hamburgerIcon}>
             <GiHamburgerMenu />
           </span>
-          <img src="/mehreganPakhsh.png" alt="" />
+          <img src="/mehreganPakhsh.png" alt="mehreganPakhsh" />
         </div>
         <div onClick={modalHandeler} className={`${styles.hoverAnimation} ${styles.selectCar}`}>
             <span className={styles.topText}>انتخاب خودرو:</span> <br />
             <span className={styles.car}>{Model}</span>
         </div>
         <div className={styles.inputHolder}>
-          <input type="text" className={styles.searchInput} placeholder="جست و جو در مهرگان پخش ..."/>
-          <button className={styles.searchButton}>
+          <input value={value} onChange={getValue} type="text" className={styles.searchInput} placeholder="جست و جو در مهرگان پخش ..."/>
+          <button onClick={search} className={styles.searchButton}>
             <IoIosSearch className={styles.searchIcon}/>
           </button>
         </div>
@@ -51,6 +53,7 @@ const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseL
           </a>
         </div>
         <div className={`${styles.hoverAnimation} ${styles.shoppingCart}`}>
+          <span>0</span>
           <GiShoppingCart className={styles.shopiconDesk} />
         </div>
       </>

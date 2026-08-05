@@ -10,7 +10,7 @@ const Firstrow = ({slides}) => {
   return (
     <div className={`${styles.firstRowHolder} ${slides.classItem} `}>
     
-     {products.map(item => <ProductCards key={item.id} item={item}/>)}
+     {filterInfo.map(item => <ProductCards key={item.id} item={item}/>)}
        
       
       

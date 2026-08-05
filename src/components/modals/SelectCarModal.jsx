@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { ProductContext } from "../../context/ContextProvider";
 const SelectCarModal = ({ state, modalHandeler }) => {
   //Context
-   const {products,setProduct,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
+   const {products,setProduct,Model,setModel,filterInfo,setFilterInfo,value}=useContext(ProductContext)
    //functions
      const chooseModel=(event)=>{
    
