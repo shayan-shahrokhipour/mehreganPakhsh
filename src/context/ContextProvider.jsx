@@ -34,7 +34,7 @@ const ContextProvider = ({ children }) => {
   const search = () => {
     
         setFilterInfo(products.filter((item) => item.name.includes(value)));
-    console.log(filterInfo);
+
     
   };
 
@@ -59,7 +59,8 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     setFilterInfo(products);
   }, [products]);
-  console.log(filterInfo);
+  
+
 
   return (
     <ProductContext
@@ -72,9 +73,9 @@ const ContextProvider = ({ children }) => {
         setFilterInfo,
         value,
         setValue,
-
         search,
-        getValue,
+        getValue
+       
       }}
     >
       {children}

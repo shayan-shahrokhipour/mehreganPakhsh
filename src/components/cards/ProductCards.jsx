@@ -7,6 +7,8 @@ import { BsFillBasket2Fill } from "react-icons/bs";
 import { ProductContext } from "../../context/ContextProvider";
 import { Link } from "react-router-dom";
 const ProductCards = ({ item }) => {
+   const getProduct = useContext(ProductContext)
+  
   return (
     <div className={styles.cardHolder}>
       <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
