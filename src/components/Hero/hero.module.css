@@ -18,7 +18,7 @@
 /*=====================================================*/
 .firstRowHolder{
      width: 100%;
-    height: 350px;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

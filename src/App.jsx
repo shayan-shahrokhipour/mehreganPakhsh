@@ -1,13 +1,14 @@
 import { useReducer, useState } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
-import Footer from './components/footer/Footer'
+
 import { Route, Routes} from 'react-router-dom'
 import SelectCarModal from './components/modals/SelectCarModal'
 import Hero from './components/Hero/Hero'
 //context
 import ContextProvider from './context/ContextProvider'
 import ProductDetails from './Pages/ProductDetails'
+import Footer from './components/footer/Footer'
 //use Reducer
 const initialState ={
   drawer:false,
@@ -65,7 +66,7 @@ const onmouseLeave=()=>{
           <Route path='/' element={<Hero/>}/>
           <Route path='productDetails/:id' element={<ProductDetails/>}/>
           </Routes>     
-                      <Footer/>
+         <Footer/>
 
           </ContextProvider> 
  

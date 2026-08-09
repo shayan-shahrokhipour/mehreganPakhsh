@@ -8,6 +8,7 @@ import {ProductContext} from '../../context/ContextProvider'
 const Firstrow = ({slides}) => {
       const {products,filterInfo,Model}=useContext(ProductContext)
   return (
+    <>
     <div className={`${styles.firstRowHolder} ${slides.classItem} `}>
     
      {filterInfo.map(item => <ProductCards key={item.id} item={item}/>)}
@@ -16,6 +17,8 @@ const Firstrow = ({slides}) => {
       
    
     </div>
+    </>
+
   )
 }
 

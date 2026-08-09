@@ -10,6 +10,7 @@ const ProductCards = ({ item }) => {
    const getProduct = useContext(ProductContext)
   
   return (
+    <>
     <div className={styles.cardHolder}>
       <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
       <img src={item.img} alt="" />
@@ -24,6 +25,8 @@ const ProductCards = ({ item }) => {
         خرید کالا
       </button>
     </div>
+   
+    </>
   );
 };
 

@@ -3,6 +3,48 @@
     --keys: #A938FA;
     --true: #38A169;
      --false: #C53030;
+     --lightRed:  #F08080;
+     --skyBlue: #7DD3FC;
+      --textColor: #26125b;
+}
+.trust{
+    width: 90%;
+    height: 55px;
+   border: 1px solid var(--skyBlue);
+   margin: 15px auto;
+   border-radius: 5px;
+}
+
+.trustHolder{
+    width: 100%;
+    height: 100%;
+    background-color: #D7F0FF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.backgroundParagraph{
+    width: 99.2%;
+    height: 90%;
+    background-color: #F8F5FC;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.backgroundParagraph p{
+    padding: 5px;
+}
+
+.trustNumber{
+    text-decoration: none;
+    color: #000;
+}
+
+.acceptParagraph{
+    color: var(--skyBlue);
+
 }
 
 
@@ -169,7 +211,7 @@
 /*===========================================================================================*/
 .aboutMehregan{
     width: 100%;
-    height: 300px;
+    height: auto;
 }
 
 .reasonHolder{
@@ -201,6 +243,49 @@
     font-size: 12px;
  }
 
+ .warningHolder{
+    width: 90%;
+    height: 55px;
+    border: 1px solid var(--false);
+    margin: 30px auto;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .warningBackground{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--lightRed);
+    border-radius: 5px;
+ }
+
+ .lightBackgrounding{
+     width: 99.2%;
+    height: 90%;
+    background-color:  #FFD6D6;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+ }
+
+ .lightBackgrounding p{
+    color: var(--textColor);
+ }
+
+ .warningIcon{
+    vertical-align:bottom;
+    font-size: 30px;
+    color: var(--false);
+ }
+
+ .warningParagraph{
+    color: var(--false);
+ }
+
 @media only screen and (max-width:767px){
     .rightSide{
         width: 90%;
@@ -217,12 +302,16 @@
     }.middleBorder{
         display: none;
     }.reasonHolder{
+       
         flex-direction: column;
        align-items: center;
-      
+              gap: 5px;
+
     }.styleForBackground{
          width: 90%;
     }.sameStyleAbout{
         margin-top: 50px;
+    }.aboutMehregan{
+        height: auto;
     }
 }

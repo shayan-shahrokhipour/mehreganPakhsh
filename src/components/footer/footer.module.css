@@ -1,0 +1,14 @@
+:root{
+  --footerBackground: #205e5f;
+}
+
+
+
+
+
+.footerHolder{
+    width: 100%;
+    height: 300px;
+    background-color: var(--footerBackground);
+     margin-top: 50px;
+}
