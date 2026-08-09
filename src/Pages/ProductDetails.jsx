@@ -83,12 +83,31 @@ const ProductDetails = () => {
         </div>
       </section>
       <hr className={styles.middleBorder} />
-      <section className={styles.sameProduct}>
+      { sameProd.length > 0 &&
+      <section className={styles.sameStyleAbout}>
         <h3>موارد مشابه</h3>
         <div className={styles.detailsHolder}>
-          {sameProd.length > 0 &&
-            sameProd.map((item) => <ProductCards key={item.id} item={item} />)}
+         
+            {sameProd.map((item) => <ProductCards key={item.id} item={item} />)}
         </div>
+      </section>}
+      <hr className={styles.middleBorder} />
+      <section className={`${styles.sameStyleAbout} ${styles.aboutMehregan}`}>
+          <h3>چرا محصولات هیدرولیک مهرگان پخش ؟</h3>
+             <div className={styles.reasonHolder}>
+              <div className={`${styles.styleForBackground} ${styles.firstReason}`}>
+                <p>شلنگ های فشار قوی همراه با فشار شکن</p>
+                <p>شلنگ های فشار قوی   مهرگان پخش کامل هستند </p>
+             </div>
+              <div className={`${styles.styleForBackground} ${styles.secondReason}`}>
+                <p>مرجوعی پایین</p>
+                <p>معمولا خیلی کم پیش میاد خریدار جنس رو مرجوع کنه</p>
+             </div>
+              <div className={`${styles.styleForBackground} ${styles.thirdReason}`}>
+                <p>پس گرفتن مرجوعی ها</p>
+                <p>اگر جنس ما باشه و ایراد از شلنگ باشه مرجوعی جنس برای ماست !</p>
+             </div>
+             </div>
       </section>
     </>
   );

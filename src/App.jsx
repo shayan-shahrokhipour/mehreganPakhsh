@@ -1,6 +1,7 @@
 import { useReducer, useState } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
+import Footer from './components/footer/Footer'
 import { Route, Routes} from 'react-router-dom'
 import SelectCarModal from './components/modals/SelectCarModal'
 import Hero from './components/Hero/Hero'
@@ -64,10 +65,10 @@ const onmouseLeave=()=>{
           <Route path='/' element={<Hero/>}/>
           <Route path='productDetails/:id' element={<ProductDetails/>}/>
           </Routes>     
+                      <Footer/>
 
           </ContextProvider> 
  
-     
     </>
   )
 }
