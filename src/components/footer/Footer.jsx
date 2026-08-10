@@ -6,12 +6,13 @@ const Footer = () => {
   const getProducts=useContext(ProductContext)
   const {products}=getProducts
   
-  
+
+
   return (
     <footer className={styles.footerHolder}>
       <div className={styles.aboutMehreganPakhsh}>
         <h4>معرفی کوتاه</h4>
-           <p>مهرگان پخش با سابقه ای 40 ساله از فروش قطعات گلف , پاسات , ایودی شروع به کار کرد و امروز با فروش لوازم یدکی و پخش لوازم پژو و پراید داره رو به جلو ادامه میده و در تمام این سال ها هدفش این بوده که کالای با کیفیت به تمام مردم ایران ارائه بده </p>
+           <p>مهرگان پخش با سابقه ای 40 ساله از فروش قطعات گلف , پاسات , ایودی شروع به کار کرد و امروز با فروش لوازم یدکی و پخش لوازم پژو و پراید داره ادامه میده و در تمام این سال ها هدفش این بوده که کالای با کیفیت به تمام مردم ایران ارائه بده </p>
            <div className={styles.mehreganpakhshDes}>
             <div className={styles.imgHolder}>
               <img src='/mehreganPakhsh.png' alt="" />

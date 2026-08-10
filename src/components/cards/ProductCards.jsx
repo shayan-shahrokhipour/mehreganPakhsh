@@ -20,6 +20,7 @@ const ProductCards = ({ item }) => {
         <CgDetailsMore className={styles.detailsIcon} />
         برای مطالعه جزئیات کلیک کنید
       </Link>
+      <p><span>قیمت : </span>{item.price.toLocaleString("fa-IR")}</p>
       <button className={styles.basketButton}>
         <BsFillBasket2Fill />
         خرید کالا

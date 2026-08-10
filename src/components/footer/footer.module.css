@@ -95,6 +95,11 @@
  .emailLink{
   color: var(--footerLink);
   text-decoration: none;
+  transition: all 200ms;
+ }
+
+ .emailLink:hover{
+  color: var(--footerLinkHover);
  }
 
  .footerLinks:hover{
