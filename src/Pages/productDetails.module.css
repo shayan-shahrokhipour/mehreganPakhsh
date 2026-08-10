@@ -286,6 +286,8 @@
     color: var(--false);
  }
 
+
+
 @media only screen and (max-width:767px){
     .rightSide{
         width: 90%;
@@ -312,6 +314,8 @@
     }.sameStyleAbout{
         margin-top: 50px;
     }.aboutMehregan{
+        height: auto;
+    }.warningHolder{
         height: auto;
     }
 }

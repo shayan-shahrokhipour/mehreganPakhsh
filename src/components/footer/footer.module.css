@@ -1,14 +1,133 @@
 :root{
   --footerBackground: #205e5f;
+  --footerTitle: #F8F5FC;
+  --footerLink: #D8F3DC;
+  --footerLinkHover: #7DD3FC;
 }
-
-
-
-
 
 .footerHolder{
     width: 100%;
-    height: 300px;
+    height: auto;
     background-color: var(--footerBackground);
      margin-top: 50px;
+     display: flex;
+     justify-content: space-around;
 }
+
+ .aboutMehreganPakhsh{
+    width: 23%;
+    height: 100%;
+ }
+
+ .imgHolder{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+
+ }
+
+ .imgHolder img{
+  width: 15%;
+  height: 100%;
+  
+ }
+
+ .categoryHolder{
+  width: 30%;
+  height: 100%;
+ }
+
+ .categorySides{
+  width: 100%;
+  height: 100%;
+  display: flex;
+ }
+
+ .categoryFirstRow{
+  width: 100%;
+   display: flex;
+   flex-direction: column;
+ }
+
+ .categorySecondRow{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .categoryFirstRow a , .categorySecondRow a{
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--footerLink);
+     transition: all 200ms;
+
+ }
+
+ .categoryFirstRow a:hover , .categorySecondRow a:hover{
+   color: var(--footerLinkHover);
+ }
+
+ .categoryHolder h4 , .aboutMehreganPakhsh h4, .callTous h4{
+   color: var(--footerTitle);
+ }
+
+ .aboutMehreganPakhsh p{
+  color: var(--footerLink);
+  font-size: 12px;
+ }
+
+ .callTous{
+  width: 23%;
+ }
+
+ ul li{
+  list-style: none;
+ }
+
+ .footerLinks{
+  color: var(--footerLink);
+  text-decoration: none;
+    transition: all 200ms;
+
+ }
+
+ .emailLink{
+  color: var(--footerLink);
+  text-decoration: none;
+ }
+
+ .footerLinks:hover{
+  color: var(--footerLinkHover);
+  transition: all 200ms;
+ }
+
+ ul li p{
+  color: var(--footerLink);
+ }
+
+ @media only screen and (max-width:1024px){
+  .footerHolder , .categorySides{
+    flex-direction: column;
+  } .categoryHolder,.aboutMehreganPakhsh{
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+  }.imgHolder img{
+     display: block;
+    
+  }.imgHolder{
+    justify-content: center;
+  }.callHolder li p{
+    font-size: 12px;
+  }.callTous{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }.emailLink{
+      overflow-wrap: anywhere;
+
+  }
+ 
+ }

@@ -66,7 +66,7 @@ const onmouseLeave=()=>{
           <Route path='/' element={<Hero/>}/>
           <Route path='productDetails/:id' element={<ProductDetails/>}/>
           </Routes>     
-         <Footer/>
+         <Footer path='productDetails/:id' element={<ProductDetails/>}/>
 
           </ContextProvider> 
  
