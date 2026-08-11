@@ -7,7 +7,7 @@ import { BsFillBasket2Fill } from "react-icons/bs";
 import { ProductContext } from "../../context/ContextProvider";
 import { Link } from "react-router-dom";
 const ProductCards = ({ item }) => {
-   const getProduct = useContext(ProductContext)
+   
   
   return (
     <>
@@ -21,7 +21,7 @@ const ProductCards = ({ item }) => {
         برای مطالعه جزئیات کلیک کنید
       </Link>
       <p><span>قیمت : </span>{item.price.toLocaleString("fa-IR")}</p>
-      <button className={styles.basketButton}>
+      <button  className={styles.basketButton}>
         <BsFillBasket2Fill />
         خرید کالا
       </button>

@@ -12,10 +12,12 @@ import { MdAccountCircle } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 //import Context
 import { ProductContext } from '../../context/ContextProvider';
+import {BuyContext} from '../../context/CartContext'
 const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
       //Context
          const {Model,products,value,setValue,searchcap,setSearchcap,search,getValue}=useContext(ProductContext)
-        
+         
+          
          
   return (
       <>

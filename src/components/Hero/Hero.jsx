@@ -10,7 +10,7 @@ import { ProductContext } from '../../context/ContextProvider';
 const Hero = () => {
  
  //context
-const {products,setProduct,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
+const {products,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
   const slides =[
     {
     image:'/slider1.png',
