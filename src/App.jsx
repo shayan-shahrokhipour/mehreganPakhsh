@@ -11,6 +11,7 @@ import CartContext from "./context/CartContext";
 
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./components/footer/Footer";
+import Basket from "./components/Basket/Basket";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -59,7 +60,7 @@ function App() {
   return (
     <>
       <ContextProvider>
-        <CartContext>
+        <CartContext drawerHandeler={drawerHandeler}>
           <Header
             state={state}
             drawerHandeler={drawerHandeler}
@@ -71,6 +72,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="productDetails/:id" element={<ProductDetails />} />
+            <Route path="basket" element={<Basket/>}/>
           </Routes>
           <Footer path="productDetails/:id" element={<ProductDetails />} />
         </CartContext>

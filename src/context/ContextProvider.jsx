@@ -11,10 +11,10 @@ const ContextProvider = ({ children }) => {
   //--------------------//
   //states for car model//
   //-------------------//
-
   const [products, setProducts] = useState([]);
   const [Model, setModel] = useState("همه");
   const [filterInfo, setFilterInfo] = useState([]);
+  // const [informationForBasket,setInformationForBasket]=useState({})
   //search with input
   const [value, setValue] = useState("");
 
@@ -60,7 +60,7 @@ const ContextProvider = ({ children }) => {
     setFilterInfo(products);
   }, [products]);
   
-
+   
 
   return (
     <ProductContext
