@@ -229,7 +229,31 @@ header {
 
 }
 
+.selectedProducts{
+  width: 100%;
+  height: auto;
+  border: 1px solid #7dd3fc;  
+  text-align: center;  
+}
+.buttonHolder{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+     box-shadow: 0 4px 15px rgba(38, 18, 91, 0.12);
 
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.buttonHolder .iconsBuy{
+  width: 15%;
+ 
+  background-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 @media only screen and (max-width: 767px) {
   .signinboxforDesktop,
