@@ -13,10 +13,11 @@ import { IoClose } from "react-icons/io5";
 //import Context
 import { ProductContext } from '../../context/ContextProvider';
 import {BuyContext} from '../../context/CartContext'
+import { Link } from 'react-router-dom';
 const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
       //Context
          const {Model,products,value,setValue,searchcap,setSearchcap,search,getValue}=useContext(ProductContext)
-         
+          const {selectedItems}=useContext(BuyContext)
           
          
   return (
@@ -55,8 +56,12 @@ const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseL
           </a>
         </div>
         <div className={`${styles.hoverAnimation} ${styles.shoppingCart}`}>
-          <span>0</span>
+          
+          <Link to={'/Basket'}>
+          <span className={styles.countOfproduct}>{selectedItems.length}</span>
           <GiShoppingCart className={styles.shopiconDesk} />
+          </Link>
+
         </div>
       </>
   )

@@ -1,58 +1,125 @@
-import React,{createContext, useContext, useEffect, useReducer, useState} from 'react'
-import { ProductContext } from './ContextProvider'
-   export const BuyContext=createContext()
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { ProductContext } from "./ContextProvider";
+export const BuyContext = createContext();
 
+const initialArg = {
+  selectedItems: [],
+  totalPrice: 0,
+};
 
- const initialArg ={
-  selectedItems:[],
+const reducer = (state, action) => {
+  if (action.type === "AddItem") {
+    return {
+      ...state,
+      selectedItems: [
+        ...state.selectedItems,
+        { ...action.payload, quantity: 1 },
+      ],
+    };
+  }
+  if (action.type === "Increase") {
+    const IncreaseQuantityOfItems = [...state.selectedItems];
+    IncreaseQuantityOfItems[action.payload] = {
+      ...IncreaseQuantityOfItems[action.payload],
+      quantity: IncreaseQuantityOfItems[action.payload].quantity + 1,
+    };
 
- }
+    return {
+      ...state,
+      selectedItems: IncreaseQuantityOfItems,
+    };
+  }
+  if (action.type === "Decrease") {
+    const DecreaseQuantityOfItems = [...state.selectedItems];
+    DecreaseQuantityOfItems[action.payload] = {
+      ...DecreaseQuantityOfItems[action.payload],
+      quantity: DecreaseQuantityOfItems[action.payload].quantity - 1,
+    };
 
-const reducer=(state,action)=>{
-   
-    
-  if(action.type==="AddItem"){
-    
-     return {...state,selectedItems:[...state.selectedItems,{...action.payload,quantity:1}]};
-   }if(action.type==="Increase"){
-       const IncreaseQuantityOfItems=[...state.selectedItems]
-       IncreaseQuantityOfItems[action.payload]={
-        ...IncreaseQuantityOfItems[action.payload], quantity: IncreaseQuantityOfItems[action.payload].quantity + 1
-       };
-       
-       
-       return {
-         ...state,
-      selectedItems: IncreaseQuantityOfItems
-       }
+    return { ...state, selectedItems: DecreaseQuantityOfItems };
+  }
+  if (action.type === "Delete") {
+    return { ...state, selectedItems: action.payload };
+  }
+  if (action.type === "Sum") {
+    return { ...state, totalPrice: action.payload };
+  }
+};
+const CartContext = ({ children, drawerHandeler }) => {
+  const getInformation = useContext(ProductContext);
+  const { products } = getInformation;
+
+  const [state, dispatch] = useReducer(reducer, initialArg);
+  //Add Items
+  const showInfo = (Info) => {
+    console.log(Info);
+
+    const product = products.find((item) => item.id === Info);
+    const existingItem = state.selectedItems.find((item) => item.id === Info);
+    if (existingItem) {
+      const productIndex = state.selectedItems.findIndex(
+        (item) => item.id === Info,
+      );
+      dispatch({ type: "Increase", payload: productIndex });
+    } else {
+      dispatch({ type: "AddItem", payload: product });
     }
-}
-const CartContext = ({children,drawerHandeler}) => {
-  const getInformation= useContext(ProductContext)
- const {products}=getInformation
-    
-    const [state,dispatch]=useReducer(reducer,initialArg)
-  
-   
-  const showInfo =(Info)=>{
-    const product = products.find(item => item.id === Info)
-    
-    dispatch({type:"AddItem",payload:product})
-          drawerHandeler() 
-  }
 
-  const increaseThequantity=(id)=>{
-    const productIndex=state.selectedItems.findIndex(item=> item.id === id)
-    dispatch({type:"Increase",payload:productIndex})
-    
-  }
+    drawerHandeler();
+  };
+  //increase The quantity
+  const increaseThequantity = (id) => {
+    const productIndex = state.selectedItems.findIndex(
+      (item) => item.id === id,
+    );
+    dispatch({ type: "Increase", payload: productIndex });
+  };
+  //decrease The quantity
+  const decreaseThequantity = (id) => {
+    const productIndexdecrease = state.selectedItems.findIndex(
+      (item) => item.id === id,
+    );
+    dispatch({ type: "Decrease", payload: productIndexdecrease });
+  };
 
-  
+  //delete the products
+  const deleteFromBasket = (id) => {
+    const deleteTheproduct = state.selectedItems.filter(
+      (item) => item.id != id,
+    );
+
+    dispatch({ type: "Delete", payload: deleteTheproduct });
+  };
+
+  useEffect(() => {
+    const total = state.selectedItems.reduce(
+      (sum, item) => sum + (item.price * item.quantity),
+      0
+    );
+    console.log(total);
+    dispatch({ type: "Sum", payload: total });
+  }, [state.selectedItems]);
+
   return (
-    <BuyContext value={{showInfo,selectedItems:state.selectedItems,increaseThequantity}}>
-        {children}
+    <BuyContext
+      value={{
+        showInfo,
+        selectedItems: state.selectedItems,
+        increaseThequantity,
+        decreaseThequantity,
+        deleteFromBasket,
+        totalPrice: state.totalPrice,
+      }}
+    >
+      {children}
     </BuyContext>
-  )
-}
+  );
+};
 
-export default CartContext
+export default CartContext;

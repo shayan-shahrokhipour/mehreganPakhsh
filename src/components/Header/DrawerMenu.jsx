@@ -8,25 +8,57 @@ import { FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
 const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
-  const { selectedItems,increaseThequantity} = useContext(BuyContext);
+  const {
+    selectedItems,
+    increaseThequantity,
+    decreaseThequantity,
+    deleteFromBasket,
+    totalPrice,
    
+  } = useContext(BuyContext);
+    console.log(totalPrice);
+    
   return (
-    <div
-      className={`${styles.drawerMenu} ${state === true ? styles.drawerMenuActive : ""}`}
-    >
-      <IoClose onClick={drawerHandeler} className={styles.closeIcon} />
-      {selectedItems.map((item) => (
-        <div className={styles.selectedProducts} key={item.id}>
-          <p>{item.name}</p>
-          <p>مبلغ قابل پرداخت :{item.price.toLocaleString("fa-IR")}</p>
-          <div className={styles.buttonHolder}>
-            <FaPlus onClick={()=>increaseThequantity(item.id)} className={styles.iconsBuy}/>
-            <p>{item.quantity}</p>
-          {item.quantity===1 ? <FaTrash className={styles.iconsBuy}/> : <FaMinus  className={styles.iconsBuy}/>}
+    <section className={`${styles.menuWraper} ${state === true ? styles.drawerMenuActive : ""}
+    `}>
+                  <IoClose onClick={drawerHandeler} className={styles.closeIcon} />
+
+       <div
+      className={styles.drawerMenu}
+    >  
+
+      {selectedItems.length === 0 ? (
+        <img src="/emptyBasket.png" />
+      ) : (
+        selectedItems.map((item) => (
+          <div className={styles.selectedProducts} key={item.id}>
+            <img src={item.img} alt="" />
+            <p>{item.name}</p>
+            <p>مبلغ قابل پرداخت :{item.price.toLocaleString("fa-IR")}</p>
+            <div className={styles.buttonHolder}>
+              <FaPlus
+                onClick={() => increaseThequantity(item.id)}
+                className={styles.iconsBuy}
+              />
+              <p>{item.quantity}</p>
+              {item.quantity === 1 ? (
+                <FaTrash
+                  onClick={() => deleteFromBasket(item.id)}
+                  className={styles.iconsBuy}
+                />
+              ) : (
+                <FaMinus
+                  onClick={() => decreaseThequantity(item.id)}
+                  className={styles.iconsBuy}
+                />
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
+      {totalPrice !== 0 && <p>جمع مبلغ :{totalPrice.toLocaleString("fa-IR")}</p>}
     </div>
+    </section>
   );
 };
 

@@ -72,7 +72,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="productDetails/:id" element={<ProductDetails />} />
-            <Route path="basket" element={<Basket/>}/>
+            <Route path="basket" element={<Basket />} />
           </Routes>
           <Footer path="productDetails/:id" element={<ProductDetails />} />
         </CartContext>
