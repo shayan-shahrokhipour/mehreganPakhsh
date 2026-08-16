@@ -6,6 +6,7 @@
 }
 
 body{
+    max-width: 1440px;
     direction: rtl;
         font-family: iranyekan;
         background-color: #F8F5FC;

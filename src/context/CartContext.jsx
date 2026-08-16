@@ -102,7 +102,6 @@ const CartContext = ({ children, drawerHandeler }) => {
       (sum, item) => sum + (item.price * item.quantity),
       0
     );
-    console.log(total);
     dispatch({ type: "Sum", payload: total });
   }, [state.selectedItems]);
 

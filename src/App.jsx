@@ -61,7 +61,8 @@ function App() {
     <>
       <ContextProvider>
         <CartContext drawerHandeler={drawerHandeler}>
-          <Header
+         <div className='app'>
+           <Header
             state={state}
             drawerHandeler={drawerHandeler}
             modalHandeler={modalHandeler}
@@ -69,12 +70,15 @@ function App() {
             onmouseLeave={onmouseLeave}
           />
 
-          <Routes>
+          <main className="mainContent">
+            <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
           </Routes>
-          <Footer path="productDetails/:id" element={<ProductDetails />} />
+          </main>
+          <Footer/>
+         </div>
         </CartContext>
       </ContextProvider>
     </>
