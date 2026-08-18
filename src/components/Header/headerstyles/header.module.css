@@ -3,10 +3,10 @@
   --primaryLight: #e0f7e9;
   --buttonColor: #2c7a7b;
   --buttonHover: #38a3a5;
-  --textColor: #26125b;
   --secondaryText: #52796f;
   --subMenu: #205e5f;
   --submenuText: #f1faf2;
+    --skyBlue: #7DD3FC;
   --borderRadius: 5px;
 }
 
@@ -286,6 +286,10 @@ header {
   background-color: transparent;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.freezeTheItem{
+  color: var(--skyBlue);
 }
 
 @media only screen and (max-width: 767px) {

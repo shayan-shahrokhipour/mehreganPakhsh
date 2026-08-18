@@ -7,17 +7,21 @@ import { IoClose } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
 const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
+  const ord =useLocation().state
+  console.log(ord);
+  
   const {
     selectedItems,
     increaseThequantity,
     decreaseThequantity,
     deleteFromBasket,
     totalPrice,
-   
-  } = useContext(BuyContext);
-    console.log(totalPrice);
     
+  } = useContext(BuyContext);
+   
+     
   return (
     <section className={`${styles.menuWraper} ${state === true ? styles.drawerMenuActive : ""}
     `}>
@@ -36,6 +40,9 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
             <p>{item.name}</p>
             <p>مبلغ قابل پرداخت :{item.price.toLocaleString("fa-IR")}</p>
             <div className={styles.buttonHolder}>
+              {ord  ? <p className={styles.freezeTheItem}>قادر به تغییر دادن نیستید</p> 
+              : 
+              <>
               <FaPlus
                 onClick={() => increaseThequantity(item.id)}
                 className={styles.iconsBuy}
@@ -52,6 +59,8 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
                   className={styles.iconsBuy}
                 />
               )}
+              </>}
+              
             </div>
           </div>
         ))

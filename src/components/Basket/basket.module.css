@@ -96,6 +96,69 @@
     color: var(--linearfirst);
 }
 
+.InfoHolder{
+    width: 100%;
+    height: auto;
+}
+
+.InfoHolder h3{
+    margin-right: 65px;
+}
+
+.customerInfo{
+    width: 90%;
+    height: auto;
+    border: 1px solid var(--borders);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 15px;
+    gap: 5px;
+    margin: 0 auto;
+}
+
+.customerInfo input{
+    width: 45%;
+    padding: 5px;
+    margin-right: 2.3%;
+    margin-left: 2.3%;
+}
+
+  
+
+.customerInfo input:focus{
+  outline-color: var(--linearfirst);
+}
+
+.customerInfo button{
+    width: 45%;
+      margin: 0 auto;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    background-color: var(--buttonColor);
+    color: #fff;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.customerInfo button:disabled{
+   background-color: #aaa;
+  color: #666;
+    cursor: not-allowed;
+}
+
+.customerInfo button:not(:disabled):hover{
+      background-color: var(--buttonHover);
+}
+
+.errorType{
+    margin-right: 65px;
+    color: var(--false);
+}
+
 
 
 @media only screen and (max-width:767px){
@@ -114,7 +177,32 @@
     border: 1px solid var(--borders);
 }.BasketHolder{
     height: auto;
-}.InfoCustomer{
+}.customerInfo{
+    
     height: auto;
+    flex-direction: column;
+}.customerInfo input{
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    margin-left: 0;
+    }.customerInfo button{
+        width: 100%;
+        margin: 0 0;
+      
+    }.InfoHolder h3{
+        margin-right: 0;
+        text-align: center;
+    }.errorType{
+        margin-right: 0;
+        text-align: center;
+    }
 }
+
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .countAndname{
+        max-width: 90%;
+    }.rows{
+        max-width: 90%;
+    }
 }

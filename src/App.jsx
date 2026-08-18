@@ -12,6 +12,7 @@ import CartContext from "./context/CartContext";
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./components/footer/Footer";
 import Basket from "./components/Basket/Basket";
+import Payment from "./Pages/Payment";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -75,6 +76,7 @@ function App() {
             <Route path="/" element={<Hero />} />
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
+             <Route path="payment" element={<Payment/>}/>
           </Routes>
           </main>
           <Footer/>

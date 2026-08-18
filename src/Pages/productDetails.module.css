@@ -286,7 +286,70 @@
     color: var(--false);
  }
 
+ .paymentHolder{
+    width: 100%;
+ }
 
+ .borderHolder{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sumBorder{
+    width: 40%;
+    height: 2px;
+    background-color: black;
+}
+
+.payment{
+    width: 90%;
+    border: 1px solid var(--borders);
+    margin: 25px auto;
+    border-radius: 5px;
+}
+
+.productDetails{
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--keys);
+}
+
+
+
+.productValue{
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr  1fr;
+    margin: 0 auto;
+  align-items: center;
+    
+}
+
+.total{
+    text-align: center;
+    color: var(--skyBlue);
+}
+
+.informationDetails{
+     max-width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr  1fr 2fr;
+  margin: 0 auto;
+  align-items: center;
+  color: var(--keys);
+}
+
+.informationValue{
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr  1fr 2fr;
+    align-items: center;
+    margin: 0 auto;
+}
 
 @media only screen and (max-width:767px){
     .rightSide{
@@ -317,5 +380,17 @@
         height: auto;
     }.warningHolder{
         height: auto;
+    }.trustHolder{
+        height: auto;
+    }.trust{
+        height: auto;
+    }.borderHolder p{
+        font-size: 15px;
+        text-align: center;
+    }.productDetails,.informationDetails{
+        display: none;
+    }.productValue,.informationValue{
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 }

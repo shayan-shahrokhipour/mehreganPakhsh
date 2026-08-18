@@ -58,7 +58,6 @@ const CartContext = ({ children, drawerHandeler }) => {
   const [state, dispatch] = useReducer(reducer, initialArg);
   //Add Items
   const showInfo = (Info) => {
-    console.log(Info);
 
     const product = products.find((item) => item.id === Info);
     const existingItem = state.selectedItems.find((item) => item.id === Info);

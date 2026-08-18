@@ -9,9 +9,19 @@ const Basket = () => {
   //states
   const [BacktoHome,setBackToHome]=useState(5)
   const [Show,setShow]=useState(false)
+   const [getInfo,setGetInfo]=useState({
+    name:'',
+    family:'',
+    mobile:'',
+    province:'',
+    city:'',
+    address:'',
+    postalCode:''
+   })
   //functions
   const collectTheinfo=()=>{
     setShow(true)
+     
   }
   //Navigation
   let navigate = useNavigate()
@@ -52,15 +62,13 @@ const Basket = () => {
         <h4>جمع قیمت هر محصول</h4>
        </div>
         {selectedItems.map((item) => (
-          <div key={item.id}>
 
-            <div className={styles.countAndname}>
+            <div key={item.id} className={styles.countAndname}>
                <p className={styles.nameOfProduct}>{item.name}</p>
             <p>  {item.quantity.toLocaleString("fa-IR") } عدد</p>
             <p> {item.price.toLocaleString("fa-IR") } تومان</p>
             <p className={styles.priceOfEachProduct}>{(item.price*item.quantity).toLocaleString("fa-IR")} تومان</p>
             </div>
-          </div>
         ))}
         <p className={styles.total}>مبلغ قابل پرداخت : {totalPrice.toLocaleString("fa-IR")} تومان</p>
          <button onClick={collectTheinfo}>ثبت سفارش و پرداخت</button>
@@ -69,7 +77,7 @@ const Basket = () => {
      
     </section>
     <section className={styles.InfoCustomer}>
-   {Show===true && <Information/>}
+   {Show===true && <Information  getInfo={getInfo} setGetInfo={setGetInfo} />}
     </section>
     </>
   );
