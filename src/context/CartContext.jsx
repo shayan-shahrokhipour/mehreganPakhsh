@@ -49,6 +49,8 @@ const reducer = (state, action) => {
   }
   if (action.type === "Sum") {
     return { ...state, totalPrice: action.payload };
+  }if (action.type==="clearCard"){
+    return{...state, selectedItems:[],totalPrice:0}
   }
 };
 const CartContext = ({ children, drawerHandeler }) => {
@@ -113,6 +115,7 @@ const CartContext = ({ children, drawerHandeler }) => {
         decreaseThequantity,
         deleteFromBasket,
         totalPrice: state.totalPrice,
+        dispatch
       }}
     >
       {children}

@@ -10,7 +10,7 @@ import { ProductContext } from '../../context/ContextProvider';
 const Hero = () => {
  
  //context
-const {products,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
+const {products,Model,setModel,filterInfo,setFilterInfo,error}=useContext(ProductContext)
   const slides =[
     {
     image:'/slider1.png',
@@ -60,9 +60,10 @@ const {products,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductConte
           <div onClick={leftFunction} className={`${styles.directionIcon} ${styles.leftAnchor}`}>
             <FaChevronLeft />
           </div>
-          
+
     </section>
                           <Firstrow slides={slides[index]} /> 
+                           {error && <p>{error}</p>}
 
           </>
   )

@@ -375,5 +375,9 @@ header {
   }
   .drawerMenuActive {
     width: 80%;
+  }.shopIcon{
+    color: var(--buttonColor);
+  }.BuyLink{
+    text-decoration: none;
   }
 }

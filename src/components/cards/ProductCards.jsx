@@ -11,7 +11,6 @@ const ProductCards = ({ item }) => {
   const Info = item.id;
     
   const { showInfo } = useContext(BuyContext);
-
   return (
     <>
       <div className={styles.cardHolder}>

@@ -6,6 +6,8 @@
      --lightRed:  #F08080;
      --skyBlue: #7DD3FC;
       --textColor: #26125b;
+       --buttonColor: #2c7a7b;
+  --buttonHover: #38a3a5;
 }
 .trust{
     width: 90%;
@@ -351,6 +353,48 @@
     margin: 0 auto;
 }
 
+.goTopayment{
+    display: block;
+    margin-right: auto;
+    margin-left: 15px;
+    border: none;
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.goTopayment:hover{
+    background-color: var(--buttonHover);
+}
+
+.success{
+    width: 30%;
+    height: 50px;
+    background-color: var(--true);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border: 5%;
+}
+
+.error404{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.error404 img{
+    width: 90%;
+    border-radius: 5px;
+}
+
 @media only screen and (max-width:767px){
     .rightSide{
         width: 90%;
@@ -392,5 +436,13 @@
     }.productValue,.informationValue{
         grid-template-columns: 1fr;
         text-align: center;
+    }.goTopayment{
+        margin-left: 0;
+        margin-right: 0;
+        margin: 0 auto;
+    }.success{
+        width: 90%;
+        margin-top: 5%;
+        height: auto;
     }
 }

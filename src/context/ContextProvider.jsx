@@ -14,7 +14,8 @@ const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [Model, setModel] = useState("همه");
   const [filterInfo, setFilterInfo] = useState([]);
-  // const [informationForBasket,setInformationForBasket]=useState({})
+  const [error,setError]=useState(null)
+
   //search with input
   const [value, setValue] = useState("");
 
@@ -46,10 +47,17 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     const productdata = async () => {
-      const response = await axios.get("/products/products.json");
-      setProducts(response.data);
+      try{
+         const response = await axios.get("/products/products.json");
+      setProducts(response.data)
+      }catch(error){
+        
+         setError('خطا در برقراری ارتباط')
+      }
+
     };
-    productdata();
+             productdata()
+
   }, []);
 
   //------------------------------//
@@ -63,6 +71,7 @@ const ContextProvider = ({ children }) => {
    
 
   return (
+    <>
     <ProductContext
       value={{
         products,
@@ -74,13 +83,17 @@ const ContextProvider = ({ children }) => {
         value,
         setValue,
         search,
-        getValue
+        getValue,
+        error
        
       }}
     >
+
       {children}
     </ProductContext>
+    </>
   );
+  
 };
 
 export default ContextProvider;

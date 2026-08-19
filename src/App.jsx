@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 
@@ -6,13 +6,14 @@ import { Route, Routes } from "react-router-dom";
 import SelectCarModal from "./components/modals/SelectCarModal";
 import Hero from "./components/Hero/Hero";
 //context
-import ContextProvider from "./context/ContextProvider";
+import ContextProvider, { ProductContext } from "./context/ContextProvider";
 import CartContext from "./context/CartContext";
 
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./components/footer/Footer";
 import Basket from "./components/Basket/Basket";
 import Payment from "./Pages/Payment";
+import Page404 from "./Pages/Page404";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -36,6 +37,7 @@ const reducer = (state, action) => {
 };
 
 function App() {
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const drawerHandeler = () => {
@@ -77,6 +79,7 @@ function App() {
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
              <Route path="payment" element={<Payment/>}/>
+             <Route path="*" element={<Page404/>}/>
           </Routes>
           </main>
           <Footer/>

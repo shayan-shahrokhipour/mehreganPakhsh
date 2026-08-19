@@ -5,7 +5,7 @@ import { BuyContext } from '../context/CartContext'
 const Information = ({getInfo,setGetInfo}) => {
  
    //context
-   const {selectedItems} = useContext(BuyContext) 
+   const {selectedItems,totalPrice} = useContext(BuyContext) 
    
    const [errors,setErrors]=useState("");
    //props
@@ -44,11 +44,13 @@ const Information = ({getInfo,setGetInfo}) => {
     const addHandler=()=>{
      const order={
       customer:getInfo,
-      accepted:selectedItems
+      accepted:selectedItems,
+      totalPrice:totalPrice
      }
-     console.log(order);
      
-    navigate("/payment",{state:order})
+    
+      navigate("/payment",{state:order})
+   
 
    }
    

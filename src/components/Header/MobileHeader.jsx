@@ -24,7 +24,7 @@ const MobileHeader = ({ drawerHandeler }) => {
           <span className={styles.signInText}> ثبت نام</span>
           <br />
         </a>
-       <Link to='/Basket'>
+       <Link className={styles.BuyLink} to='/Basket'>
                             <span className={styles.countOfproduct}>{selectedItems.length}</span>
                   <GiShoppingCart className={styles.shopIcon} />
 

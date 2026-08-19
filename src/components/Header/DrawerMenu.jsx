@@ -10,7 +10,6 @@ import { FaMinus } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
 const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
   const ord =useLocation().state
-  console.log(ord);
   
   const {
     selectedItems,

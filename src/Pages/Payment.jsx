@@ -1,18 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../Pages/productDetails.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BuyContext } from "../context/CartContext";
 
 const Payment = () => {
-  const { totalPrice } = useContext(BuyContext);
-  console.log(totalPrice);
+ const {dispatch} = useContext(BuyContext)
+  //state
+    const [success,setSuccess]=useState(false)
 
+  //navigate when empty or transform to payment
+  const navigate = useNavigate()
   const frozenOrder = useLocation().state;
-  const Customer = frozenOrder.customer;
+  
+   useEffect(()=>{
+      if(!frozenOrder){
+    navigate('/')
+   
+}}),[]
+  
+  const successPayment=()=>{
+    setSuccess(true)
+    dispatch({type:"clearCard"})
+    setTimeout(()=>{
+      navigate('/')
+    },3000)
+   
+    
+    
+  }
+  
+  if(!frozenOrder){
+    return null
+  }
+ 
+  const Customer = frozenOrder.customer
   const { name, family, address, postalCode } = Customer;
-  console.log(name);
 
-  console.log(frozenOrder.accepted);
+ 
+
+   
 
   return (
     <section className={styles.paymentHolder}>
@@ -36,7 +62,7 @@ const Payment = () => {
             <p>{(item.quantity * item.price).toLocaleString("fa-IR")}</p>
           </div>
         ))}
-        <p className={styles.total}>مبلغ قابل پرداخت :{totalPrice.toLocaleString("fa-IR")}</p>
+        <p className={styles.total}>مبلغ قابل پرداخت :{frozenOrder.totalPrice.toLocaleString("fa-IR")}</p>
 
         <div className={styles.borderHolder}>
           <div className={styles.sumBorder}></div>
@@ -56,6 +82,8 @@ const Payment = () => {
           <p>{address}</p>
         </div>
       </div>
+      <button onClick={successPayment}  className={styles.goTopayment}>برو به درگاه پرداخت</button>
+      {success &&<div className={styles.success}><p>پرداخت با موفقیت انجام شد</p></div>}
     </section>
   );
 };
