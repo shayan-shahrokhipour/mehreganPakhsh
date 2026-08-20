@@ -10,10 +10,12 @@ import { BuyContext } from "../../context/CartContext";
 const ProductCards = ({ item }) => {
   const Info = item.id;
     
+  const {loading} = useContext(ProductContext)
   const { showInfo } = useContext(BuyContext);
   return (
     <>
-      <div className={styles.cardHolder}>
+    
+       <div className={styles.cardHolder}>
         <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
         <img src={item.img} alt="" />
         <p>{item.name}</p>
@@ -31,6 +33,7 @@ const ProductCards = ({ item }) => {
           خرید کالا
         </button>
       </div>
+     
     </>
   );
 };

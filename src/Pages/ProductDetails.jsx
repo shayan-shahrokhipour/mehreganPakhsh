@@ -1,34 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ProductContext } from "../context/ContextProvider";
 import styles from "../Pages/productDetails.module.css";
 import { FaBox } from "react-icons/fa6";
-import { BsClockHistory, BsFillBasket2Fill } from "react-icons/bs";
+import { BsClockHistory } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
-import { CgDetailsMore } from "react-icons/cg";
-import { AiTwotoneMail } from "react-icons/ai";
 import { IoIosWarning } from "react-icons/io";
 import ProductCards from "../components/cards/ProductCards";
+import { BuyContext } from "../context/CartContext";
+import Loading from "../Loading/Loading";
+
 const ProductDetails = () => {
+
   const params = useParams();
 
-  const [filteredByCars, setFilteredByCars] = useState([]);
-
+  let [searchParams, setSearchParams] = useSearchParams();
+  //context
   const { products, filterInfo } = useContext(ProductContext);
 
+  const { showInfo } = useContext(BuyContext);
+
   const productsId = products.find((item) => item.id === Number(params.id));
+  //useEffect
+  useEffect(() => {
+    if (productsId) {
+      setSearchParams({ name: productsId.name }, { replace: true });
+      const n = searchParams.get("name");
+      
+    }
+  }, []);
+
+  if (!productsId) {
+    return <Loading />;
+  }
 
   const sameProd = products.filter(
     (item) =>
       item.id != productsId.id &&
       item.cars.some((car) => productsId.cars.includes(car)),
   );
-
-  console.log(sameProd);
-
-  if (!productsId) {
-    return <h2>Loading...</h2>;
-  }
 
   const { name, img, brand, category, description, cars, price, stock } =
     productsId;
@@ -70,7 +80,7 @@ const ProductDetails = () => {
             <p>
               <span>مورد استفاده : </span> {cars.join(" ")}
             </p>
-            <p className={stock ? `${styles.true} ` : `${styles.false}`}>
+            <p className={`${stock ? styles.true : styles.false}`}>
               <span>وضعیت : </span>
               {stock ? "موجود در انبار" : "موجود نیست"}
             </p>
@@ -78,7 +88,13 @@ const ProductDetails = () => {
               <span>قیمت : </span>
               {price.toLocaleString("fa-IR")}
             </p>
-            <button className={styles.buyNow}> افزودن به سبد خرید</button>
+            <button
+              onClick={() => showInfo(productsId.id)}
+              className={styles.buyNow}
+            >
+              {" "}
+              افزودن به سبد خرید
+            </button>
           </div>
         </div>
       </section>
@@ -131,9 +147,14 @@ const ProductDetails = () => {
           <div className={styles.warningBackground}>
             <div className={styles.lightBackgrounding}>
               <p>
-                <IoIosWarning className={styles.warningIcon}/>
-                اشتباه در <span className={styles.warningParagraph}>بستن</span> شلنگ هیدرولیک و <span className={styles.warningParagraph}>آب بندی</span> میتواند باعث خورده شدن
-                اورینگ های دو سر شلنگ , نشت روغن و آسیب به پمپ هیدرولیک شود{" "}
+                <IoIosWarning className={styles.warningIcon} />
+                اشتباه در <span className={styles.warningParagraph}>
+                  بستن
+                </span>{" "}
+                شلنگ هیدرولیک و{" "}
+                <span className={styles.warningParagraph}>آب بندی</span> میتواند
+                باعث خورده شدن اورینگ های دو سر شلنگ , نشت روغن و آسیب به پمپ
+                هیدرولیک شود{" "}
               </p>
             </div>
           </div>

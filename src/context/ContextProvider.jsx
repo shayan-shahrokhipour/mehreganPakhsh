@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { MoonLoader } from "react-spinners";
 
 //--------//
 //context//
@@ -15,7 +16,7 @@ const ContextProvider = ({ children }) => {
   const [Model, setModel] = useState("همه");
   const [filterInfo, setFilterInfo] = useState([]);
   const [error,setError]=useState(null)
-
+   const [loading,setLoading]=useState(true)
   //search with input
   const [value, setValue] = useState("");
 
@@ -49,7 +50,8 @@ const ContextProvider = ({ children }) => {
     const productdata = async () => {
       try{
          const response = await axios.get("/products/products.json");
-      setProducts(response.data)
+         setProducts(response.data)
+         setLoading(false)
       }catch(error){
         
          setError('خطا در برقراری ارتباط')
@@ -84,7 +86,8 @@ const ContextProvider = ({ children }) => {
         setValue,
         search,
         getValue,
-        error
+        error,
+        loading
        
       }}
     >
