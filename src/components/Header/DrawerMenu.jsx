@@ -31,7 +31,7 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
     >  
 
       {selectedItems.length === 0 ? (
-        <img src="/emptyBasket.png" />
+        <img src="/emptyBasket.webp" />
       ) : (
         selectedItems.map((item) => (
           <div className={styles.selectedProducts} key={item.id}>

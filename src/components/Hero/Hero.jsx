@@ -13,11 +13,11 @@ const Hero = () => {
 const {products,Model,setModel,filterInfo,setFilterInfo,error}=useContext(ProductContext)
   const slides =[
     {
-    image:'/slider1.png',
+    image:'/slider1.webp',
     classItem:styles.firstRowHolder,
   },
   {
-    image:'/slider2.png',
+    image:'/slider2.webp',
         classItem:styles.backgroundChanging,
 
   }
@@ -52,7 +52,7 @@ const {products,Model,setModel,filterInfo,setFilterInfo,error}=useContext(Produc
     <>
     <section className={`${styles.sliderHolder} `}>
         <div  className={styles.imgBox}>
-          <img key={index} className={direction === 'right' ?`  ${styles.rightAnimation}` : ` ${styles.leftAnimation} `}src={slides[index].image} alt="hydrolic Hose"/> 
+          <img  key={index} className={direction === 'right' ?`  ${styles.rightAnimation}` : ` ${styles.leftAnimation} `}src={slides[index].image} alt="hydrolic Hose"/> 
         </div>
           <div onClick={rightFunction} className={`${styles.directionIcon} ${styles.rightAnchor}`}>
               <FaChevronRight />

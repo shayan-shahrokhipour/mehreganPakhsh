@@ -17,7 +17,7 @@ const ProductCards = ({ item }) => {
     
        <div className={styles.cardHolder}>
         <p className={styles.kindofcar}>{item.cars.join(" | ")}</p>
-        <img src={item.img} alt="" />
+        <img loading="lazy" src={item.img} alt={item.name} />
         <p>{item.name}</p>
         <p>{item.brand}</p>
         <Link className={styles.detailsLinks} to={`/productDetails/${item.id}`}>
