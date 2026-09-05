@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./components/Header/Header";
 
 import { Route, Routes } from "react-router-dom";
-import SelectCarModal from "./components/modals/SelectCarModal";
 import Hero from "./components/Hero/Hero";
 //context
 import ContextProvider, { ProductContext } from "./context/ContextProvider";
@@ -14,11 +13,14 @@ import Footer from "./components/footer/Footer";
 import Basket from "./components/Basket/Basket";
 import Payment from "./Pages/Payment";
 import Page404 from "./Pages/Page404";
+import Description from "./components/modals/Description";
 //use Reducer
 const initialState = {
   drawer: false,
   modal: false,
   onmouse: false,
+  descriptions:false,
+  firstscrollDown:false
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,6 +33,10 @@ const reducer = (state, action) => {
       return { ...state, onmouse: true };
     case "onmouseLeave":
       return { ...state, onmouse: false };
+    case "description":
+      return {...state,descriptions: !state.descriptions}
+    case"firstscrollIsdone":
+      return{...state,firstscrollDone:true}
     default:
       return state;
   }
@@ -60,9 +66,17 @@ function App() {
     }, 200);
   };
 
+   const descriptionHandler=()=>{
+    dispatch({type:"description"})
+   }
+  
+   const firstscroll=()=>{
+    dispatch({type:"firstscrollIsdone"})
+   }
+
   return (
     <>
-      <ContextProvider>
+      <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler} firstscrollDone={state.firstscrollDone} firstscroll={firstscroll}>
         <CartContext drawerHandeler={drawerHandeler}>
          <div className='app'>
            <Header
@@ -75,7 +89,8 @@ function App() {
 
           <main className="mainContent">
             <Routes>
-            <Route path="/" element={<Hero />} />
+            <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}/></>} />
+           
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
              <Route path="payment" element={<Payment/>}/>

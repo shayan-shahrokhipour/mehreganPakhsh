@@ -36,7 +36,7 @@ const Footer = () => {
          <div className={styles.callTous}>
           <h4>تماس با ما</h4>
           <ul className={styles.callHolder}>
-             <li><a className={styles.footerLinks} href="tel:+989192700682">شماره تماس :09192700682</a></li>
+             <li><a className={styles.footerLinks} href="tel:+989192700682">شماره تماس :09190873814</a></li>
              <li><a className={styles.emailLink} href="mailto:shayanshr1373@gmail.com">ایمیل:shayanshr1373@gmail.com</a></li>
              <li><p>تهران , خیابان آزادی , خیابان حبیب الهی,بلوار تیموری شرقی ,پلاک 42</p></li>
           </ul> 

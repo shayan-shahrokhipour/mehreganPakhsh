@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { MoonLoader } from "react-spinners";
+import React, { createContext, useEffect, useRef, useState } from "react";
+import { Scripts } from "react-router-dom";
 
 //--------//
 //context//
@@ -8,7 +8,7 @@ import { MoonLoader } from "react-spinners";
 
 export const ProductContext = createContext();
 //Product Context
-const ContextProvider = ({ children }) => {
+const ContextProvider = ({ children,descriptions,descriptionHandler,firstscrollDone,firstscroll }) => {
   //--------------------//
   //states for car model//
   //-------------------//
@@ -17,6 +17,9 @@ const ContextProvider = ({ children }) => {
   const [filterInfo, setFilterInfo] = useState([]);
   const [error,setError]=useState(null)
    const [loading,setLoading]=useState(true)
+
+    
+
   //search with input
   const [value, setValue] = useState("");
 
@@ -69,9 +72,25 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     setFilterInfo(products);
   }, [products]);
-  
-   
 
+ //------------------------------//
+  //use effect for scrollModal//
+  //-----------------------------//
+useEffect(()=>{
+    const scrollHandler = () => {
+    if (!firstscrollDone) {
+      descriptionHandler();
+      firstscroll();
+    }
+  };
+   document.addEventListener("scroll",scrollHandler)
+   return()=>{
+    document.removeEventListener("scroll",scrollHandler)
+   }
+})
+  
+
+   
   return (
     <>
     <ProductContext
@@ -87,7 +106,9 @@ const ContextProvider = ({ children }) => {
         search,
         getValue,
         error,
-        loading
+        loading,
+         descriptionHandler    
+
        
       }}
     >

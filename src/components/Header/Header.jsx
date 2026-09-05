@@ -14,11 +14,12 @@ import { ProductContext } from "../../context/ContextProvider";
 
 
 const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
- //Context
-   const {products,setProducts,Model,setModel,filterInfo,setFilterInfo}=useContext(ProductContext)
+ const overlayClose=()=>{
+  drawerHandeler()
     
+ }
  //destructures
-  const {drawer,modal,onmouse}=state
+  const {drawer,modal,onmouse,descriptions}=state
   return (
     <>
       <DrawerMenu   drawerHandeler={drawerHandeler}
@@ -47,9 +48,9 @@ const Header = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) 
        {/*==========================================*/}
 
         <SignInModal state={state.onmouse}/>
-      <div
+      <div onClick={overlayClose}
         className={`${styles.overlay} ${
-          state.drawer || state.modal || state.onmouse ? styles.overlayActive : ""
+          state.drawer || state.modal || state.onmouse || descriptions ? styles.overlayActive : ""
         }`}
       ></div>
       

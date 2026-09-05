@@ -104,8 +104,70 @@
     z-index: 200;
 }
 
+ .descriptionHolder {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 200px auto;
+    width: 50%;
+    height: auto;
+    background-color: var(--primaryLight);
+    z-index: 200;
+    border-radius: 5px;
+} 
+
+.welcomeAndicon{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.mainDescription p{
+    font-size: 12px;
+    text-align: center;
+    padding: 15px;
+}
+
+.descriptionBorderHolder{
+    display: flex;
+    align-items: center;
+}
+
+.rightBorder,.leftBorder{
+    width: 25%;
+    height: 1px;
+    background-color: #000;
+    margin: 0 auto;
+}
+
+.listOfdescriptions li{
+    display: flex;
+align-items: center;
+    margin-right: 10px;
+ font-size: 12px;
+gap: 2px;
+
+}
+
+
+
+.dot{
+    font-size: 10px;
+}
+
+
+
 @media only screen and (max-width:767px){
   .SelectCarModal{
     width: 90%;
+  }.descriptionHolder{
+    width: 90%;
   }
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .descriptionHolder{
+        width: 90%;
+    }
 }
