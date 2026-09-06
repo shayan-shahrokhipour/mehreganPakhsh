@@ -37,8 +37,6 @@ const reducer = (state, action) => {
       return {...state,descriptions:true}
       case"descriptionClose":
       return{...state,descriptions:false}
-    // case"firstscrollIsdone":
-    //   return{...state,firstscrollDone:true}
     default:
       return state;
   }
@@ -76,9 +74,7 @@ function App() {
     dispatch({type:"descriptionClose"})
    }
   
-  //  const firstscroll=()=>{
-  //   dispatch({type:"firstscrollIsdone"})
-  //  }
+ 
 
   return (
     <>

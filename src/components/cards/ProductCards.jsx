@@ -10,7 +10,6 @@ import { BuyContext } from "../../context/CartContext";
 const ProductCards = ({ item }) => {
   const Info = item.id;
     
-  const {loading} = useContext(ProductContext)
   const { showInfo } = useContext(BuyContext);
   return (
     <>

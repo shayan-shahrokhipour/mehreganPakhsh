@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 //--------//
 //context//
@@ -8,6 +9,11 @@ import React, { createContext, useEffect, useRef, useState } from "react";
 export const ProductContext = createContext();
 //Product Context
 const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
+  //-----------------------//
+  //------useLocation-----//
+  //---------------------//
+  const routes =useLocation()
+  
   //--------------------//
   //states for car model//
   //-------------------//
@@ -69,7 +75,8 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   //use effect for scrollModal//
   //-----------------------------//
   useEffect(() => {
-    const scrollHandler = () => {
+   if(routes.pathname==='/'){
+     const scrollHandler = () => {
       if (!firstscrollDone.current) {
         descriptionHandler();
         firstscrollDone.current = true;
@@ -79,6 +86,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
     return () => {
       document.removeEventListener("scroll", scrollHandler);
     };
+   }
   }, []);
 
   return (
