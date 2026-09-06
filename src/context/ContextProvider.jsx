@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { createContext, useEffect, useRef, useState } from "react";
-import { Scripts } from "react-router-dom";
 
 //--------//
 //context//
@@ -8,17 +7,19 @@ import { Scripts } from "react-router-dom";
 
 export const ProductContext = createContext();
 //Product Context
-const ContextProvider = ({ children,descriptions,descriptionHandler,firstscrollDone,firstscroll }) => {
+const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   //--------------------//
   //states for car model//
   //-------------------//
   const [products, setProducts] = useState([]);
   const [Model, setModel] = useState("همه");
   const [filterInfo, setFilterInfo] = useState([]);
-  const [error,setError]=useState(null)
-   const [loading,setLoading]=useState(true)
-
-    
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  //-----------------------------//
+  //-----------useRef-----------//
+  //---------------------------//
+  const firstscrollDone = useRef(false);
 
   //search with input
   const [value, setValue] = useState("");
@@ -28,41 +29,32 @@ const ContextProvider = ({ children,descriptions,descriptionHandler,firstscrollD
   //------------------//
 
   const getValue = (event) => {
-     const inputValue = event.target.value;
+    const inputValue = event.target.value;
 
-    if(inputValue.length===0){
-
-      setFilterInfo(products)
+    if (inputValue.length === 0) {
+      setFilterInfo(products);
     }
     setValue(inputValue);
   };
   const search = () => {
-    
-        setFilterInfo(products.filter((item) => item.name.includes(value)));
-
-    
+    setFilterInfo(products.filter((item) => item.name.includes(value)));
   };
 
   //------------------------//
   //use effect for fetching//
   //-----------------------//
-  
- 
 
   useEffect(() => {
     const productdata = async () => {
-      try{
-         const response = await axios.get("/products/products.json");
-         setProducts(response.data)
-         setLoading(false)
-      }catch(error){
-        
-         setError('خطا در برقراری ارتباط')
+      try {
+        const response = await axios.get("/products/products.json");
+        setProducts(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError("خطا در برقراری ارتباط");
       }
-
     };
-             productdata()
-
+    productdata();
   }, []);
 
   //------------------------------//
@@ -73,51 +65,46 @@ const ContextProvider = ({ children,descriptions,descriptionHandler,firstscrollD
     setFilterInfo(products);
   }, [products]);
 
- //------------------------------//
+  //------------------------------//
   //use effect for scrollModal//
   //-----------------------------//
-useEffect(()=>{
+  useEffect(() => {
     const scrollHandler = () => {
-    if (!firstscrollDone) {
-      descriptionHandler();
-      firstscroll();
-    }
-  };
-   document.addEventListener("scroll",scrollHandler)
-   return()=>{
-    document.removeEventListener("scroll",scrollHandler)
-   }
-})
-  
+      if (!firstscrollDone.current) {
+        descriptionHandler();
+        firstscrollDone.current = true;
+      }
+    };
+    document.addEventListener("scroll", scrollHandler);
+    return () => {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
-   
   return (
     <>
-    <ProductContext
-      value={{
-        products,
-        setProducts,
-        Model,
-        setModel,
-        filterInfo,
-        setFilterInfo,
-        value,
-        setValue,
-        search,
-        getValue,
-        error,
-        loading,
-         descriptionHandler    
-
-       
-      }}
-    >
-
-      {children}
-    </ProductContext>
+      <ProductContext
+        value={{
+          products,
+          setProducts,
+          Model,
+          setModel,
+          filterInfo,
+          setFilterInfo,
+          value,
+          setValue,
+          search,
+          getValue,
+          error,
+          loading,
+          descriptionHandler,
+          descriptions,
+        }}
+      >
+        {children}
+      </ProductContext>
     </>
   );
-  
 };
 
 export default ContextProvider;

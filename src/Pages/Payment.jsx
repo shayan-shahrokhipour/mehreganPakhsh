@@ -16,7 +16,7 @@ const Payment = () => {
       if(!frozenOrder){
     navigate('/')
    
-}}),[]
+}},[])
   
   const successPayment=()=>{
     setSuccess(true)

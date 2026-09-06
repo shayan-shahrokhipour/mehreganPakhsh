@@ -4,19 +4,20 @@ import { ProductContext } from '../../context/ContextProvider'
 import { IoClose } from "react-icons/io5";
 import { FaCircle } from 'react-icons/fa';
 
-const Description = ({descriptions}) => {
-  const {descriptionHandler}=useContext(ProductContext)
+const Description = ({descriptionClose}) => {
+  const {descriptions}=useContext(ProductContext)
   
-  const descriptionClose=()=>{
-    descriptionHandler()
-    }
+  
+  const closeHandler=()=>{
+    descriptionClose()
+  }
 
   return (
     descriptions && 
     <div className={styles.descriptionHolder}>
         <div className={styles.welcomeAndicon}>
           <h4>به مهرگان پخش خوش آمدید</h4>
-                    <IoClose onClick={descriptionClose}  className={styles.closeIcon} />
+                    <IoClose onClick={closeHandler} className={styles.closeIcon} />
         </div>
          <hr />
          <div className={styles.mainDescription}>

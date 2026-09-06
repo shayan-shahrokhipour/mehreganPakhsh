@@ -20,7 +20,7 @@ const initialState = {
   modal: false,
   onmouse: false,
   descriptions:false,
-  firstscrollDown:false
+  firstscrollDone:false
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,9 +34,11 @@ const reducer = (state, action) => {
     case "onmouseLeave":
       return { ...state, onmouse: false };
     case "description":
-      return {...state,descriptions: !state.descriptions}
-    case"firstscrollIsdone":
-      return{...state,firstscrollDone:true}
+      return {...state,descriptions:true}
+      case"descriptionClose":
+      return{...state,descriptions:false}
+    // case"firstscrollIsdone":
+    //   return{...state,firstscrollDone:true}
     default:
       return state;
   }
@@ -69,14 +71,18 @@ function App() {
    const descriptionHandler=()=>{
     dispatch({type:"description"})
    }
-  
-   const firstscroll=()=>{
-    dispatch({type:"firstscrollIsdone"})
+
+   const descriptionClose=()=>{
+    dispatch({type:"descriptionClose"})
    }
+  
+  //  const firstscroll=()=>{
+  //   dispatch({type:"firstscrollIsdone"})
+  //  }
 
   return (
     <>
-      <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler} firstscrollDone={state.firstscrollDone} firstscroll={firstscroll}>
+      <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler}>
         <CartContext drawerHandeler={drawerHandeler}>
          <div className='app'>
            <Header
@@ -89,7 +95,7 @@ function App() {
 
           <main className="mainContent">
             <Routes>
-            <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}/></>} />
+            <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}descriptionClose={descriptionClose}/></>} />
            
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
