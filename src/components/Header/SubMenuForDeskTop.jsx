@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "../Header/headerstyles/header.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const SubMenuForDeskTop = ({drawerHandeler}) => {
   return (
@@ -11,17 +12,13 @@ const SubMenuForDeskTop = ({drawerHandeler}) => {
             <span className={styles.all}>همه</span>
           </li>
           <li className={styles.hoverAnimation}>
-            <a href="">تخفیف ها</a>
+       
+              <Link to="/calltous">  ارتباط با ما </Link>
           </li>
           <li className={styles.hoverAnimation}>
-            <a href="">قطعات پرفروش</a>
+            <Link to="/aboutus"> درباره ما</Link>
           </li>
-          <li className={styles.hoverAnimation}>
-            <a href="">جدیدترین قطعات</a>
-          </li>
-          <li className={styles.hoverAnimation}>
-            <a href="">راهنمای انتخاب قطعه</a>
-          </li>
+        
           <li className={styles.hoverAnimation}>
             <a href="">پیگیری سفارش</a>
           </li>

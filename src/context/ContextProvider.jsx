@@ -75,6 +75,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   //use effect for scrollModal//
   //-----------------------------//
   useEffect(() => {
+    
    if(routes.pathname==='/'){
      const scrollHandler = () => {
       if (!firstscrollDone.current) {
@@ -87,7 +88,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
       document.removeEventListener("scroll", scrollHandler);
     };
    }
-  }, []);
+  }, [routes.pathname]);
 
   return (
     <>

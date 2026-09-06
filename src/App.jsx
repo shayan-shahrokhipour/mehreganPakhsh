@@ -14,6 +14,8 @@ import Basket from "./components/Basket/Basket";
 import Payment from "./Pages/Payment";
 import Page404 from "./Pages/Page404";
 import Description from "./components/modals/Description";
+import Aboutus from "./Pages/Aboutus";
+import Calltous from "./Pages/Calltous";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -92,7 +94,8 @@ function App() {
           <main className="mainContent">
             <Routes>
             <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}descriptionClose={descriptionClose}/></>} />
-           
+            <Route path="calltous" element={<Aboutus/>}/>
+            <Route path="aboutus" element={<Calltous/>}/>
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
              <Route path="payment" element={<Payment/>}/>

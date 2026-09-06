@@ -1,22 +1,18 @@
 import React from 'react'
 import styles from "../Header/headerstyles/header.module.css";
+import { Link } from 'react-router-dom';
 
 const SubMenuForMobile = () => {
   return (
 <div className={styles.submenuforMobile}>
           <ul>
             <li>
-              <a href="">تخفیف ها</a>
+              <Link to="/calltous">  ارتباط با ما </Link>
             </li>
             <li>
-              <a href="">قطعات پرفروش</a>
+              <a href="">درباره ما</a>
             </li>
-            <li>
-              <a href="">جدیدترین قطعات</a>
-            </li>
-            <li>
-              <a href="">راهنمای انتخاب قطعه</a>
-            </li>
+           
             <li>
               <a href="">پیگیری سفارش</a>
             </li>
