@@ -12,13 +12,12 @@ const SubMenuForDeskTop = ({drawerHandeler}) => {
             <span className={styles.all}>همه</span>
           </li>
           <li className={styles.hoverAnimation}>
+            <Link to="/aboutus"> درباره ما</Link>
+          </li>
+           <li className={styles.hoverAnimation}>
        
               <Link to="/calltous">  ارتباط با ما </Link>
           </li>
-          <li className={styles.hoverAnimation}>
-            <Link to="/aboutus"> درباره ما</Link>
-          </li>
-        
           <li className={styles.hoverAnimation}>
             <a href="">پیگیری سفارش</a>
           </li>

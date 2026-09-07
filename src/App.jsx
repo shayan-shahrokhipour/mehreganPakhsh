@@ -94,8 +94,8 @@ function App() {
           <main className="mainContent">
             <Routes>
             <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}descriptionClose={descriptionClose}/></>} />
-            <Route path="calltous" element={<Aboutus/>}/>
-            <Route path="aboutus" element={<Calltous/>}/>
+            <Route path="calltous" element={<Calltous/>}/>
+            <Route path="aboutus" element={ <Aboutus/>}/>
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
              <Route path="payment" element={<Payment/>}/>
