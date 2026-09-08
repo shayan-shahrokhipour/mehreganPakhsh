@@ -26,7 +26,7 @@ const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseL
           <span  onClick={drawerHandeler} className={styles.hamburgerIcon}>
             <GiHamburgerMenu />
           </span>
-          <img src="/mehreganPakhsh.png" alt="mehreganPakhsh" />
+          <Link to={'/'}><img src="/mehreganPakhsh.png" alt="mehreganPakhsh" /></Link>
         </div>
         <div onClick={modalHandeler} className={`${styles.hoverAnimation} ${styles.selectCar}`}>
             <span className={styles.topText}>انتخاب خودرو:</span> <br />

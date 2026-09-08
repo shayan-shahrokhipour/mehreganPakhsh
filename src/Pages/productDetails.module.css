@@ -571,6 +571,136 @@
      cursor: pointer;
 }
 
+.phoneNumberandAddress{
+    width: 100%;
+    height: auto;
+   
+}
+
+.infoHolder{
+     width: 95%;
+    height: auto;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.numberHolder{
+    width: 20%;
+    height: 100px;
+    border: 1px solid var(--keys);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.emailHolder{
+     width: 30%;
+    height: 100px;
+    border: 1px solid var(--keys);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        gap: 10px;
+
+}
+
+.addressHolder{
+     width: 45%;
+    height: 100px;
+    border: 1px solid var(--keys);
+    border-radius: 5px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.numberHolder a{
+    text-decoration: none;
+    color: #000;
+}
+
+.address{
+    color: var(--skyBlue);
+}
+
+.callnumber{
+    color: var(--skyBlue);
+}
+
+.email{
+        text-decoration: none;
+            color: var(--skyBlue);
+
+
+}
+
+
+
+
+.emailHolder a{
+    text-decoration: none;
+    color: #000;
+        overflow-wrap: anywhere;
+
+}
+
+.contactIcon{
+    color: var(--keys);
+}
+
+.enterthecostumerInfo{
+    width: 100%;
+    height: auto;
+}
+
+.inputHolder{
+    width: 95%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+       gap: 5px;
+       margin: 10px auto;
+       border: 1px solid var(--keys);
+       border-radius: 5px;
+}
+
+.inputHolder input{
+    width: 90%;
+    margin-top: 5px;
+}
+
+.inputHolder .costumerText{
+    width: 90%;
+    resize: none;
+}
+
+.inputHolder button{
+    width: 90%;
+    margin-bottom: 15px;
+}
+
+.addressMap{
+    width: 100%;
+    height: auto;
+}
+
+.addressMap iframe{
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+}
+
 @media only screen and (max-width:767px){
     .rightSide{
         width: 90%;
@@ -649,6 +779,15 @@
     }.rightMissions{
         width: 95%;
         margin: 0 auto;
+    }.infoHolder{
+        flex-direction: column;
+                gap: 10px;
+
+    }.numberHolder,.emailHolder,.addressHolder{
+        width: 99%;
+        margin: 0 auto;
+    }.inputHolder{
+        grid-template-columns: 1fr;
     }
 }
 
