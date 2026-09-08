@@ -440,11 +440,11 @@
     height: 450px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    justify-content: space-around;
 }
 
 .descriptionAboutUs{
-    font-size: 12px;
+    font-size: 15px;
     color: #000;
 }
 
@@ -516,9 +516,9 @@
 
 .myMissions{
     width: 100%;
-    height: 300px;
+    height: auto;
     display: flex;
-    justify-content: center;  
+    justify-content: space-around;  
     margin-top: 50px;
 }
 
@@ -530,6 +530,13 @@
 .leftMissions{
     width: 47.5%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.rightMissions img{
+    width: 100%;
 }
 
 .leftMissions span{
@@ -553,7 +560,16 @@
      cursor: pointer;
 }
 
-
+.active{
+     font-size: 12px;
+    font-weight: 600;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 30px;
+   border: 1px solid var(--keys);
+   background-color: var(--keys);
+     cursor: pointer;
+}
 
 @media only screen and (max-width:767px){
     .rightSide{
@@ -625,6 +641,14 @@
         justify-items: center;
     }.middleSectionAbout{
         grid-template-columns: 1fr 1fr;
+    }.myMissions{
+        flex-direction: column;
+    }.leftMissions{
+        width: 95%;
+        margin: 0 auto;
+    }.rightMissions{
+        width: 95%;
+        margin: 0 auto;
     }
 }
 
