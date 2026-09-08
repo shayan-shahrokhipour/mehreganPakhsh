@@ -583,7 +583,7 @@
     border-radius: 5px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
 }
 
@@ -687,6 +687,15 @@
 .inputHolder button{
     width: 90%;
     margin-bottom: 15px;
+    background-color: var(--buttonColor);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: ease 200ms ;
+}
+
+.inputHolder button:hover{
+    background-color: var(--buttonHover);
 }
 
 .addressMap{
