@@ -66,7 +66,7 @@ const Information = ({getInfo,setGetInfo}) => {
           <input type="text" placeholder='شهر' name='city' value={city}  onChange={getValue}/>
         <input className={styles.addressInp} type="text" placeholder='آدرس' name='address' value={address} onChange={getValue}/>
         <input className={styles.postalCodeInp} type="text" placeholder='کد پستی' name='postalCode' value={postalCode} onChange={getValue}/>
-        <button disabled={!name || !family || !mobile || !province || !city || !address || !postalCode} onClick={addHandler}>ثبت اطلاعات</button>
+        <button disabled={!name || !family || !mobile || !province || !city || !address || !postalCode} onClick={addHandler}> ثبت اطلاعات</button>
      
           </div>
     </section>

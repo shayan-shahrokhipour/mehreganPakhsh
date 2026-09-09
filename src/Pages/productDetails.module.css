@@ -684,7 +684,7 @@
     resize: none;
 }
 
-.inputHolder button{
+.inputHolder .sendInfo{
     width: 90%;
     margin-bottom: 15px;
     background-color: var(--buttonColor);
@@ -692,6 +692,12 @@
     border: none;
     cursor: pointer;
     transition: ease 200ms ;
+
+}
+
+.inputHolder .sendInfo:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .inputHolder button:hover{
@@ -708,6 +714,10 @@
     margin: 0 auto;
     display: block;
     border-radius: 5px;
+}
+
+.errorType{
+    color: var(--false);
 }
 
 @media only screen and (max-width:767px){
@@ -765,11 +775,13 @@
         height: 300px;
     }.secondRowAboutUs{
         flex-direction: column;
+        justify-content: space-between;
     }.descriptionHolder{
         width: 90%;
         height: auto;
         margin: 0 auto ;
         text-align: center;
+        gap: 15px;
     }.imgBrand{
         width: 90%;
         margin: 0 auto;
@@ -785,18 +797,19 @@
     }.leftMissions{
         width: 95%;
         margin: 0 auto;
+        gap: 15px;
     }.rightMissions{
         width: 95%;
         margin: 0 auto;
     }.infoHolder{
         flex-direction: column;
                 gap: 10px;
-
     }.numberHolder,.emailHolder,.addressHolder{
         width: 99%;
         margin: 0 auto;
     }.inputHolder{
         grid-template-columns: 1fr;
+       
     }
 }
 
