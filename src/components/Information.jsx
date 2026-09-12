@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from '../components/Basket/basket.module.css'
 import { useNavigate } from 'react-router-dom'
 import { BuyContext } from '../context/CartContext'
@@ -10,6 +10,11 @@ const Information = ({getInfo,setGetInfo}) => {
    const [errors,setErrors]=useState("");
    //props
    const {name,family,mobile,province,city,address,postalCode}=getInfo
+
+   //useEffect for validate
+   useEffect(()=>{
+    setErrors(validateforInformation(getInfo))
+   },[getInfo])
    //navigate
    const navigate = useNavigate()
 
@@ -19,29 +24,57 @@ const Information = ({getInfo,setGetInfo}) => {
     
     setGetInfo(item=> ({...item,[name]:val}))
       
-    if((name==="name" || name==="family" || name==="province" || name==="city")&&/[A-Za-z]/.test(val)) {
-          setErrors("از حروف بزرگ و کوچک انگلیسی استفاده نشود")
-          return;
+    // if((name==="name" || name==="family" || name==="province" || name==="city")&&/[A-Za-z]/.test(val)) {
+    //       setErrors("از حروف بزرگ و کوچک انگلیسی استفاده نشود")
+    //       return;
+    //    }
+    //    if(name==="name" && val.length<3 && val.length>0){
+    //     setErrors("اسم کاربر کمتر از سه حرف نباشد ")
+    //     return
+    //    }
+    //    if(name==="mobile" && !/^09\d{9}$/.test(val)){
+    //     setErrors("شماره همراه نباید کمتر از یازده رقم باشد ")
+    //     return
+    //    }
+    //    if((name==="name" || name==="family" || name==="mobile") && val.length===0){
+    //     setErrors("لطفا نام و نام خانوادگی و تلفن همراه خود را بنویسید")
+    //     return
+    //    }if(name==="postalCode" && !/^\d{10}$/.test(val)){
+    //     setErrors("کد پستی باید ده رقم باشد ")
+    //     return
+    //    }
+    //    setErrors("")
+   }
+
+   const validateforInformation=(data)=>{
+    
+        if((data.name || data.family || data.province || data.city)&&/[A-Za-z]/.test(data.name)||/[A-Za-z]/.test(data.family) || /[A-Za-z]/.test(data.province) || /[A-Za-z]/.test(data.city)) {
+          return"از حروف بزرگ و کوچک انگلیسی استفاده نشود"
+          
        }
-       if(name==="name" && val.length<3 && val.length>0){
-        setErrors("اسم کاربر کمتر از سه حرف نباشد ")
-        return
+       if(data.name && data.name.length<3 && data.name.length>0){
+        return"اسم کاربر کمتر از سه حرف نباشد "
+        
        }
-       if(name==="mobile" && !/^09\d{9}$/.test(val)){
-        setErrors("شماره همراه نباید کمتر از یازده رقم باشد ")
-        return
+       if(data.mobile && !/^09\d{9}$/.test(data.mobile)){
+        return"شماره همراه نباید کمتر از یازده رقم باشد "
+        
        }
-       if((name==="name" || name==="family" || name==="mobile") && val.length===0){
-        setErrors("لطفا نام و نام خانوادگی و تلفن همراه خود را بنویسید")
-        return
-       }if(name==="postalCode" && !/^\d{10}$/.test(val)){
-        setErrors("کد پستی باید ده رقم باشد ")
-        return
+       if(data.name.length===0 && data.family.length===0 && data.mobile.length===0){
+        return"لطفا نام و نام خانوادگی و تلفن همراه خود را بنویسید"
+        
+       }if(data.postalCode && !/^\d{10}$/.test(data.postalCode)){
+       return"کد پستی باید ده رقم باشد "
+        
        }
-       setErrors("")
+       return("")
    }
 
     const addHandler=()=>{
+        const error =validateforInformation(getInfo)
+        if(error){
+          return
+        }
      const order={
       customer:getInfo,
       accepted:selectedItems,

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../Pages/productDetails.module.css'
 import { FaEnvelope, FaMobileAlt } from 'react-icons/fa'
+import {useValidate} from '../context/ContextProvider'
 const Calltous = () => {
-  const [errors , setErrors] = useState("")
+  // const [errors , setErrors] = useState("")
 const [getInfo , setGetinfo]=useState({
   name:"",
   family:"",
@@ -20,42 +21,41 @@ const [message,setMessage]=useState(() => {
 })
 useEffect(()=>{
   localStorage.setItem("messages",JSON.stringify(message))
-             console.log(message);
              
 },[message])
+
+console.log(message);
+
+   const {errors,isvalidate,setErrors} =useValidate()
+
+  useEffect(()=>{
+     setErrors(isvalidate(getInfo))
+  },[getInfo])
+
   
+ 
+
   const inputHandler=(event)=>{
     const na = event.target.name
     const val = event.target.value
     setGetinfo(getInfo=>({...getInfo,[na]:val}))
-                     console.log(errors);
-    if((na==="name" || na==="family")&&/[A-Za-z]/.test(val)) {
-          setErrors("از حروف بزرگ و کوچک انگلیسی استفاده نشود")
-          return;
-       }
-       if(na==="name" && val.length<3 && val.length>0){
-        setErrors("اسم کاربر کمتر از سه حرف نباشد ")
-        return
-       }
-       if(na==="mobile" && !/^09\d{9}$/.test(val)){
-        setErrors("شماره همراه نباید کمتر از یازده رقم باشد ")
-        return
-       }
-       if((na==="name" || na==="family" || na==="mobile") && val.length===0){
-        setErrors("لطفا نام و نام خانوادگی و تلفن همراه خود را بنویسید")
-        return
-       }if(na==="postalCode" && !/^\d{10}$/.test(val)){
-        setErrors("کد پستی باید ده رقم باشد ")
-        return
-       }
-       setErrors("")
+   
     
 
   }
+ 
+  
 
   const saveInfo=()=>{
-    setMessage(item=>[...item,getInfo])
+   
+    if(errors){
+      return
+    }
+         setMessage(item=>[...item,getInfo])
+    
+
      
+      
       
    
 
@@ -97,7 +97,7 @@ useEffect(()=>{
          <input type="text" name='family' value={getInfo.family}  placeholder='نام خانوادگی' onChange={inputHandler}/>
          <input type="number" name='mobile' value={getInfo.mobile}  placeholder='شماره تماس'onChange={inputHandler}/>
         <textarea className={styles.costumerText} name="Message" value={getInfo.Message} placeholder='پیام شما' id="" onChange={inputHandler}/>
-         <button className={styles.sendInfo} disabled={!getInfo.name || !family || !mobile || !Message} onClick={saveInfo}>ارسال پیام</button>
+         <button className={styles.sendInfo} disabled={!getInfo.name || !family || !mobile || !Message } onClick={saveInfo}>ارسال پیام</button>
           <p className={styles.errorType}>{errors}</p>
          </div>
        </div>

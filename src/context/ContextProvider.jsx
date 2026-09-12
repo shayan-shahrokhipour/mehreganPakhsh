@@ -7,6 +7,32 @@ import { useLocation } from "react-router-dom";
 //------//
 
 export const ProductContext = createContext();
+ //custom hook
+  export const useValidate=()=>{
+        const [errors , setErrors] = useState("")
+      
+     const isvalidate=(data)=>{
+         
+
+     if((data.name || data.family)&&/[A-Za-z]/.test(data.name) ||/[A-Za-z]/.test(data.family)) {
+        return  "از حروف بزرگ و کوچک انگلیسی استفاده نشود"
+  
+       }
+       if(data.name.length<3  && data.name.length>0){
+           return "اسم کاربر کمتر از سه حرف نباشد "
+        
+        }
+      if(data.mobile && !/^09\d{9}$/.test(data.mobile)){
+        return"شماره همراه نباید کمتر از یازده رقم باشد "
+       }
+       if((data.name || data.family || data.mobile) && data.name.length===0 ||data.family.length===0 || data.mobile.length===0) {
+        return"لطفا نام و نام خانوادگی و تلفن همراه خود را بنویسید"
+       }
+      return("")
+    }
+    return {errors,isvalidate,setErrors}
+  }
+
 //Product Context
 const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   //-----------------------//
@@ -30,6 +56,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   //search with input
   const [value, setValue] = useState("");
 
+ 
   //---------------------//
   //functions for input//
   //------------------//
