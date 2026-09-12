@@ -7,7 +7,10 @@ const Payment = () => {
  const {dispatch} = useContext(BuyContext)
   //state
     const [success,setSuccess]=useState(false)
+    const [saveOrders,setSaveOrders]=useState(()=>(
+           JSON.parse(localStorage.getItem("keepOrder"))||[]
 
+    ))
   //navigate when empty or transform to payment
   const navigate = useNavigate()
   const frozenOrder = useLocation().state;
@@ -17,8 +20,19 @@ const Payment = () => {
     navigate('/')
    
 }},[])
+
+useEffect(()=>{
+    console.log(saveOrders);
+
+ localStorage.setItem('keepOrder',JSON.stringify(saveOrders))
+
+},[saveOrders])
   
   const successPayment=()=>{
+  setSaveOrders(item=>[...item,frozenOrder])
+  
+    
+
     setSuccess(true)
     dispatch({type:"clearCard"})
     setTimeout(()=>{

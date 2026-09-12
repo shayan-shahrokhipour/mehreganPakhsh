@@ -16,6 +16,7 @@ import Page404 from "./Pages/Page404";
 import Description from "./components/modals/Description";
 import Aboutus from "./Pages/Aboutus";
 import Calltous from "./Pages/Calltous";
+import { TrackOrder } from "./Pages/TrackOrder";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -96,6 +97,7 @@ function App() {
             <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}descriptionClose={descriptionClose}/></>} />
             <Route path="calltous" element={<Calltous/>}/>
             <Route path="aboutus" element={ <Aboutus/>}/>
+            <Route path="trackOrder" element={<TrackOrder/>}/>
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
              <Route path="payment" element={<Payment/>}/>
