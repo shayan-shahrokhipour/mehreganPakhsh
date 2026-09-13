@@ -55,7 +55,14 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
 
   //search with input
   const [value, setValue] = useState("");
-
+  
+  //--------------------------//
+  //---------saveOrder-------//
+  //------------------------//
+  const [saveOrders,setSaveOrders]=useState(()=>(
+             JSON.parse(localStorage.getItem("keepOrder"))||[]
+  
+      ))
  
   //---------------------//
   //functions for input//
@@ -135,6 +142,8 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
           loading,
           descriptionHandler,
           descriptions,
+          saveOrders,
+          setSaveOrders
         }}
       >
         {children}

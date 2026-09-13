@@ -746,7 +746,88 @@
     background-color: var(--borders);
 }
 
+.orderFields{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+}
 
+.orderDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.orderDetails p{
+    color: var(--skyBlue);
+}
+
+.orderTracking{
+    width: 100%;
+}
+
+.orderTrackingHolder{
+    width: 90%;
+    height: 150px;
+    border: 1px solid var(--borders);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+    margin: 0 auto;
+}
+
+.styleInwidth{
+    width: 100%;
+    height: 100%;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circles{
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--keys);
+    border-radius: 50%;
+    text-align: center;
+}
+
+.circles span{
+    color: var(--keys);
+}
+
+.circleActive  {
+    background-color: var(--keys);
+    
+}
+
+
+
+.circleActive span{
+    color: #fff;
+}
+
+.orderTrackingLine{
+    width: 15%;
+    height: 1px;
+    background-color: var(--borders);
+}
+
+.orderTrackingLineActive{
+    background-color: var(--keys);
+}
+
+.TextPositionHolder{
+    width: 70%;
+   display: grid;
+   grid-template-columns: repeat(4,1fr) ;
+   margin: 0 auto;
+}
+
+.orderTracking h4{
+    margin-right: 20px;
+}
 
 @media only screen and (max-width:767px){
     .rightSide{
@@ -838,6 +919,18 @@
     }.inputHolder{
         grid-template-columns: 1fr;
        
+    }.orderFields,.orderDetails{
+        display: none;
+    }.TextPositionHolder{
+        width: 100%;
+                /* overflow-wrap: anywhere; */
+
+        
+    }.orderTrackHolder h4{
+        font-size: 12px;
+    }.TextPositionHolder p{
+        font-size: 15.5px;
+        text-align: center;
     }
 }
 

@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../Pages/productDetails.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BuyContext } from "../context/CartContext";
+import { ProductContext } from "../context/ContextProvider";
 
 const Payment = () => {
  const {dispatch} = useContext(BuyContext)
+ const {saveOrders,setSaveOrders}=useContext(ProductContext)
   //state
     const [success,setSuccess]=useState(false)
-    const [saveOrders,setSaveOrders]=useState(()=>(
-           JSON.parse(localStorage.getItem("keepOrder"))||[]
-
-    ))
+    
   //navigate when empty or transform to payment
   const navigate = useNavigate()
   const frozenOrder = useLocation().state;

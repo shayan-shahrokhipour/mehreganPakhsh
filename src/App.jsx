@@ -23,7 +23,6 @@ const initialState = {
   modal: false,
   onmouse: false,
   descriptions:false,
-  firstscrollDone:false
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,6 +45,7 @@ const reducer = (state, action) => {
 };
 
 function App() {
+ 
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

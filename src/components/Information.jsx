@@ -62,7 +62,9 @@ const Information = ({getInfo,setGetInfo}) => {
       customer:getInfo,
       accepted:selectedItems,
       totalPrice:totalPrice,
-       orderCode:uuidv4()
+      orderDate:"22 شهریور 1405",
+      deliveryDate:"در حال بررسی",
+       orderCode:uuidv4().slice(0,5)
      }
      console.log(order);
      
