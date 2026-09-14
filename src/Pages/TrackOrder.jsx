@@ -1,29 +1,68 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "../Pages/productDetails.module.css";
 import { ProductContext } from "../context/ContextProvider";
+import CheckTrackOrder from "./CheckTrackOrder";
 export const TrackOrder = () => {
   const { saveOrders } = useContext(ProductContext);
-  console.log(saveOrders);
-  const orderValue = saveOrders.find((item) => item.orderCode === "e497f");
-   console.log(orderValue);
+  //--------------------------------------------------//
+ //----------check order is exist or not-------------// 
+//--------------------------------------------------//
 
-   const orderPositionText=[
+  const [checkOrder,setCheckOrder]=useState("")
+  const [doitafterclick , setDoitafterclick]=useState("")
+   const checkOrderCode=(event)=>{
+    setCheckOrder(event.target.value)
+            console.log(checkOrder);
+            
+   }
+
+   
+
+   //---------------------------------------------------//
+  //----------------error for the orderCode-------------//
+ //---------------------------------------------------//
+  const [errorforordercode,setErrorForOrderCode]=useState("")
+   
+  console.log(saveOrders);
+  const orderValue = saveOrders.find((item) => item.orderCode === doitafterclick);
+   console.log(orderValue);
+   
+  useEffect(()=>{
+       console.log(errorforordercode);
+
+  },[errorforordercode])
+   
+    const buttonHandler=()=>{
+    setDoitafterclick(checkOrder)
+    if(!orderValue){
+      setErrorForOrderCode("محصول با شناسه مورد نظر یافت نشد")
+    }else{
+        setErrorForOrderCode("محصول با شناسه مورد نظر  با موفقیت پیدا شد")
+
+    }
+   
+   }
+  
+   
+//-----------------------------------------//
+//-------state for orderPosition----------//
+//---------------------------------------//
+ const orderPositionText=[
   "در حال بررسی",
     "در حال بسته بندی",
   "در حال ارسال",
     "سفارش آماده تحویل است"
    ]
-   
-//-----------------------------------------//
-//-------state for orderPosition----------//
-//---------------------------------------//
 const [orderposition,setOrderposition]=useState(3)
  console.log(orderposition);
     console.log(orderPositionText[orderposition-1]);
 
-  const isActive = (stage) => orderposition >= stage; 
-
+  const isActive = (stage) => orderposition >= stage;
+  
   return (
+    <>
+    {orderValue ?
+    
     <section className={styles.mainContainer}>
       <h3>پیگیری پرداخت</h3>
       <p>در این صفحه شما میتوانید از وضعیت سفارش خودتون مطلع بشید</p>
@@ -87,7 +126,7 @@ const [orderposition,setOrderposition]=useState(3)
           </div>
            <div className={styles.TextPositionHolder}>
             {orderPositionText.map(item => 
-              <p>{item}</p>
+              <p key={item}>{item}</p>
              
              
           ) }
@@ -97,5 +136,13 @@ const [orderposition,setOrderposition]=useState(3)
 
       </div>
     </section>
+
+:
+    <>
+    <CheckTrackOrder checkOrderCode={checkOrderCode} checkOrder={checkOrder} setCheckOrder={setCheckOrder} buttonHandler={buttonHandler} orderValue={orderValue} errorforordercode={errorforordercode}/>
+    </>
+        }
+    </>
+          
   );
 };
