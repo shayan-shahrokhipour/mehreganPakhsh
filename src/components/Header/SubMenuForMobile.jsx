@@ -14,7 +14,7 @@ const SubMenuForMobile = () => {
                           <Link to="/calltous">  ارتباط با ما </Link>
                       </li>
                       <li className={styles.hoverAnimation}>
-                        <a href="">پیگیری سفارش</a>
+                        <Link to={'/trackOrder'}>پیگیری سفارش</Link>
                       </li>
                       <li className={styles.hoverAnimation}>
                         <a href="">پشتیبانی</a>
