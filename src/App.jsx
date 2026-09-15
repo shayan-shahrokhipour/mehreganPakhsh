@@ -83,7 +83,6 @@ function App() {
     <>
       <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler}>
         <CartContext drawerHandeler={drawerHandeler}>
-         <div className='app'>
            <Header
             state={state}
             drawerHandeler={drawerHandeler}
@@ -105,7 +104,7 @@ function App() {
           </Routes>
           </main>
           <Footer/>
-         </div>
+       
         </CartContext>
       </ContextProvider>
     </>

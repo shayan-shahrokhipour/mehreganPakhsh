@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../Pages/productDetails.module.css'
-import { FaEnvelope, FaMobileAlt } from 'react-icons/fa'
+import { FaChevronDown, FaEnvelope, FaMobileAlt } from 'react-icons/fa'
 import {useValidate} from '../context/ContextProvider'
 const Calltous = () => {
   // const [errors , setErrors] = useState("")
@@ -65,7 +65,16 @@ console.log(message);
   Message:""})
     
   }
+  //---------------controll the accordion------------------//
+ const [accordion,setAccordion]=useState(false)
   
+  const openaccordion=(event)=>{
+    const getId = event.target.id
+    setAccordion(!accordion)
+     console.log(getId);
+     
+    
+  }
 
   return (
     <section className={styles.calltoUs}>
@@ -100,6 +109,31 @@ console.log(message);
          <button className={styles.sendInfo} disabled={!getInfo.name || !family || !mobile || !Message } onClick={saveInfo}>ارسال پیام</button>
           <p className={styles.errorType}>{errors}</p>
          </div>
+       </div>
+       <div className={styles.questionsandanswers}>
+        <h3>سوالات متداول</h3>
+          <div className={styles.accordionHolder}>
+            <div className={`${styles.accordion} ${accordion ? styles.accordionActive : null}`}>
+              <p>چگونه سفارش ثبت کنم ؟ </p>
+              <FaChevronDown onClick={openaccordion} id='firstAcc' className={styles.arrowdownicon}/>
+            </div>
+            <div className={styles.accordion}>
+              <p>چگونه سفارش خودم رو پیگیری کنم ؟ </p>
+                            <FaChevronDown onClick={openaccordion} id='secondAcc' className={styles.arrowdownicon}/>
+
+            </div>
+            <div className={styles.accordion}>
+              <p>اگر پرداخت نا موفق بود چه کنم ؟ </p>
+                            <FaChevronDown onClick={openaccordion} id='thirdAcc' className={styles.arrowdownicon}/>
+
+            </div>
+            <div className={styles.accordion}>
+              <p>شرایط تعویض یا مرجوعی چیست ؟</p>
+                            <FaChevronDown onClick={openaccordion} id='fourthAcc' className={styles.arrowdownicon}/>
+
+            </div>
+
+          </div>
        </div>
        <div className={styles.addressMap}>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103676.64884156405!2d51.212263143359394!3d35.7041946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e01001524ba8f%3A0x5cefdc3e6322f206!2z2YTZiNin2LLZhSDbjNiv2qnbjCDYp9uM2LHYp9mGINiu2YjYr9ix2Ygg2Ygg2LPYp9uM2b7YpyDZhdmH2LHar9in2YYg2b7Yrti0!5e0!3m2!1sen!2sus!4v1788867368067!5m2!1sen!2sus"
