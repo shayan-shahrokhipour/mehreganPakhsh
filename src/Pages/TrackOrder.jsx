@@ -28,20 +28,18 @@ export const TrackOrder = () => {
    console.log(orderValue);
    
   useEffect(()=>{
-    if(!doitafterclick) return
-      if(!orderValue){
+       console.log(errorforordercode);
+
+  },[errorforordercode])
+   
+    const buttonHandler=()=>{
+    setDoitafterclick(checkOrder)
+    if(!orderValue){
       setErrorForOrderCode("محصول با شناسه مورد نظر یافت نشد")
     }else{
         setErrorForOrderCode("محصول با شناسه مورد نظر  با موفقیت پیدا شد")
 
     }
-       console.log(errorforordercode);
-
-  },[doitafterclick,orderValue])
-   
-    const buttonHandler=()=>{
-    setDoitafterclick(checkOrder)
-    
    
    }
   
