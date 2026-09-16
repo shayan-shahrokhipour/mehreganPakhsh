@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../Pages/productDetails.module.css'
-import { FaChevronDown, FaEnvelope, FaMobileAlt } from 'react-icons/fa'
+import { FaChevronDown, FaChevronUp, FaEnvelope, FaMobileAlt } from 'react-icons/fa'
 import {useValidate} from '../context/ContextProvider'
 const Calltous = () => {
   // const [errors , setErrors] = useState("")
@@ -24,7 +24,6 @@ useEffect(()=>{
              
 },[message])
 
-console.log(message);
 
    const {errors,isvalidate,setErrors} =useValidate()
 
@@ -66,15 +65,23 @@ console.log(message);
     
   }
   //---------------controll the accordion------------------//
- const [accordion,setAccordion]=useState(false)
-  
+ const [accordion,setAccordion]=useState({
+  firstAcc:false,
+   secondAcc:false,
+  thirdAcc:false,
+  fourthAcc:false
+ })
+ 
+
+ 
+ 
   const openaccordion=(event)=>{
-    const getId = event.target.id
-    setAccordion(!accordion)
-     console.log(getId);
-     
+     const getId = event.currentTarget.id
+    setAccordion(item => ({...item,[getId] : !item[getId]}))  
     
   }
+
+
 
   return (
     <section className={styles.calltoUs}>
@@ -113,24 +120,42 @@ console.log(message);
        <div className={styles.questionsandanswers}>
         <h3>سوالات متداول</h3>
           <div className={styles.accordionHolder}>
-            <div className={`${styles.accordion} ${accordion ? styles.accordionActive : null}`}>
-              <p>چگونه سفارش ثبت کنم ؟ </p>
-              <FaChevronDown onClick={openaccordion} id='firstAcc' className={styles.arrowdownicon}/>
+            <div onClick={openaccordion} id='firstAcc' className={`${styles.accordion} ${accordion.firstAcc  ? styles.accordionActive : null}`}>
+              <div className={styles.accordionstyle}>
+                <p>چگونه سفارش ثبت کنم ؟ </p>
+                {accordion.firstAcc ? <FaChevronUp className={styles.arrowdownicon}/> : <FaChevronDown  className={styles.arrowdownicon}/>}
+             
+              </div>
+               {accordion.firstAcc && <p className={styles.answer}>ابتدا در صفحه اول زوی دکمه افزودن به سبد خرید کلیک کنید (از صفحه جزئیات هم قادر به انجام این کار هستید) از منوی کشویی سمت راست میتوانید به کم یا زیادکردن تعداد اقلام یا حذف اقلام اقدام کنید در مرحله بعد روی ایکن سبد خرید در سمت چپ منو کلیک کنید و روی دکمه ثبت اطلاعات کلیک کنید در این مرحله اطلاعات خودرا وارد کنید و دکمه ثبت اطلاعات رو کلیک کنید در مرحله بعد با کلیک روی دکمه به درگاه پرداخت متصل میشوید .</p>}
+        
             </div>
-            <div className={styles.accordion}>
-              <p>چگونه سفارش خودم رو پیگیری کنم ؟ </p>
-                            <FaChevronDown onClick={openaccordion} id='secondAcc' className={styles.arrowdownicon}/>
-
+            <div onClick={openaccordion} id='secondAcc' className={`${styles.accordion} ${accordion.secondAcc ? styles.accordionActive : null}`}>
+              <div className={styles.accordionstyle}>
+                <p>چگونه سفارش خودم رو پیگیری کنم ؟ </p>
+                             {accordion.secondAcc ? <FaChevronUp className={styles.arrowdownicon}/> : <FaChevronDown  className={styles.arrowdownicon}/>}
+              </div>
+               {accordion.secondAcc && <p className={styles.answer}>
+                 شما میتوانید با شناسه پیگیری که بعد از پرداخت برای شما به صورت پیام ارسال میشه به قسمت پیگیری سفارش رفته و با وارد کردن شناسه پیگیری خود از وضعیت سفارش خودتون آگاه باشید همچین با شماره 09190873814 هم میتوانید تماس بگیرید .
+                </p>}
+        
             </div>
-            <div className={styles.accordion}>
-              <p>اگر پرداخت نا موفق بود چه کنم ؟ </p>
-                            <FaChevronDown onClick={openaccordion} id='thirdAcc' className={styles.arrowdownicon}/>
-
+            <div onClick={openaccordion} id='thirdAcc' className={`${styles.accordion} ${accordion.thirdAcc  ? styles.accordionActive : null}`}>
+             <div className={styles.accordionstyle}>
+               <p>اگر پرداخت نا موفق بود چه کنم ؟ </p>
+ {accordion.thirdAcc ? <FaChevronUp className={styles.arrowdownicon}/> : <FaChevronDown  className={styles.arrowdownicon}/>}         
+     </div>
+             {accordion.thirdAcc && <p className={styles.answer}>
+                  اگر پرداخت نا موقق بود کافیست در ساعات آتی دوباره امتحان کنید 
+              </p>}
             </div>
-            <div className={styles.accordion}>
-              <p>شرایط تعویض یا مرجوعی چیست ؟</p>
-                            <FaChevronDown onClick={openaccordion} id='fourthAcc' className={styles.arrowdownicon}/>
-
+            <div onClick={openaccordion} id='fourthAcc' className={`${styles.accordion} ${accordion.fourthAcc  ? styles.accordionActive : null}`}>
+             <div className={styles.accordionstyle}>
+               <p>شرایط تعویض یا مرجوعی چیست ؟</p>
+                           {accordion.fourthAcc ? <FaChevronUp className={styles.arrowdownicon}/> : <FaChevronDown  className={styles.arrowdownicon}/>}          
+             </div>
+               {accordion.fourthAcc && <p className={styles.answer}>
+                اگر برای مجموعه محرز شود که اقلام مرجوعی متعلق به مجموعه مهرگان پخش باشد و مشکل فنی از بدو خرید با اقلام بوده مرجوعی اقلام رو قبول میکند 
+              </p>}
             </div>
 
           </div>

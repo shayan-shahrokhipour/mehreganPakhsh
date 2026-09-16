@@ -718,6 +718,7 @@
 
 .errorType{
     color: var(--false);
+    text-align: center;
 }
 
 .mainContainer{
@@ -854,19 +855,29 @@
     height: 50px;
     border: 1px solid var(--keys);
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+    
     transition: ease 200ms;
 }
 
+.accordionstyle{
+display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
 .accordionActive{
-    height: 100px;
+    height: 180px;
 }
 
 .arrowdownicon{
     cursor: pointer;
     color: var(--keys);
+}
+
+.answer{
+    font-size: 14px;
+    text-align: center;
+    padding: 3px;
 }
 
 @media only screen and (max-width:767px){
