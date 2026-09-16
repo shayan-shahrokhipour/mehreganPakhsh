@@ -991,6 +991,8 @@ display: flex;
     }.questionsandanswers h3{
         margin-right: 0;
         text-align: center;
+    }.accordionActive {
+        height: auto;
     }
 }
 
