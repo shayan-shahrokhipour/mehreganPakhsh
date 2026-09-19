@@ -1,13 +1,16 @@
-import { useContext, useReducer, useState } from "react";
+import {  useReducer } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 
 import { Route, Routes } from "react-router-dom";
 import Hero from "./components/Hero/Hero";
-//context
+//----------------------//
+//-------context-------//
+//----------------------//
 import ContextProvider, { ProductContext } from "./context/ContextProvider";
 import CartContext from "./context/CartContext";
-
+import PaginationContext from "./context/PaginationContext"
+//----------------------//
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./components/footer/Footer";
 import Basket from "./components/Basket/Basket";
@@ -17,6 +20,7 @@ import Description from "./components/modals/Description";
 import Aboutus from "./Pages/Aboutus";
 import Calltous from "./Pages/Calltous";
 import { TrackOrder } from "./Pages/TrackOrder";
+import Pagination from "./components/Pagination";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -83,7 +87,8 @@ function App() {
     <>
       <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler}>
         <CartContext drawerHandeler={drawerHandeler}>
-           <Header
+          <PaginationContext>
+             <Header
             state={state}
             drawerHandeler={drawerHandeler}
             modalHandeler={modalHandeler}
@@ -93,7 +98,7 @@ function App() {
 
           <main className="mainContent">
             <Routes>
-            <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}descriptionClose={descriptionClose}/></>} />
+            <Route path="/" element={<><Hero /> <Description descriptions={state.descriptions}descriptionClose={descriptionClose}/><Pagination/></>} />
             <Route path="calltous" element={<Calltous/>}/>
             <Route path="aboutus" element={ <Aboutus/>}/>
             <Route path="trackOrder" element={<TrackOrder/>}/>
@@ -101,10 +106,12 @@ function App() {
             <Route path="basket" element={<Basket />} />
              <Route path="payment" element={<Payment/>}/>
              <Route path="*" element={<Page404/>}/>
+
           </Routes>
           </main>
           <Footer/>
        
+          </PaginationContext>
         </CartContext>
       </ContextProvider>
     </>

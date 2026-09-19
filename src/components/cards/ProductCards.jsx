@@ -4,7 +4,6 @@ import styles from "../Hero/hero.module.css";
 import { CgDetailsMore } from "react-icons/cg";
 import { BsFillBasket2Fill } from "react-icons/bs";
 //context
-import { ProductContext } from "../../context/ContextProvider";
 import { Link } from "react-router-dom";
 import { BuyContext } from "../../context/CartContext";
 const ProductCards = ({ item }) => {
@@ -32,7 +31,6 @@ const ProductCards = ({ item }) => {
           خرید کالا
         </button>
       </div>
-     
     </>
   );
 };

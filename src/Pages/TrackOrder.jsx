@@ -27,10 +27,7 @@ export const TrackOrder = () => {
   const orderValue = saveOrders.find((item) => item.orderCode === doitafterclick);
    console.log(orderValue);
    
-  useEffect(()=>{
-       console.log(errorforordercode);
-
-  },[errorforordercode])
+  
    
     const buttonHandler=()=>{
     setDoitafterclick(checkOrder)
