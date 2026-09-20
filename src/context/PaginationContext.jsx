@@ -16,6 +16,7 @@ const PaginationContext = ({children}) => {
   (v, index) => filterInfo.slice(index * separategroups, (index + 1) * separategroups)
   
 );
+console.log(chunkedArray);
 
   return (
      <PaginationProvider value={{chunkedArray,currentpage,setCurrentpage}}>
