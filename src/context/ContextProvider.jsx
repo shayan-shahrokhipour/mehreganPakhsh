@@ -87,8 +87,10 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   useEffect(() => {
     const productdata = async () => {
       try {
-        const response = await axios.get("/products/products.json");
-        setProducts(response.data);
+        const response = await axios.get("https://api.mehreganpakhshpart.ir/api/catalog/products/");
+        console.log(response.data.results);
+        
+        setProducts(response.data.results);
         setLoading(false);
       } catch (error) {
         setError("خطا در برقراری ارتباط");
@@ -97,6 +99,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
     productdata();
   }, []);
 
+ 
   //------------------------------//
   //use effect for set filter info//
   //-----------------------------//

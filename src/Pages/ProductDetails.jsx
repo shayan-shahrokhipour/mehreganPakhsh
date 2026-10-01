@@ -20,7 +20,7 @@ const ProductDetails = () => {
 
   const { showInfo } = useContext(BuyContext);
 
-  const productsId = products.find((item) => item.id === Number(params.id));
+  const productsId = products.find((item) => item.id === params.id);
   //useEffect
   useEffect(() => {
     if (productsId) {
@@ -51,7 +51,7 @@ const ProductDetails = () => {
             <p>
               مورد <span className={styles.acceptParagraph}>تایید</span> فروشگاه
               های لوازم یدکی |{" "}
-              <a className={styles.trustNumber} href="tel:+989192700682">
+              <a className={styles.trustNumber} href="tel:+989190873814">
                 برای <span className={styles.acceptParagraph}>اطمینان</span> از
                 سازگاری قطعه با خودرو تماس بگیرید
               </a>
