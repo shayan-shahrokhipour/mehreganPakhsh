@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+
 
 //--------//
 //context//
@@ -35,6 +36,8 @@ export const ProductContext = createContext();
 
 //Product Context
 const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
+    const [currentpage , setCurrentpage]=useState(1)
+   
   //-----------------------//
   //------useLocation-----//
   //---------------------//
@@ -48,6 +51,13 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   const [filterInfo, setFilterInfo] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
+    //--------------------//
+  //states for pagination//
+  //-------------------//
+ 
+  const [next,setNext]=useState("")
+ 
   //-----------------------------//
   //-----------useRef-----------//
   //---------------------------//
@@ -87,19 +97,24 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   useEffect(() => {
     const productdata = async () => {
       try {
-        const response = await axios.get("https://api.mehreganpakhshpart.ir/api/catalog/products/");
-        console.log(response.data.results);
-        
+        const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/catalog/products/?page=${currentpage}`);
+       
+        setNext(response.data.next)
         setProducts(response.data.results);
+        
+       
+      
+        
         setLoading(false);
       } catch (error) {
         setError("خطا در برقراری ارتباط");
       }
     };
     productdata();
-  }, []);
+  }, [currentpage]);
 
- 
+  
+
   //------------------------------//
   //use effect for set filter info//
   //-----------------------------//
@@ -146,7 +161,8 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
           descriptionHandler,
           descriptions,
           saveOrders,
-          setSaveOrders
+          setSaveOrders,
+         next ,currentpage,setCurrentpage
         }}
       >
         {children}

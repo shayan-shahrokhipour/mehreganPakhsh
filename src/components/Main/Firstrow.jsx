@@ -5,17 +5,15 @@ import ProductCards from '../cards/ProductCards';
 //context
 import {ProductContext} from '../../context/ContextProvider'
 import Loading from '../../Loading/Loading';
-import { PaginationProvider } from '../../context/PaginationContext';
 
 const Firstrow = ({slides}) => {
-      const {loading}=useContext(ProductContext)
-      const {chunkedArray,currentpage}= useContext(PaginationProvider)
-      console.log(chunkedArray[currentpage]);
+      const {filterInfo,loading}=useContext(ProductContext)
+      
    
   return (
     <>
     <div className={`${styles.firstRowHolder} ${slides.classItem} `}>
-     {loading===false ? (chunkedArray[currentpage] || []).map(item => <ProductCards key={item.id} item={item}/>) : <Loading/>}
+     {loading===false ? filterInfo.map(item => <ProductCards key={item.id} item={item}/>) : <Loading/>}
      {}
     </div>
 

@@ -1,28 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from '../components/pagination.module.css'
 import { ProductContext } from '../context/ContextProvider'
-import { PaginationProvider } from '../context/PaginationContext'
 
 const Pagination = () => {
-    const {products,filterInfo} = useContext(ProductContext)
-     const {chunkedArray,currentpage,setCurrentpage} = useContext(PaginationProvider)
+    const {next,currentpage,setCurrentpage} = useContext(ProductContext)
+   
+ 
+const nextPages=()=>{
+ if(next){
+   setCurrentpage(currentpage + 1)
     
-     useEffect(()=>{
-      setCurrentpage(0)
-     },[filterInfo])
-
-const changePages=(index)=>{
-       setCurrentpage(index)
-       console.log(currentpage);    
-    
+ }
 }
 
-console.log(chunkedArray);
+const prepages=()=>{
+  currentpage > 1 && setCurrentpage(currentpage - 1)
+}
+
     
   return (
     <section className={styles.paginationHolder}>
         <div className={styles.pagination}>
-             {chunkedArray.map((item,index) =>(<div onClick={()=>changePages(index)} className={`${styles.paginationGroups} ${index === currentpage  && styles.paginationActive } `} key={index}><p>{(index + 1).toLocaleString('fa-IR')}</p></div>))}
+          <button disabled={currentpage===1} onClick={prepages}>عقب</button>
+          <button disabled={!next} onClick={nextPages}>جلو</button>
         </div>
     </section>
   )

@@ -9,7 +9,6 @@ import Hero from "./components/Hero/Hero";
 //----------------------//
 import ContextProvider, { ProductContext } from "./context/ContextProvider";
 import CartContext from "./context/CartContext";
-import PaginationContext from "./context/PaginationContext"
 //----------------------//
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./components/footer/Footer";
@@ -87,7 +86,7 @@ function App() {
     <>
       <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler}>
         <CartContext drawerHandeler={drawerHandeler}>
-          <PaginationContext>
+        
              <Header
             state={state}
             drawerHandeler={drawerHandeler}
@@ -111,7 +110,7 @@ function App() {
           </main>
           <Footer/>
        
-          </PaginationContext>
+         
         </CartContext>
       </ContextProvider>
     </>
