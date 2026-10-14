@@ -292,6 +292,10 @@ header {
   color: var(--skyBlue);
 }
 
+.errors{
+  color: black;
+}
+
 @media only screen and (max-width: 767px) {
   .signinboxforDesktop,
   .returnBox,

@@ -17,11 +17,12 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
     decreaseThequantity,
     deleteFromBasket,
     totalPrice,
-    
+    errors
   } = useContext(BuyContext);
    
      
   return (
+   
     <section className={`${styles.menuWraper} ${state === true ? styles.drawerMenuActive : ""}
     `}>
                   <IoClose onClick={drawerHandeler} className={styles.closeIcon} />
@@ -29,9 +30,8 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
        <div
       className={styles.drawerMenu}
     >  
-
-      {selectedItems.length === 0 ? (
-        <img src="/emptyBasket.webp" />
+     {errors ? <p className={styles.errors}>{errors}</p> : selectedItems.length === 0 ? (
+        <img src="/emptyBasket.webp" /> 
       ) : (
         selectedItems.map((item) => (
           <div className={styles.selectedProducts} key={item.id}>
@@ -64,9 +64,14 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
           </div>
         ))
       )}
-      {totalPrice !== 0 && <p>جمع مبلغ :{totalPrice.toLocaleString("fa-IR")}</p>}
+
+   
+      {errors ? null : totalPrice !== 0 && <p>جمع مبلغ :{totalPrice.toLocaleString("fa-IR")}</p>}
     </div>
+
     </section>
+
+    
   );
 };
 

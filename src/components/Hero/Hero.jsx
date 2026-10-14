@@ -7,10 +7,12 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { ProductContext } from '../../context/ContextProvider';
 
 
+
 const Hero = () => {
  
  //context
-const {products,Model,setModel,filterInfo,setFilterInfo,error}=useContext(ProductContext)
+const {error}=useContext(ProductContext)
+
   const slides =[
     {
     image:'/slider1.webp',
@@ -64,7 +66,6 @@ const {products,Model,setModel,filterInfo,setFilterInfo,error}=useContext(Produc
     </section>
                           <Firstrow slides={slides[index]} /> 
                            {error && <p>{error}</p>}
-
           </>
   )
 }
