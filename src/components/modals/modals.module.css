@@ -156,13 +156,30 @@ gap: 2px;
     font-size: 10px;
 }
 
+.errorHolder{
+    position: fixed;
+    top: 50px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    z-index: 205;
+    width: 25%;
+    border-radius: 5px;
+    height: 50px;
+    background-color: red;
+}
 
+.errorHolder p{
+    text-align: center;
+}
 
 @media only screen and (max-width:767px){
   .SelectCarModal{
     width: 90%;
   }.descriptionHolder{
     width: 90%;
+  }.errorHolder{
+    height: auto;
   }
 }
 

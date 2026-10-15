@@ -17,9 +17,11 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
     decreaseThequantity,
     deleteFromBasket,
     totalPrice,
-    errors
+    errors,
+    
   } = useContext(BuyContext);
-   
+  
+    
      
   return (
    
@@ -30,7 +32,7 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
        <div
       className={styles.drawerMenu}
     >  
-     {errors ? <p className={styles.errors}>{errors}</p> : selectedItems.length === 0 ? (
+     {selectedItems.length === 0 ? (
         <img src="/emptyBasket.webp" /> 
       ) : (
         selectedItems.map((item) => (

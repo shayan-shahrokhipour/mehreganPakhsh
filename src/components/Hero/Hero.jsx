@@ -5,6 +5,7 @@ import Firstrow from '../Main/Firstrow'
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 import { ProductContext } from '../../context/ContextProvider';
+import Errors from '../modals/Errors';
 
 
 
@@ -66,6 +67,7 @@ const {error}=useContext(ProductContext)
     </section>
                           <Firstrow slides={slides[index]} /> 
                            {error && <p>{error}</p>}
+                <Errors/>
           </>
   )
 }

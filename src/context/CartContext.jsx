@@ -71,13 +71,13 @@ const CartContext = ({ children, drawerHandeler }) => {
    
    const [itemId,setItemId] = useState({})
 
+     
     //------------------------//
    //--------errors----------//
   //------------------------//
   const [errors,setErrors]=useState("")
   const getInformation = useContext(ProductContext);
   const { products } = getInformation;
-
   const [state, dispatch] = useReducer(reducer, initialArg);
   //Add Items
   const showInfo = async (Info) => {
@@ -88,21 +88,29 @@ const CartContext = ({ children, drawerHandeler }) => {
     const cartItemId  =  itemId[Info] 
     console.log(cartItemId);
     
-    if (existingItem) {
+    try {
+      if (existingItem) {
       const productIndex = state.selectedItems.findIndex(
         (item) => item.id === Info,
       );
-      dispatch({ type: "Increase", payload: productIndex });
-     await patchQuantity(cartItemId,sendValue)
-    } else {
-      dispatch({ type: "AddItem", payload: product });
-         await postcard(product,sendValue)
+           await patchQuantity(cartItemId,sendValue)
 
+      dispatch({ type: "Increase", payload: productIndex });
+    } else {
+               await postcard(product,sendValue)
+
+      dispatch({ type: "AddItem", payload: product });
+
+    }
+    drawerHandeler();
+    getpro()
+    } catch (error) {
+        setErrors("عدم ارتباط با سبد خرید ")
     }
     
     
-    drawerHandeler();
-    // getpro()
+    
+    
   };
   //increase The quantity
   const increaseThequantity = async (id) => {
@@ -111,18 +119,18 @@ const CartContext = ({ children, drawerHandeler }) => {
     );
         const product = state.selectedItems[productIndex]
         const sendValue = product.quantity + 1 
-        const cartItemId = itemId[id];
+        const cartItemId = itemId[id];    
+      try {
+            await patchQuantity(cartItemId,sendValue)
+        dispatch({ type: "Increase", payload: productIndex });
+            getpro()
 
-        
-        
-        
-
-    dispatch({ type: "Increase", payload: productIndex });
+      } catch (error) {
+        setErrors("افزایش تعداد انجام نشد")
+      }
     
     
-    
-   await patchQuantity(cartItemId,sendValue)
-    // getpro()
+   
   };
   //decrease The quantity
   const decreaseThequantity = async (id) => {
@@ -133,9 +141,14 @@ const CartContext = ({ children, drawerHandeler }) => {
      const product = state.selectedItems[productIndexdecrease]
         const sendValue = product.quantity - 1 
         const cartItemId = itemId[id]
+       try {
+         await patchQuantity(cartItemId,sendValue)
     dispatch({ type: "Decrease", payload: productIndexdecrease });
-     await patchQuantity(cartItemId,sendValue)
-    // getpro()
+    getpro()
+       } catch (error) {
+         setErrors("کاهش تعداد با موفقیت انجام نشد")
+       }
+       
   };
 
   //delete the products
@@ -143,31 +156,37 @@ const CartContext = ({ children, drawerHandeler }) => {
     const deleteTheproduct = state.selectedItems.filter(
       (item) => item.id != id);
     const cartItemId = itemId[id]
+    try {
+       await deleteProduct(cartItemId)
     dispatch({ type: "Delete", payload: deleteTheproduct });
-   await deleteProduct(cartItemId)
-    // getpro()
+   
+    getpro()
+    } catch (error) {
+      setErrors("عدم ارسال به سرور")
+    }
   };
 
-  useEffect(() => {
-    const total = state.selectedItems.reduce(
-      (sum, item) => sum + (item.price * item.quantity),
-      0
-    );
-    dispatch({ type: "Sum", payload: total });
-  }, [state.selectedItems]);
+  
 
  useEffect(()=>{
   const cardvalue = async ()=>{
+     try {
     const response =  await axios.get("https://api.mehreganpakhshpart.ir/api/cart/")
     guestToken.current = response.data.guest_token
    console.log(guestToken.current);
    
    const items = response.data.items
+      dispatch({type:'setItem' , payload:response.data.items})
+   
+           console.log("items",items);
+
+    } catch (error) {
+       setErrors("عدم ارتباط با سبد خرید")
+    }
      
+         
+
       
-      
-    dispatch({type:'setItem' , payload:response.data.items})
-   console.log("items",items);
    
   }
   cardvalue()
@@ -177,6 +196,7 @@ const CartContext = ({ children, drawerHandeler }) => {
  
 
 const postcard = async (product, sendValue) => {
+  setErrors("");
  try {
     const response = await axios.post(
     "https://api.mehreganpakhshpart.ir/api/cart/items/",
@@ -191,19 +211,22 @@ const postcard = async (product, sendValue) => {
     }
   );
   const cartItemId = response.data.id
-   setItemId((prev)=>({...prev,[product.id]:cartItemId}))
+ 
+ setItemId((prev)=>({...prev,[product.id]:cartItemId}))
+ 
 
   console.log(cartItemId);
   
-  // getpro()
  } catch (error) {
-    setErrors("خطا در ارتباط با سرور")   
-    
+    setErrors("خطا در ارتباط با سرور") 
+    console.error(error)  
+    throw error
     
  }
 };
 
 const patchQuantity= async (cartItemId,sendValue)=>{
+  setErrors("");
   console.log(itemId);
   
  try {
@@ -213,30 +236,46 @@ const patchQuantity= async (cartItemId,sendValue)=>{
   
  } catch (error) {
     setErrors("خطا در برقراری ارتباط")
-    
+        throw error;
+
  }
 }
 
 const deleteProduct = async (cartItemId) =>{
+      setErrors("");
+
+  try {
     const response = await axios.delete(`https://api.mehreganpakhshpart.ir/api/cart/items/${cartItemId}`,{headers:{"X-Guest-Cart-Token": guestToken.current}})
+  } catch (error) {
+    setErrors("محصولی برای حذف پیدا نشد ")
+    throw error
+  }
 }
 
-//  const getpro= async()=>{
-//    const response = await axios.get("https://api.mehreganpakhshpart.ir/api/cart/",
-//     {
-//       headers: {
-//         "X-Guest-Cart-Token": guestToken.current,
-//       },
-//     })
-//    console.log("POST",response.data.items);
+ const getpro= async()=>{
+  try {
+      const response = await axios.get("https://api.mehreganpakhshpart.ir/api/cart/",
+    {
+      headers: {
+        "X-Guest-Cart-Token": guestToken.current,
+      },
+    })
+    dispatch({type:"Sum", payload:response.data.subtotal})
+    
+   console.log("POST",response.data.items);
+    
+  } catch (error) {
+    setErrors("خطایی رخ داده است")
+  }
    
-//  }
+ }
 
 
 
  useEffect(()=>{
   console.log(state.selectedItems);
-            
+  // console.log(total);
+         
 
    
  },[state.selectedItems])
@@ -253,8 +292,8 @@ const deleteProduct = async (cartItemId) =>{
         deleteFromBasket,
         totalPrice: state.totalPrice,
         dispatch,
-        errors
-         
+        errors,
+         setErrors
       }}
     >
       {children}

@@ -101,13 +101,11 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
        
         setNext(response.data.next)
         setProducts(response.data.results);
-        
-       
-      
-        
         setLoading(false);
       } catch (error) {
         setError("خطا در برقراری ارتباط");
+                setLoading(false)
+
       }
     };
     productdata();
