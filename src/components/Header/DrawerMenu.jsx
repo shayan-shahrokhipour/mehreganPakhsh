@@ -18,10 +18,15 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
     deleteFromBasket,
     totalPrice,
     errors,
+    quantityValue,
+    loadingRequest
     
   } = useContext(BuyContext);
   
     
+     console.log(quantityValue);
+    
+     
      
   return (
    
@@ -44,12 +49,12 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
               {ord  ? <p className={styles.freezeTheItem}>قادر به تغییر دادن نیستید</p> 
               : 
               <>
-              <FaPlus
+              <FaPlus 
                 onClick={() => increaseThequantity(item.id)}
-                className={styles.iconsBuy}
+                className={`${styles.iconsBuy}  ${loadingRequest[item.id] ? styles.disableButton : ""}`} 
               />
-              <p>{item.quantity}</p>
-              {item.quantity === 1 ? (
+              <p>{quantityValue[item.id]}</p>
+              {quantityValue[item.id] === 1 ? (
                 <FaTrash
                   onClick={() => deleteFromBasket(item.id)}
                   className={styles.iconsBuy}
@@ -57,7 +62,7 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
               ) : (
                 <FaMinus
                   onClick={() => decreaseThequantity(item.id)}
-                  className={styles.iconsBuy}
+                  className={`${styles.iconsBuy} ${loadingRequest[item.id] ? styles.disableButton : "" }`} 
                 />
               )}
               </>}
