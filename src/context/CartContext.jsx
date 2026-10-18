@@ -76,7 +76,7 @@ const CartContext = ({ children, drawerHandeler }) => {
 
 const [quantityValue,setQuantityValue]=useState({})
 const [loadingRequest,setLoadingRequest] = useState({}) 
-
+const lockRequest = useRef({})
     //------------------------//
    //--------errors----------//
   //------------------------//
@@ -123,11 +123,12 @@ const [loadingRequest,setLoadingRequest] = useState({})
     const productIndex = state.selectedItems.findIndex(
       (item) => item.id === id,
     );
-         if(loadingRequest[id])return
+         if(lockRequest[id])return
          
         const product = state.selectedItems[productIndex]
         const sendValue = product.quantity + 1 
-        const cartItemId = itemId[id];  
+        const cartItemId = itemId[id]; 
+        lockRequest.current[id]=true 
           setLoadingRequest((prev) => ({ ...prev, [id]: true }));
           
       try {
@@ -141,6 +142,8 @@ const [loadingRequest,setLoadingRequest] = useState({})
       } catch (error) {
         setErrors("افزایش تعداد انجام نشد")
       }finally{
+                lockRequest.current[id]=false 
+
           setLoadingRequest((prev) => ({ ...prev, [id]: false }));
             
       }
@@ -155,10 +158,11 @@ const [loadingRequest,setLoadingRequest] = useState({})
     const productIndexdecrease = state.selectedItems.findIndex(
       (item) => item.id === id,
     );
-         if(loadingRequest[id])return
+         if(lockRequest[id])return
      const product = state.selectedItems[productIndexdecrease]
         const sendValue = product.quantity - 1 
         const cartItemId = itemId[id]
+        lockRequest.current[id]=true
           setLoadingRequest((prev) => ({ ...prev, [id]: true }));
        try {
          await patchQuantity(cartItemId,sendValue)
@@ -167,6 +171,8 @@ const [loadingRequest,setLoadingRequest] = useState({})
        } catch (error) {
          setErrors("کاهش تعداد با موفقیت انجام نشد")
        }finally{
+                lockRequest.current[id]=false
+
                   setLoadingRequest((prev) => ({ ...prev, [id]: false }));
 
        }
