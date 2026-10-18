@@ -69,7 +69,7 @@ const Information = ({getInfo,setGetInfo}) => {
      console.log(order);
      
     
-      navigate("/payment",{state:order})
+      navigate("/authentication",{state:order})
    
 
    }

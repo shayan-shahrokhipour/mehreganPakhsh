@@ -20,6 +20,7 @@ import Aboutus from "./Pages/Aboutus";
 import Calltous from "./Pages/Calltous";
 import { TrackOrder } from "./Pages/TrackOrder";
 import Pagination from "./components/Pagination";
+import { Authentication } from "./Pages/Authentication";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -101,10 +102,11 @@ function App() {
             <Route path="calltous" element={<Calltous/>}/>
             <Route path="aboutus" element={ <Aboutus/>}/>
             <Route path="trackOrder" element={<TrackOrder/>}/>
+            <Route path="authentication" element={<Authentication/>}/>
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
-             <Route path="payment" element={<Payment/>}/>
-             <Route path="*" element={<Page404/>}/>
+            <Route path="payment" element={<Payment/>}/>
+            <Route path="*" element={<Page404/>}/>
 
           </Routes>
           </main>

@@ -93,6 +93,7 @@ const lockRequest = useRef({})
     const sendValue = existingItem ? existingItem.quantity + 1 : 1
     const cartItemId  =  itemId[Info] 
     console.log(cartItemId);
+    console.log(itemId);
     
     try {
       if (existingItem) {
@@ -130,7 +131,8 @@ const lockRequest = useRef({})
         const cartItemId = itemId[id]; 
         lockRequest.current[id]=true 
           setLoadingRequest((prev) => ({ ...prev, [id]: true }));
-          
+           console.log(cartItemId);
+           
       try {
         console.log(state.selectedItems.quantity);
     
@@ -184,6 +186,8 @@ const lockRequest = useRef({})
     const deleteTheproduct = state.selectedItems.filter(
       (item) => item.id != id);
     const cartItemId = itemId[id]
+    if(lockRequest.current[id]) return
+    lockRequest.current[id]=true
     try {
        await deleteProduct(cartItemId)
     dispatch({ type: "Delete", payload: deleteTheproduct });
@@ -191,6 +195,9 @@ const lockRequest = useRef({})
     getpro(id)
     } catch (error) {
       setErrors("عدم ارسال به سرور")
+    }finally{
+          lockRequest.current[id]=false
+
     }
   };
 
