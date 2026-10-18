@@ -123,7 +123,7 @@ const lockRequest = useRef({})
     const productIndex = state.selectedItems.findIndex(
       (item) => item.id === id,
     );
-         if(lockRequest[id])return
+         if(lockRequest.current[id])return
          
         const product = state.selectedItems[productIndex]
         const sendValue = product.quantity + 1 
@@ -158,7 +158,7 @@ const lockRequest = useRef({})
     const productIndexdecrease = state.selectedItems.findIndex(
       (item) => item.id === id,
     );
-         if(lockRequest[id])return
+         if(lockRequest.current[id])return
      const product = state.selectedItems[productIndexdecrease]
         const sendValue = product.quantity - 1 
         const cartItemId = itemId[id]
