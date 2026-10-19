@@ -84,7 +84,7 @@ const lockRequest = useRef({})
   const [errors,setErrors]=useState("")
   const getInformation = useContext(ProductContext);
   const { products } = getInformation;
-  const [state, dispatch] = useReducer(reducer, initialArg);
+  const [state, dispatch] = useReducer(reducer, initialArg)
   //Add Items
   const showInfo = async (Info) => {
 
@@ -201,35 +201,6 @@ const lockRequest = useRef({})
     }
   };
 
-  
-
- useEffect(()=>{
-  const cardvalue = async ()=>{
-     try {
-    const response =  await axios.get("https://api.mehreganpakhshpart.ir/api/cart/")
-    guestToken.current = response.data.guest_token
-   console.log(guestToken.current);
-   
-   const items = response.data.items
-      dispatch({type:'setItem' , payload:response.data.items})
-   
-           console.log("items",items);
-           
-
-    } catch (error) {
-       setErrors("عدم ارتباط با سبد خرید")
-    }
-     
-         
-
-      
-   
-  }
-  cardvalue()
- },[])
-
-
- 
 
 const postcard = async (product, sendValue) => {
   setErrors("");
@@ -246,12 +217,15 @@ const postcard = async (product, sendValue) => {
       },
     }
   );
+  guestToken.current=response.data.guest_token
+
   const cartItemId = response.data.id
   
  
  setItemId((prev)=>({...prev,[product.id]:cartItemId}))
  
-
+ 
+  
   console.log(cartItemId);
  
   
@@ -313,7 +287,7 @@ const deleteProduct = async (cartItemId) =>{
    console.log("POST",response.data.items);
    
   
-   
+    
    
   } catch (error) {
     setErrors("خطایی رخ داده است")
