@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { BuyContext } from '../context/CartContext'
 //uuid
 import { v4 as uuidv4 } from 'uuid';
+import { AutContext } from '../context/AuthProvider';
 
 const Information = ({getInfo,setGetInfo}) => {
  
    //context
    const {selectedItems,totalPrice} = useContext(BuyContext) 
+   const {requestOTP} = useContext(AutContext)
+   
    
    const [errors,setErrors]=useState("");
    //props
@@ -53,9 +56,11 @@ const Information = ({getInfo,setGetInfo}) => {
        return("")
    }
 
-    const addHandler=()=>{
-        const error =validateforInformation(getInfo)
+    const addHandler= async ()=>{
+     
+          const error =validateforInformation(getInfo)
         if(error){
+            setErrors(error);
           return
         }
      const order={
@@ -67,13 +72,22 @@ const Information = ({getInfo,setGetInfo}) => {
        orderCode:uuidv4().slice(0,5)
      }
      console.log(order);
-     
-    
-      navigate("/authentication",{state:order})
+       try {
+    await requestOTP();
+    navigate("/authentication", { state: order });
+  } catch (error) {
+   setErrors(error.response.data.phone_number)
+  }
+        
    
 
    }
    
+useEffect(()=>{
+  console.log(errors);
+  
+},[])
+
   return (
     <>
     <section className={styles.InfoHolder}>

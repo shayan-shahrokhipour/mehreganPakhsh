@@ -21,6 +21,7 @@ import Calltous from "./Pages/Calltous";
 import { TrackOrder } from "./Pages/TrackOrder";
 import Pagination from "./components/Pagination";
 import { Authentication } from "./Pages/Authentication";
+import AuthProvider from "./context/AuthProvider";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -87,8 +88,8 @@ function App() {
     <>
       <ContextProvider descriptions={state.descriptions} descriptionHandler={descriptionHandler}>
         <CartContext drawerHandeler={drawerHandeler}>
-        
-             <Header
+         <AuthProvider>
+            <Header
             state={state}
             drawerHandeler={drawerHandeler}
             modalHandeler={modalHandeler}
@@ -112,7 +113,7 @@ function App() {
           </main>
           <Footer/>
        
-         
+         </AuthProvider>
         </CartContext>
       </ContextProvider>
     </>

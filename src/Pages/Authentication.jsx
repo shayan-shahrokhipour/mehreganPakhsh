@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from "../Pages/authentication.module.css"
+import { BuyContext } from '../context/CartContext'
 export const Authentication = () => {
+ 
   return (
     <section className={styles.imgHolder}>
       <section className={styles.authenticationHolder}>
