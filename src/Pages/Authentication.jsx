@@ -1,8 +1,21 @@
 import React, { useContext } from 'react'
 import styles from "../Pages/authentication.module.css"
 import { BuyContext } from '../context/CartContext'
+import { AutContext } from '../context/AuthProvider'
+import {  useNavigate , useLocation } from 'react-router-dom'
 export const Authentication = () => {
- 
+    const {verifyOTP} = useContext(AutContext)
+    
+    const navigate = useNavigate()
+    const order = useLocation().state
+
+    const orderHandler = async () =>{
+      console.log(order);
+       await verifyOTP()
+       navigate("/payment",{state:order})
+     
+    }
+     
   return (
     <section className={styles.imgHolder}>
       <section className={styles.authenticationHolder}>
@@ -10,7 +23,7 @@ export const Authentication = () => {
         <p>(رمز یک بار مصرف برای شما از طریق پیام ارسال میشود)</p>
         <div className={styles.inputHolder}>
         <input type="text" placeholder='کد خود را وارد کنید'/>
-        <button>اهراز هویت</button>
+        <button onClick={orderHandler}>تایید کد</button>
         </div>
       </section>
     </section>

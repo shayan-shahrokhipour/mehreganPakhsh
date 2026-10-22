@@ -1,35 +1,36 @@
-import axios from 'axios'
-import React, { createContext, useContext, useEffect } from 'react'
-import { BuyContext } from './CartContext'
+import axios from "axios";
+import React, { createContext, useContext, useEffect } from "react";
+import { BuyContext } from "./CartContext";
 
-export const AutContext =createContext()
+export const AutContext = createContext();
 
-const AuthProvider = ({children}) => {
- const {setErrors} = useContext(BuyContext)
+const AuthProvider = ({ children }) => {
+  const { setErrors } = useContext(BuyContext);
 
-  
-       
-             const requestOTP = async () =>{
-   try {
-     const response = await axios.post("https://api.mehreganpakhshpart.ir/api/accounts/auth/request-otp/", {
-        phone_number:"09192700682"
-
-        }
-       )
-           console.log(response);
-
-     } catch (error) {
-        throw error
+  const requestOTP = async () => {
+    try {
+      const response = await axios.post(
+        "https://api.mehreganpakhshpart.ir/api/accounts/auth/request-otp/",
+        {
+          phone_number: "09192700682",
+        },
+      );
+      console.log(response);
+    } catch (error) {
+      throw error;
     }
-      
-} 
- 
-   
-  return (
-    <AutContext value={{requestOTP}}>
-         {children}
-    </AutContext>
-  )
-}
+  };
 
-export default AuthProvider
+  const verifyOTP = async ()=>{
+    const response = await axios.post("https://api.mehreganpakhshpart.ir/api/accounts/auth/verify-otp/",{phone_number:"09192700682",
+       code:" 229264" 
+    })
+   
+     console.log(response);
+     
+  }
+
+  return <AutContext value={{ requestOTP,verifyOTP }}>{children}</AutContext>;
+};
+
+export default AuthProvider;
