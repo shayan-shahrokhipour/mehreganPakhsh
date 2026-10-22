@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
 
   const verifyOTP = async ()=>{
     const response = await axios.post("https://api.mehreganpakhshpart.ir/api/accounts/auth/verify-otp/",{phone_number:"09192700682",
-       code:" 229264" 
+       code:"498530" 
     })
    
      console.log(response);
