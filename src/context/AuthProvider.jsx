@@ -7,26 +7,30 @@ export const AutContext = createContext();
 const AuthProvider = ({ children }) => {
   const { setErrors } = useContext(BuyContext);
 
-  const requestOTP = async () => {
+  const requestOTP = async (mobile) => {
     try {
       const response = await axios.post(
         "https://api.mehreganpakhshpart.ir/api/accounts/auth/request-otp/",
         {
-          phone_number: "09192700682",
+          phone_number: mobile,
         },
       );
       console.log(response);
+      console.log(mobile);
+      
     } catch (error) {
       throw error;
     }
   };
 
-  const verifyOTP = async ()=>{
-    const response = await axios.post("https://api.mehreganpakhshpart.ir/api/accounts/auth/verify-otp/",{phone_number:"09192700682",
-       code:"498530" 
+  const verifyOTP = async (mobile,code)=>{
+    
+       const response = await axios.post("https://api.mehreganpakhshpart.ir/api/accounts/auth/verify-otp/",{phone_number:mobile,
+       code:code 
     })
    
      console.log(response);
+    
      
   }
 

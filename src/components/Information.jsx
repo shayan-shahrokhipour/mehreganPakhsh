@@ -73,7 +73,7 @@ const Information = ({getInfo,setGetInfo}) => {
      }
      console.log(order);
        try {
-    await requestOTP();
+    await requestOTP(mobile);
     navigate("/authentication", { state: order });
   } catch (error) {
    setErrors(error.response.data.phone_number)
