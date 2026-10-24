@@ -289,6 +289,8 @@ const CartContext = ({ children, drawerHandeler }) => {
         setErrors,
         quantityValue,
         loadingRequest,
+        
+       
       }}
     >
       {children}

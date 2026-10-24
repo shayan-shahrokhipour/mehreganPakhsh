@@ -3,6 +3,7 @@ import styles from "../Pages/authentication.module.css"
 import { BuyContext } from '../context/CartContext'
 import { AutContext } from '../context/AuthProvider'
 import {  useNavigate , useLocation } from 'react-router-dom'
+import { OrderContext } from '../context/OrderProvider'
 export const Authentication = () => {
   //-----------state-----------//
    const [code,setCode] = useState("")
@@ -11,6 +12,8 @@ export const Authentication = () => {
   //-----------Context-------------//
     const {verifyOTP} = useContext(AutContext)
     const {errors,setErrors} = useContext(BuyContext)
+    const {postOrder} = useContext(OrderContext)
+    
     //-----------useNavigation-------------//
     const navigate = useNavigate()
     const order = useLocation().state
@@ -20,14 +23,18 @@ export const Authentication = () => {
        console.log(order.customer.mobile);
        await verifyOTP(order.customer.mobile,code)
        navigate("/payment",{state:order})
+       
+       await postOrder()
+     
      } catch (error) {
-      setErrors(error.response.data.code)
+      setErrors(error.response?.data?.code || "تایید کد ناموفق بود")
       setTimeout(()=>{
         setErrors("")
       },3000)
-       console.log(error.response.data.code);
+      //  console.log(error.response?.data?.code);
      }
-     
+      
+
     }
     
     const inputHandler =(e)=>{
