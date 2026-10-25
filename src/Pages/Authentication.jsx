@@ -22,9 +22,18 @@ export const Authentication = () => {
      try {
        console.log(order.customer.mobile);
        await verifyOTP(order.customer.mobile,code)
-       navigate("/payment",{state:order})
+         const name = order.customer.name
+       const family = order.customer.family
+       const province = order.customer.province
+       const city = order.customer.city
+       const address = order.customer.address
+       const mobile = order.customer.mobile
+       const postal = order.customer.postalCode
+       console.log(order);
        
-       await postOrder()
+       await postOrder(name,family,province,city,address,mobile,postal)
+       navigate("/payment",{state:order})
+     
      
      } catch (error) {
       setErrors(error.response?.data?.code || "تایید کد ناموفق بود")

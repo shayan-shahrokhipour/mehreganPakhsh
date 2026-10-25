@@ -42,7 +42,7 @@ const reducer = (state, action) => {
     case "onmouseLeave":
       return { ...state, onmouse: false };
     case "description":
-      return {...state,descriptions:true}
+      return {...state,descriptions: true}
       case"descriptionClose":
       return{...state,descriptions:false}
     default:

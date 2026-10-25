@@ -2,11 +2,11 @@ import axios from 'axios'
 import React, { createContext, useContext, useState } from 'react'
 import { AutContext } from './AuthProvider'
 import { BuyContext } from './CartContext'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const OrderContext = createContext()
 
 const OrderProvider = ({children}) => {
-const [createOrder,setCreateOrder]=useState({})
 const {accessToken}=useContext(AutContext)
 const {selectedItems,quantityValue} = useContext(BuyContext)
 
@@ -15,27 +15,46 @@ const items = selectedItems.map(order => ({product_id:order.id,quantity:quantity
 
  console.log(items);
  
+
+
  
-const postOrder = async ()=>{
-    console.log("post order اجرا شد");
-    
-  const response = await axios.post("https://api.mehreganpakhshpart.ir/api/orders/",{
-  items
+ 
+
+const postOrder = async (name,family,province,city,address,mobile,postal)=>{
+    const order = {
+    items
  ,
-  "recipient_name": "string",
-  "province": "string",
-  "city": "string",
-  "address": "string",
-  "postal_code": "3775629429",
-  "recipient_phone": "09192700682",
+  "first_name":name,
+  "last_name" : family,
+  "province": province,
+  "city": city,
+  "address": address,
+  "postal_code": postal,
+  "recipient_phone": mobile,
   "discount_code": ""
 
-},{headers:{
+ }
+    console.log(order);
+
+  const response = await axios.post("https://api.mehreganpakhshpart.ir/api/orders/",
+    order
+  
+,{headers:{
     "Authorization": `Bearer ${accessToken.current}`
   }})
   
-    console.log(response)
-    
+    console.log(response.data)
+    console.log(response.headers); 
+    await getOrder()  
+}
+
+const getOrder = async ()=>{
+  const response = await axios.get("https://api.mehreganpakhshpart.ir/api/orders/",
+  {headers:{"Authorization": `Bearer ${accessToken.current}`}})
+
+   console.log(response.data);
+   
+
 }
 
   return (

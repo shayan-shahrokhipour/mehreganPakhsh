@@ -5,13 +5,14 @@ import { BuyContext } from '../context/CartContext'
 //uuid
 import { v4 as uuidv4 } from 'uuid';
 import { AutContext } from '../context/AuthProvider';
+import { OrderContext } from '../context/OrderProvider';
 
 const Information = ({getInfo,setGetInfo}) => {
  
    //context
    const {selectedItems,totalPrice} = useContext(BuyContext) 
    const {requestOTP} = useContext(AutContext)
-   
+   const {postOrder} = useContext(OrderContext)
    
    const [errors,setErrors]=useState("");
    //props
