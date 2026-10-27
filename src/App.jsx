@@ -23,6 +23,7 @@ import Pagination from "./components/Pagination";
 import { Authentication } from "./Pages/Authentication";
 import AuthProvider from "./context/AuthProvider";
 import OrderProvider from "./context/OrderProvider";
+import PaymentProvider from "./context/PaymentProvider";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -91,7 +92,8 @@ function App() {
         <CartContext drawerHandeler={drawerHandeler}>
          <AuthProvider>
            <OrderProvider>
-             <Header
+           <PaymentProvider>
+              <Header
             state={state}
             drawerHandeler={drawerHandeler}
             modalHandeler={modalHandeler}
@@ -114,6 +116,7 @@ function App() {
           </Routes>
           </main>
           <Footer/>
+           </PaymentProvider>
            </OrderProvider>
          </AuthProvider>
         </CartContext>

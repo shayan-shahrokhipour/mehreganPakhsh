@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../Pages/productDetails.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BuyContext } from "../context/CartContext";
 import { ProductContext } from "../context/ContextProvider";
+import { OrderContext } from "../context/OrderProvider";
+import { PaymentContext } from "../context/PaymentProvider";
 
 const Payment = () => {
  const {dispatch} = useContext(BuyContext)
  const {saveOrders,setSaveOrders}=useContext(ProductContext)
+ const {postPayment} = useContext(PaymentContext)
+ 
   //state
     const [success,setSuccess]=useState(false)
     
@@ -27,16 +31,16 @@ useEffect(()=>{
 
 },[saveOrders])
   
-  const successPayment=()=>{
+  const successPayment= async ()=>{
   setSaveOrders(item=>[...item,frozenOrder])
   
     
-
-    setSuccess(true)
-    dispatch({type:"clearCard"})
-    setTimeout(()=>{
-      navigate('/')
-    },3000)
+    await postPayment()
+    // setSuccess(true)
+    // dispatch({type:"clearCard"})
+    // setTimeout(()=>{
+    //   navigate('/')
+    // },3000)
    
     
     

@@ -4,6 +4,29 @@ import { BuyContext } from '../context/CartContext'
 import { AutContext } from '../context/AuthProvider'
 import {  useNavigate , useLocation } from 'react-router-dom'
 import { OrderContext } from '../context/OrderProvider'
+
+const getOrderErrorMessage = (error) => {
+  const data = error.response?.data
+
+  if (!data) {
+    return "ارتباط با سرور برقرار نشد. دوباره تلاش کنید."
+  }
+
+  if (data.detail) {
+    return data.detail
+  }
+
+ 
+
+  for (const  messages of Object.values(data)) {
+    if (messages) {
+      return messages
+    }
+  }
+
+  return "ثبت سفارش ناموفق بود. دوباره تلاش کنید."
+}
+
 export const Authentication = () => {
   //-----------state-----------//
    const [code,setCode] = useState("")
@@ -22,27 +45,32 @@ export const Authentication = () => {
      try {
        console.log(order.customer.mobile);
        await verifyOTP(order.customer.mobile,code)
-         const name = order.customer.name
-       const family = order.customer.family
-       const province = order.customer.province
-       const city = order.customer.city
-       const address = order.customer.address
-       const mobile = order.customer.mobile
-       const postal = order.customer.postalCode
-       console.log(order);
-       
-       await postOrder(name,family,province,city,address,mobile,postal)
-       navigate("/payment",{state:order})
+        
      
      
      } catch (error) {
       setErrors(error.response?.data?.code || "تایید کد ناموفق بود")
+      console.log(error.response);
+      
       setTimeout(()=>{
         setErrors("")
       },3000)
-      //  console.log(error.response?.data?.code);
+      return
      }
-      
+      try {
+     
+       const {name,family,province,city,address,mobile,postalCode} = order.customer
+       console.log(order);
+       
+       await postOrder(name,family,province,city,address,mobile,postalCode)
+              navigate("/payment",{state:order})
+
+      } catch (error) {
+            setErrors(getOrderErrorMessage(error))
+              setTimeout(() => {
+    setErrors("")
+  }, 3000)
+      }
 
     }
     
