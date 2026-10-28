@@ -880,6 +880,10 @@ display: flex;
     padding: 3px;
 }
 
+.showError{
+    text-align: center;
+}
+
 @media only screen and (max-width:767px){
     .rightSide{
         width: 90%;

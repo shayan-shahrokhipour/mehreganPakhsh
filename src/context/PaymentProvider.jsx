@@ -14,8 +14,8 @@ const PaymentProvider = ({children}) => {
 
     const postPayment = async () =>{
         console.log(orderId);
-        
-        const response = await axios.post("https://api.mehreganpakhshpart.ir/api/payments/request/",{
+      
+          const response = await axios.post("https://api.mehreganpakhshpart.ir/api/payments/request/",{
             order_id:orderId.current
         },{
             headers:{"Authorization":`Bearer ${accessToken.current}`
@@ -26,8 +26,11 @@ const PaymentProvider = ({children}) => {
 
        if(payUrl){
        window.location.href=payUrl
-
+           
        } 
+      
+       
+
         
     } 
 
