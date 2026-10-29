@@ -35,7 +35,7 @@ export const Authentication = () => {
   
    
   //-----------Context-------------//
-    const {verifyOTP} = useContext(AutContext)
+    const {verifyOTP,requestOTP} = useContext(AutContext)
     const {errors,setErrors} = useContext(BuyContext)
     const {postOrder} = useContext(OrderContext)
     
@@ -75,6 +75,17 @@ export const Authentication = () => {
       }
 
     }
+
+    const errorRequestInotp = async () =>{
+      try {
+       await requestOTP(order.customer.mobile)
+      } catch (error) {
+        setErrors(error.response.data.phone_number)
+        setTimeout(() => {
+           setErrors("")
+        }, 3000);
+      }
+    }
     
     const inputHandler =(e)=>{
       setCode(e.target.value)
@@ -91,6 +102,7 @@ export const Authentication = () => {
         <button onClick={orderHandler}>تایید کد</button>
         </div>
       </section>
+       <button className={styles.newRequest} onClick={errorRequestInotp}>درخواست مجدد کد یکبار مصرف</button>
       <p className={styles.errorParagraph}>{errors}</p>
     </section>
   )

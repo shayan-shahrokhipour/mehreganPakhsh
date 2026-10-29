@@ -10,19 +10,18 @@ const AuthProvider = ({ children }) => {
   const accessToken = useRef(null)
 
   const requestOTP = async (mobile) => {
-    try {
       const response = await axios.post(
         "https://api.mehreganpakhshpart.ir/api/accounts/auth/request-otp/",
         {
           phone_number: mobile,
         },
       );
-      console.log(response);
-      console.log(mobile);
+      setErrors(response.data.message)
+       setTimeout(() => {
+         setErrors("")
+       }, 3000);
       
-    } catch (error) {
-      throw error;
-    }
+    
   };
 
   const verifyOTP = async (mobile,code)=>{

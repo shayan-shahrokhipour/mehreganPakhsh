@@ -262,6 +262,26 @@ header {
   
 }
 
+.selectedProducts .GoToShop{
+  width: 50%;
+  height: 40px;
+ margin: 10px auto;
+  padding: 5px;
+  border: none;
+  background-color: #7DD3FC;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 200ms;
+  display: block;
+  text-decoration: none;
+  
+}
+
+.selectedProducts .GoToShop:hover{
+  background-color: #38BDF8;
+}
+
 .selectedProducts img{
   width: 40%;
   height: 40%;

@@ -7,7 +7,7 @@ import { IoClose } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
-import { useLocation } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
   const ord =useLocation().state
   
@@ -19,7 +19,8 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
     totalPrice,
     errors,
     quantityValue,
-    loadingRequest
+    loadingRequest,
+   
     
   } = useContext(BuyContext);
   
@@ -68,6 +69,10 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
               </>}
               
             </div>
+           
+            <Link onClick={drawerHandeler} className={styles.GoToShop} to={'/Basket'}>
+                برو به سبد خرید
+            </Link>
           </div>
         ))
       )}

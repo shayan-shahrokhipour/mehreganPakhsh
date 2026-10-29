@@ -61,7 +61,6 @@ useEffect(()=>{
     // },3000)
    } catch (error) {
      setShowError(manageError(error))
-          // (error.response.data.order_id)
 
     console.log(showError);
     setTimeout(() => {

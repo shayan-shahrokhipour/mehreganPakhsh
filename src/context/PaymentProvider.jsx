@@ -23,7 +23,6 @@ const PaymentProvider = ({children}) => {
 
         console.log(response);
        const payUrl=response.data.pay_url; 
-
        if(payUrl){
        window.location.href=payUrl
            
@@ -33,6 +32,8 @@ const PaymentProvider = ({children}) => {
 
         
     } 
+
+   
 
   return (
     <PaymentContext value={{postPayment}}>

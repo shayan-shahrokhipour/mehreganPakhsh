@@ -16,7 +16,7 @@ import {BuyContext} from '../../context/CartContext'
 import { Link } from 'react-router-dom';
 const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseLeave}) => {
       //Context
-         const {Model,products,value,setValue,searchcap,setSearchcap,search,getValue}=useContext(ProductContext)
+         const {Model,value,search,getValue}=useContext(ProductContext)
           const {selectedItems}=useContext(BuyContext)
           
          

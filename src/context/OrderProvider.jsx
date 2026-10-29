@@ -51,8 +51,8 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
     console.log(response.headers); 
      orderId.current = response.data.order_id
     console.log(orderId.current);
-
-    await getOrder()  
+    
+    // await getShipment()
   
 }
 
@@ -63,6 +63,15 @@ const getOrder = async ()=>{
    
     
 }
+
+//  const getShipment = async () =>{
+//        const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId.current}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
+
+//        console.log(response);
+
+
+       
+//     }
 
   return (
      <OrderContext value={{postOrder,orderId}}>
