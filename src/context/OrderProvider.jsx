@@ -63,14 +63,7 @@ const getOrder = async ()=>{
     
 }
 
-//  const getShipment = async () =>{
-//        const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId.current}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
 
-//        console.log(response);
-
-
-       
-//     }
 
   return (
      <OrderContext value={{postOrder,orderId}}>
