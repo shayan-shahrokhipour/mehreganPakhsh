@@ -24,6 +24,7 @@ import { Authentication } from "./Pages/Authentication";
 import AuthProvider from "./context/AuthProvider";
 import OrderProvider from "./context/OrderProvider";
 import PaymentProvider from "./context/PaymentProvider";
+import PaymentResult from "./Pages/PaymentResult";
 //use Reducer
 const initialState = {
   drawer: false,
@@ -111,8 +112,9 @@ function App() {
             <Route path="productDetails/:id" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
             <Route path="payment" element={<Payment/>}/>
+            <Route path="payment-result" element={<PaymentResult/>}/>
             <Route path="*" element={<Page404/>}/>
-
+             
           </Routes>
           </main>
           <Footer/>

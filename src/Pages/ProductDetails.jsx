@@ -25,7 +25,6 @@ const ProductDetails = () => {
   useEffect(() => {
     if (productsId) {
       setSearchParams({ name: productsId.name }, { replace: true });
-      const n = searchParams.get("name");
       
     }
   }, []);

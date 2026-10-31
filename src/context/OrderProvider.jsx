@@ -52,7 +52,6 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
      orderId.current = response.data.order_id
     console.log(orderId.current);
     
-    // await getShipment()
   
 }
 
