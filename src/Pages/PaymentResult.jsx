@@ -6,16 +6,17 @@ import { AutContext } from '../context/AuthProvider'
 
 const PaymentResult = () => {
     const {accessToken}=useContext(AutContext)
-    const {orderId} = useContext(OrderContext)
+    // const {orderId} = useContext(OrderContext)
     const [searchParams] = useSearchParams()
     const status =searchParams.get('status')
     const orderNumber =searchParams.get('order_number')
     const trackingCode =searchParams.get('tracking_code')
-    console.log(trackingCode,orderNumber,status);
+    const orderId=searchParams.get('order_id')
+    console.log(trackingCode,orderNumber,status,orderId);
 
     useEffect(()=>{
          const getShipment = async () =>{
-           const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId.current}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
+           const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
     
            console.log(response);
     
