@@ -24,7 +24,7 @@ const PaymentResult = () => {
            
         }
         getShipment()
-    },[status,orderNumber,trackingCode])
+    },[status,orderNumber,trackingCode,orderId])
   return (
     <div>PaymentResult</div>
   )
