@@ -15,7 +15,7 @@ const PaymentResult = () => {
 
     useEffect(()=>{
          const getShipment = async () =>{
-           const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderNumber}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
+           const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId.current}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
     
            console.log(response);
     
@@ -23,7 +23,7 @@ const PaymentResult = () => {
            
         }
         getShipment()
-    },[orderNumber])
+    },[status,orderNumber,trackingCode])
   return (
     <div>PaymentResult</div>
   )
