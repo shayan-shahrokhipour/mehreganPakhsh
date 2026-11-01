@@ -1,12 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {  useSearchParams } from 'react-router-dom'
 import { OrderContext } from '../context/OrderProvider'
 import axios from 'axios'
 import { AutContext } from '../context/AuthProvider'
 
 const PaymentResult = () => {
+  //useState
+  
+  const [error,setError]=useState("")
+  //Context
     const {accessToken}=useContext(AutContext)
-    // const {orderId} = useContext(OrderContext)
+    //Params
     const [searchParams] = useSearchParams()
     const status =searchParams.get('status')
     const orderNumber =searchParams.get('order_number')
@@ -16,22 +20,33 @@ const PaymentResult = () => {
 
     useEffect(()=>{
          const getShipment = async () =>{
-           const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
+          try {
+             const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
     
-try {
-             console.log(response);
 
-} catch (error) {
-   console.log(error.response);
-   
-}    
-    
+             console.log(response);
+          } catch (error) {
+
+            if(error.response?.data?.code === 'token_not_valid'){
+             setError("توکن در دسترس نیست")
+             
+          }else if(error.response?.status === 404){
+            setError("شناسه سفارش اشتباه است")
+          }
+          else{
+            setError("دریافت اطلاعات ارسال سفارش با مشکل مواجه شد")
+          }
+
+
+        }
            
         }
         getShipment()
     },[orderId])
   return (
-    <div>PaymentResult</div>
+    <section>
+      <p>{error}</p>
+    </section>
   )
 }
 
