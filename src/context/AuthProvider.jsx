@@ -7,7 +7,7 @@ export const AutContext = createContext();
 const AuthProvider = ({ children }) => {
   const { setErrors } = useContext(BuyContext);
 
-  const accessToken = useRef(null)
+  const accessToken = useRef(sessionStorage.getItem('accessToken'))
 
   const requestOTP = async (mobile) => {
       const response = await axios.post(
@@ -31,7 +31,8 @@ const AuthProvider = ({ children }) => {
    
      console.log(response);
     accessToken.current = response.data.access
-     console.log(accessToken);
+    sessionStorage.setItem('accessToken',response.data.access)
+     console.log('accessToken');
      
     
      

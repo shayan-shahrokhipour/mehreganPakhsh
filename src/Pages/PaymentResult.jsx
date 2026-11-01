@@ -18,13 +18,18 @@ const PaymentResult = () => {
          const getShipment = async () =>{
            const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
     
-           console.log(response);
-    
+try {
+             console.log(response);
+
+} catch (error) {
+   console.log(error.response);
+   
+}    
     
            
         }
         getShipment()
-    },[status,orderNumber,trackingCode,orderId])
+    },[orderId])
   return (
     <div>PaymentResult</div>
   )
