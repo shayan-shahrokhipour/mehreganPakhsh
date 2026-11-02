@@ -3,6 +3,8 @@ import { OrderContext } from './OrderProvider'
 import axios from 'axios'
 import { AutContext } from './AuthProvider'
 
+import {api} from '../services/api'
+
 export const PaymentContext = createContext()
 
 const PaymentProvider = ({children}) => {
@@ -15,11 +17,9 @@ const PaymentProvider = ({children}) => {
     const postPayment = async () =>{
         console.log(orderId);
       
-          const response = await axios.post("https://api.mehreganpakhshpart.ir/api/payments/request/",{
+          const response = await api.post("https://api.mehreganpakhshpart.ir/api/payments/request/",{
             order_id:orderId.current
-        },{
-            headers:{"Authorization":`Bearer ${accessToken.current}`
-        }})
+        },api)
 
         console.log(response);
        const payUrl=response.data.pay_url; 

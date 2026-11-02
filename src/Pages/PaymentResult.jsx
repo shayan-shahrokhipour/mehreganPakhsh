@@ -4,12 +4,14 @@ import { OrderContext } from '../context/OrderProvider'
 import axios from 'axios'
 import { AutContext } from '../context/AuthProvider'
 
+import {api} from '../services/api'
+
 const PaymentResult = () => {
   //useState
   
   const [error,setError]=useState("")
   //Context
-    const {accessToken}=useContext(AutContext)
+    // const {accessToken}=useContext(AutContext)
     //Params
     const [searchParams] = useSearchParams()
     const status =searchParams.get('status')
@@ -21,7 +23,7 @@ const PaymentResult = () => {
     useEffect(()=>{
          const getShipment = async () =>{
           try {
-             const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,{headers:{"Authorization":`Bearer ${accessToken.current}`}})
+             const response = await api.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,api)
     
 
              console.log(response);

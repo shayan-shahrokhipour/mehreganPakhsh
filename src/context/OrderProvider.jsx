@@ -5,10 +5,13 @@ import { BuyContext } from './CartContext'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { PaymentContext } from './PaymentProvider'
 
+import {api} from '../services/api'
+
 export const OrderContext = createContext()
 
+
 const OrderProvider = ({children}) => {
-const {accessToken}=useContext(AutContext)
+// const {accessToken}=useContext(AutContext)
 const {selectedItems,quantityValue} = useContext(BuyContext)
 
 const orderId = useRef(null)
@@ -39,12 +42,10 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
     console.log(order);
 
  
-   const response = await axios.post("https://api.mehreganpakhshpart.ir/api/orders/",
+   const response = await api.post("https://api.mehreganpakhshpart.ir/api/orders/",
     order
   
-,{headers:{
-    "Authorization": `Bearer ${accessToken.current}`
-  }})
+,api)
   
     console.log(response.data)
     

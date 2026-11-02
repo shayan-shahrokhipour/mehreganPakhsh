@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useRef } from "react";
+import {api} from '../services/api'
 import { BuyContext } from "./CartContext";
 
 export const AutContext = createContext();
@@ -7,11 +8,13 @@ export const AutContext = createContext();
 const AuthProvider = ({ children }) => {
   const { setErrors } = useContext(BuyContext);
 
-  const accessToken = useRef(sessionStorage.getItem('accessToken'))
+  // const accessToken = useRef(sessionStorage.getItem('accessToken'))
+
+  
 
   const requestOTP = async (mobile) => {
-      const response = await axios.post(
-        "https://api.mehreganpakhshpart.ir/api/accounts/auth/request-otp/",
+      const response = await api.post(
+       "/api/accounts/auth/request-otp/",
         {
           phone_number: mobile,
         },
@@ -25,20 +28,20 @@ const AuthProvider = ({ children }) => {
   };
 
   const verifyOTP = async (mobile,code)=>{
-       const response = await axios.post("https://api.mehreganpakhshpart.ir/api/accounts/auth/verify-otp/",{phone_number:mobile,
+       const response = await api.post("/api/accounts/auth/verify-otp/",{phone_number:mobile,
        code:code 
     })
    
      console.log(response);
-    accessToken.current = response.data.access
+    // accessToken.current = response.data.access
     sessionStorage.setItem('accessToken',response.data.access)
-     console.log('accessToken');
+     console.log(response);
      
     
      
   }
 
-  return <AutContext value={{ requestOTP,verifyOTP,accessToken }}>{children}</AutContext>;
+  return <AutContext value={{ requestOTP,verifyOTP }}>{children}</AutContext>;
 };
 
 export default AuthProvider;
