@@ -22,20 +22,24 @@ const PaymentResult = () => {
 
     useEffect(()=>{
          const getShipment = async () =>{
+          
           try {
-             const response = await api.get(`https://api.mehreganpakhshpart.ir/api/shipments/${orderId}/`,api)
+             const response = await api.get(`/api/shipments/${orderId}/`)
     
 
              console.log(response);
           } catch (error) {
-
+              console.log("Status:", error.response?.status);
+              console.log("Data:", error.response?.data);
+              console.log("Error:", error.message);
             if(error.response?.data?.code === 'token_not_valid'){
-             setError("توکن در دسترس نیست")
+             setError("توکن معتبر نیست")
              
           }else if(error.response?.status === 404){
             setError("شناسه سفارش اشتباه است")
-          }
-          else{
+          }else if(error.response?.status=== 401){
+              setError("مقدار توکن وجود ندارد")
+          }else{
             setError("دریافت اطلاعات ارسال سفارش با مشکل مواجه شد")
           }
 

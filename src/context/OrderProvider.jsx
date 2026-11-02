@@ -43,9 +43,7 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
 
  
    const response = await api.post("https://api.mehreganpakhshpart.ir/api/orders/",
-    order
-  
-,api)
+    order)
   
     console.log(response.data)
     
@@ -57,7 +55,7 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
 }
 
 const getOrder = async ()=>{
-  const response = await axios.get("https://api.mehreganpakhshpart.ir/api/orders/",
+  const response = await axios.get("api/orders/",
   {headers:{"Authorization": `Bearer ${accessToken.current}`}})
 
    
