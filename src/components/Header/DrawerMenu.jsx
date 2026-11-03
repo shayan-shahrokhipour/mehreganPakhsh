@@ -18,14 +18,13 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
     deleteFromBasket,
     totalPrice,
     errors,
-    quantityValue,
+  
     loadingRequest,
    
     
   } = useContext(BuyContext);
   
     
-     console.log(quantityValue);
     
      
      
@@ -45,7 +44,7 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
           <div className={styles.selectedProducts} key={item.id}>
             <img src={item.img} alt="" />
             <p>{item.name}</p>
-            <p>مبلغ قابل پرداخت :{item.price.toLocaleString("fa-IR")}</p>
+            <p>مبلغ قابل پرداخت :{item.price ? item.price.toLocaleString('fa-IR') : null}</p>
             <div className={styles.buttonHolder}>
               {ord  ? <p className={styles.freezeTheItem}>قادر به تغییر دادن نیستید</p> 
               : 
@@ -54,8 +53,8 @@ const DrawerMenu = ({ state, drawerHandeler, modalHandeler }) => {
                 onClick={() => increaseThequantity(item.id)}
                 className={`${styles.iconsBuy}  ${loadingRequest[item.id] ? styles.disableButton : ""}`} 
               />
-              <p>{quantityValue[item.id]}</p>
-              {quantityValue[item.id] === 1 ? (
+              <p>{item.quantity}</p>
+              {item.quantity === 1 ? (
                 <FaTrash
                   onClick={() => deleteFromBasket(item.id)}
                   className={styles.iconsBuy}

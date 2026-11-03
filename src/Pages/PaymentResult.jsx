@@ -29,9 +29,7 @@ const PaymentResult = () => {
 
              console.log(response);
           } catch (error) {
-              console.log("Status:", error.response?.status);
-              console.log("Data:", error.response?.data);
-              console.log("Error:", error.message);
+             
             if(error.response?.data?.code === 'token_not_valid'){
              setError("توکن معتبر نیست")
              

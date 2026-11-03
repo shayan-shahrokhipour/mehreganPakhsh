@@ -8,7 +8,6 @@ export const AutContext = createContext();
 const AuthProvider = ({ children }) => {
   const { setErrors } = useContext(BuyContext);
 
-  // const accessToken = useRef(sessionStorage.getItem('accessToken'))
 
   
 
@@ -33,7 +32,6 @@ const AuthProvider = ({ children }) => {
     })
    
      console.log(response);
-    // accessToken.current = response.data.access
     sessionStorage.setItem('accessToken',response.data.access)
     
      console.log(response);

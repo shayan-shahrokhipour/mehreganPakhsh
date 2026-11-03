@@ -8,6 +8,9 @@ import React, {
 } from "react";
 import { ProductContext } from "./ContextProvider";
 import axios from "axios";
+
+import {cartApi} from '../services/api'
+
 export const BuyContext = createContext();
 
 const initialArg = {
@@ -64,14 +67,13 @@ const CartContext = ({ children, drawerHandeler }) => {
   //--------postcard-------//
   //------------------------//
 
-  const guestToken = useRef(null);
+  // const guestToken = useRef(null);
 
   const [itemId, setItemId] = useState({});
   //------------------------//
   //---------basket--------//
   //-----------------------//
 
-  const [quantityValue, setQuantityValue] = useState({});
   const [loadingRequest, setLoadingRequest] = useState({});
   const lockRequest = useRef({});
   //------------------------//
@@ -82,6 +84,9 @@ const CartContext = ({ children, drawerHandeler }) => {
   const getInformation = useContext(ProductContext);
   const { products } = getInformation;
   const [state, dispatch] = useReducer(reducer, initialArg);
+   
+  const cartItemId = useRef(null)
+  
   //Add Items
   const showInfo = async (Info) => {
     const product = products.find((item) => item.id === Info);
@@ -183,27 +188,56 @@ const CartContext = ({ children, drawerHandeler }) => {
     }
   };
 
+  //get basket in first Load
+
+  useEffect(()=>{
+     const firstloadBasket = async () => {
+        const response = await cartApi.get("/api/cart/")
+       
+        const repaired = response.data.items.map(change => ({
+           id:change.product,
+           cartItemId:change.id,
+           name:change.product_name,
+           price:change.product_price,
+           img:`https://api.mehreganpakhshpart.ir${change.img}`,
+           quantity:change.quantity
+
+        }))
+        setItemId(
+  Object.fromEntries(
+    repaired.map(item => [item.id, item.cartItemId])
+  )
+);
+
+
+
+dispatch({ type: "Sum", payload: response.data.subtotal });
+
+        dispatch({type:"setItem", payload:repaired})
+        console.log(response.data.items);
+        
+     }
+     firstloadBasket()
+  },[])
+
   const postcard = async (product, sendValue) => {
     setErrors("");
     try {
-      const response = await axios.post(
-        "https://api.mehreganpakhshpart.ir/api/cart/items/",
+      const response = await cartApi.post(
+        "/api/cart/items/",
         {
           product: product.id,
           quantity: sendValue,
         },
-        {
-          headers: {
-            "X-Guest-Cart-Token": guestToken.current,
-          },
-        },
+      
       );
-      guestToken.current = response.data.guest_token;
 
-      const cartItemId = response.data.id;
+      sessionStorage.setItem("guestToken",response.data.guest_token)
 
-      setItemId((prev) => ({ ...prev, [product.id]: cartItemId }));
+       cartItemId.current = response.data.id;
 
+      setItemId((prev) => ({ ...prev, [product.id]: cartItemId.current }));
+       
       console.log(cartItemId);
     } catch (error) {
       setErrors("خطا در ارتباط با سرور");
@@ -217,10 +251,10 @@ const CartContext = ({ children, drawerHandeler }) => {
     console.log(itemId);
 
     try {
-      const response = await axios.patch(
-        `https://api.mehreganpakhshpart.ir/api/cart/items/${cartItemId}/`,
+      const response = await cartApi.patch(
+        `/api/cart/items/${cartItemId}/`,
         { quantity: sendValue },
-        { headers: { "X-Guest-Cart-Token": guestToken.current } },
+        
       );
       console.log(response);
       console.log(cartItemId);
@@ -234,9 +268,9 @@ const CartContext = ({ children, drawerHandeler }) => {
     setErrors("");
 
     try {
-      const response = await axios.delete(
-        `https://api.mehreganpakhshpart.ir/api/cart/items/${cartItemId}/`,
-        { headers: { "X-Guest-Cart-Token": guestToken.current } },
+      const response = await cartApi.delete(
+        `/api/cart/items/${cartItemId}/`,
+       
       );
     } catch (error) {
       setErrors("محصولی برای حذف پیدا نشد ");
@@ -245,32 +279,22 @@ const CartContext = ({ children, drawerHandeler }) => {
   };
 
   const getpro = async (id) => {
-    try {
-      const response = await axios.get(
-        "https://api.mehreganpakhshpart.ir/api/cart/",
-        {
-          headers: {
-            "X-Guest-Cart-Token": guestToken.current,
-          },
-        },
+   
+      const response = await cartApi.get(
+        "/api/cart/"
       );
 
-      const item = response.data.items.find((item) => item.product === id);
+      
 
-      if (item) {
-        setQuantityValue((quantity) => ({ ...quantity, [id]: item.quantity }));
-
-        console.log(item.quantity);
-      }
+      
       dispatch({ type: "Sum", payload: response.data.subtotal });
 
-      console.log("POST", response.data.items);
-    } catch (error) {
-      setErrors("خطایی رخ داده است");
-    }
+      console.log("POST", response.data);
+    
   };
 
   useEffect(() => {
+    
     console.log(state.selectedItems);
     // console.log(total);
   }, [state.selectedItems]);
@@ -287,7 +311,6 @@ const CartContext = ({ children, drawerHandeler }) => {
         dispatch,
         errors,
         setErrors,
-        quantityValue,
         loadingRequest,
        
       }}
