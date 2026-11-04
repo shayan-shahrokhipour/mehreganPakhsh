@@ -17,7 +17,11 @@ const AuthProvider = ({ children }) => {
         {
           phone_number: mobile,
         },
+        
       );
+
+      console.log(response);
+      
       setErrors(response.data.message)
        setTimeout(() => {
          setErrors("")
@@ -33,8 +37,7 @@ const AuthProvider = ({ children }) => {
    
      console.log(response);
     sessionStorage.setItem('accessToken',response.data.access)
-    
-     console.log(response);
+    sessionStorage.setItem('refreshToken',response.data.refresh)
      
     
      

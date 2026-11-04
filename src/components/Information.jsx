@@ -77,7 +77,11 @@ const Information = ({getInfo,setGetInfo}) => {
     await requestOTP(mobile);
     navigate("/authentication", { state: order });
   } catch (error) {
-   setErrors(error.response.data.phone_number)
+     console.log("Error:", error);
+  console.log("Response:", error.response);
+  console.log("Message:", error.message);
+   setErrors(error.response?.data?.phone_number ||     "ارسال کد تأیید ناموفق بود. دوباره تلاش کنید."
+)
   }
         
    
