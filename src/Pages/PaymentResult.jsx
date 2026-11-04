@@ -22,12 +22,18 @@ const PaymentResult = () => {
     const orderId=searchParams.get('order_id')
     console.log(trackingCode,orderNumber,status,orderId);
 
+               
+
     useEffect(()=>{
          const getShipment = async () =>{
           
           try {
+
              const response = await api.get(`/api/shipments/${orderId}/`)
     
+                dispatch({type:"clearCard"})
+
+            sessionStorage.removeItem("guestToken")    
 
              console.log(response);
           } catch (error) {
@@ -47,7 +53,6 @@ const PaymentResult = () => {
         }
            
         }
-            dispatch({type:"clearCard"})
 
         getShipment()
     },[orderId])
