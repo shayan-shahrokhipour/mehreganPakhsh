@@ -11,7 +11,6 @@ const PaymentProvider = ({children}) => {
     const {orderId} = useContext(OrderContext)
     console.log(orderId);
     
-    const {accessToken} = useContext(AutContext)
 
 
     const postPayment = async () =>{
@@ -19,7 +18,7 @@ const PaymentProvider = ({children}) => {
       
           const response = await api.post("https://api.mehreganpakhshpart.ir/api/payments/request/",{
             order_id:orderId.current
-        },api)
+        })
 
         console.log(response);
        const payUrl=response.data.pay_url; 

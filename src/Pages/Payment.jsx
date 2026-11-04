@@ -55,7 +55,7 @@ useEffect(()=>{
    try {
      await postPayment()
     // setSuccess(true)
-    // dispatch({type:"clearCard"})
+    dispatch({type:"clearCard"})
     // setTimeout(()=>{
     //   navigate('/')
     // },3000)
