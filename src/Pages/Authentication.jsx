@@ -21,9 +21,9 @@ const getOrderErrorMessage = (error) => {
  
 
   for (const  messages of Object.values(data)) {
-    if (messages) {
+   
       return messages
-    }
+    
   }
 
   return "ثبت سفارش ناموفق بود. دوباره تلاش کنید."
@@ -32,11 +32,11 @@ const getOrderErrorMessage = (error) => {
 export const Authentication = () => {
   //-----------state-----------//
    const [code,setCode] = useState("")
-  
+   const [getErrors,setGetErrors]=useState("")
    
   //-----------Context-------------//
     const {verifyOTP,requestOTP} = useContext(AutContext)
-    const {errors,setErrors} = useContext(BuyContext)
+    // const {errors,setErrors} = useContext(BuyContext)
     const {postOrder} = useContext(OrderContext)
     
     //-----------useNavigation-------------//
@@ -51,11 +51,11 @@ export const Authentication = () => {
      
      
      } catch (error) {
-      setErrors(error.response?.data?.code || "تایید کد ناموفق بود")
+      setGetErrors(error.response?.data?.code || "تایید کد ناموفق بود")
       console.log(error.response);
       
       setTimeout(()=>{
-        setErrors("")
+        setGetErrors("")
       },3000)
       return
      }
@@ -68,9 +68,9 @@ export const Authentication = () => {
               navigate("/payment",{state:order})
 
       } catch (error) {
-            setErrors(getOrderErrorMessage(error))
+            setGetErrors(getOrderErrorMessage(error))
               setTimeout(() => {
-    setErrors("")
+    setGetErrors("")
   }, 3000)
       }
 
@@ -80,9 +80,9 @@ export const Authentication = () => {
       try {
        await requestOTP(order.customer.mobile)
       } catch (error) {
-        setErrors(error.response.data.phone_number)
+        setGetErrors(error.response.data.phone_number)
         setTimeout(() => {
-           setErrors("")
+           setGetErrors("")
         }, 3000);
       }
     }
@@ -103,7 +103,7 @@ export const Authentication = () => {
         </div>
       </section>
        <button className={styles.newRequest} onClick={errorRequestInotp}>درخواست مجدد کد یکبار مصرف</button>
-      <p className={styles.errorParagraph}>{errors}</p>
+      <p className={styles.errorParagraph}>{getErrors}</p>
     </section>
   )
 }

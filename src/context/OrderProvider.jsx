@@ -12,11 +12,11 @@ export const OrderContext = createContext()
 
 const OrderProvider = ({children}) => {
 // const {accessToken}=useContext(AutContext)
-const {selectedItems,quantityValue} = useContext(BuyContext)
+const {selectedItems} = useContext(BuyContext)
 
 const orderId = useRef(null)
 
-const items = selectedItems.map(order => ({product_id:order.id,quantity:quantityValue[order.id]}))
+const items = selectedItems.map(order => ({product_id:order.id,quantity:order.quantity}))
 
  console.log(items);
  
