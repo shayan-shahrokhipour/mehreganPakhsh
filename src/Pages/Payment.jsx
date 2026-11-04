@@ -27,7 +27,6 @@ const Payment = () => {
  const {postPayment} = useContext(PaymentContext)
  
   //state
-    const [success,setSuccess]=useState(false)
     
     const [showError,setShowError] = useState("")
 
@@ -127,7 +126,6 @@ useEffect(()=>{
         </div>
       </div>
       <button onClick={successPayment}  className={styles.goTopayment}>برو به درگاه پرداخت</button>
-      {success &&<div className={styles.success}><p>پرداخت با موفقیت انجام شد</p></div>}
       <p className={styles.showError}>{showError}</p>
     </section>
   );

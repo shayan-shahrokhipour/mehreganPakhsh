@@ -5,12 +5,14 @@ import axios from 'axios'
 import { AutContext } from '../context/AuthProvider'
 
 import {api} from '../services/api'
+import { BuyContext } from '../context/CartContext'
 
 const PaymentResult = () => {
   //useState
   
   const [error,setError]=useState("")
   //Context
+   const {dispatch} = useContext(BuyContext)
     // const {accessToken}=useContext(AutContext)
     //Params
     const [searchParams] = useSearchParams()
@@ -45,6 +47,8 @@ const PaymentResult = () => {
         }
            
         }
+            dispatch({type:"clearCard"})
+
         getShipment()
     },[orderId])
   return (
