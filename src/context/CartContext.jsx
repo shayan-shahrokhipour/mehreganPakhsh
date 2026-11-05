@@ -10,6 +10,7 @@ import { ProductContext } from "./ContextProvider";
 import axios from "axios";
 
 import {cartApi} from '../services/api'
+import { useLocation } from "react-router-dom";
 
 export const BuyContext = createContext();
 
@@ -63,11 +64,8 @@ const reducer = (state, action) => {
   }
 };
 const CartContext = ({ children, drawerHandeler }) => {
-  //------------------------//
-  //--------postcard-------//
-  //------------------------//
-
-  // const guestToken = useRef(null);
+ 
+const location = useLocation()
 
   const [itemId, setItemId] = useState({});
   //------------------------//
@@ -191,9 +189,13 @@ const CartContext = ({ children, drawerHandeler }) => {
   //get basket in first Load
 
   useEffect(()=>{
+      if (location.pathname === "/payment-result") return;
+
      const firstloadBasket = async () => {
+      console.log("CART REQUEST START");
+
         const response = await cartApi.get("/api/cart/")
-       
+        console.log("CART REQUEST FINISHED");
         const repaired = response.data.items.map(change => ({
            id:change.product,
            cartItemId:change.id,
@@ -214,6 +216,7 @@ const CartContext = ({ children, drawerHandeler }) => {
 dispatch({ type: "Sum", payload: response.data.subtotal });
 
         dispatch({type:"setItem", payload:repaired})
+        console.log("CART DISPATCH FINISHED");
         console.log(response.data.items);
         
      }
