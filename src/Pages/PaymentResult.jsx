@@ -1,71 +1,55 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {  useSearchParams } from 'react-router-dom'
-import { OrderContext } from '../context/OrderProvider'
-import axios from 'axios'
-import { AutContext } from '../context/AuthProvider'
+import React, { useContext, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { OrderContext } from "../context/OrderProvider";
+import axios from "axios";
+import { AutContext } from "../context/AuthProvider";
 
-import {api} from '../services/api'
-import { BuyContext } from '../context/CartContext'
+import { api } from "../services/api";
+import { BuyContext } from "../context/CartContext";
 
 const PaymentResult = () => {
   //useState
-  
-  const [error,setError]=useState("")
+
+  const [error, setError] = useState("");
   //Context
-   const {dispatch} = useContext(BuyContext)
-    // const {accessToken}=useContext(AutContext)
-    //Params
-    const [searchParams] = useSearchParams()
-    const status =searchParams.get('status')
-    const orderNumber =searchParams.get('order_number')
-    const trackingCode =searchParams.get('tracking_code')
-    const orderId=searchParams.get('order_id')
-    console.log(trackingCode,orderNumber,status,orderId);
+  const { dispatch } = useContext(BuyContext);
+  // const {accessToken}=useContext(AutContext)
+  //Params
+  const [searchParams] = useSearchParams();
+  const status = searchParams.get("status");
+  const orderNumber = searchParams.get("order_number");
+  const trackingCode = searchParams.get("tracking_code");
+  const orderId = searchParams.get("order_id");
+  console.log(trackingCode, orderNumber, status, orderId);
 
-               
+  useEffect(() => {
+    const getShipment = async () => {
+      try {
+        const response = await api.get(`/api/shipments/${orderId}/`);
 
-    useEffect(()=>{
-         const getShipment = async () =>{
-          
-          try {
-                 
+        dispatch({ type: "clearCard" });
 
-             const response = await api.get(`/api/shipments/${orderId}/`)
-    
-                            dispatch({type:"clearCard"})
+        sessionStorage.removeItem("guestToken");
 
-                            console.log("clear card");
-                            
-            sessionStorage.removeItem("guestToken")  
-            
-           
-
-             console.log(response);
-          } catch (error) {
-             
-            if(error.response?.data?.code === 'token_not_valid'){
-             setError("توکن معتبر نیست")
-             
-          }else if(error.response?.status === 404){
-            setError("شناسه سفارش اشتباه است")
-          }else if(error.response?.status=== 401){
-              setError("مقدار توکن وجود ندارد")
-          }else{
-            setError("دریافت اطلاعات ارسال سفارش با مشکل مواجه شد")
-          }
-
-
+        console.log(response);
+      } catch (error) {
+        if (error.response?.data?.code === "token_not_valid") {
+          setError("توکن معتبر نیست");
+        } else if (error.response?.status === 404) {
+          setError("شناسه سفارش اشتباه است");
+        } else {
+          setError("دریافت اطلاعات ارسال سفارش با مشکل مواجه شد");
         }
-           
-        }
+      }
+    };
 
-        getShipment()
-    },[orderId])
+    getShipment();
+  }, []);
   return (
     <section>
       <p>{error}</p>
     </section>
-  )
-}
+  );
+};
 
-export default PaymentResult
+export default PaymentResult;

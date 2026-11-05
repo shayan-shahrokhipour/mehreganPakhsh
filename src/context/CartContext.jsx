@@ -9,7 +9,7 @@ import React, {
 import { ProductContext } from "./ContextProvider";
 import axios from "axios";
 
-import {cartApi} from '../services/api'
+import { cartApi } from "../services/api";
 import { useLocation } from "react-router-dom";
 
 export const BuyContext = createContext();
@@ -64,8 +64,7 @@ const reducer = (state, action) => {
   }
 };
 const CartContext = ({ children, drawerHandeler }) => {
- 
-const location = useLocation()
+  const location = useLocation();
 
   const [itemId, setItemId] = useState({});
   //------------------------//
@@ -82,9 +81,9 @@ const location = useLocation()
   const getInformation = useContext(ProductContext);
   const { products } = getInformation;
   const [state, dispatch] = useReducer(reducer, initialArg);
-   
-  const cartItemId = useRef(null)
-  
+
+  const cartItemId = useRef(null);
+
   //Add Items
   const showInfo = async (Info) => {
     const product = products.find((item) => item.id === Info);
@@ -188,59 +187,45 @@ const location = useLocation()
 
   //get basket in first Load
 
-  useEffect(()=>{
-      if (location.pathname === "/payment-result") return;
+  useEffect(() => {
+    if (location.pathname === "/payment-result") return;
 
-     const firstloadBasket = async () => {
-      console.log("CART REQUEST START");
+    const firstloadBasket = async () => {
+      const response = await cartApi.get("/api/cart/");
+      const repaired = response.data.items.map((change) => ({
+        id: change.product,
+        cartItemId: change.id,
+        name: change.product_name,
+        price: change.product_price,
+        img: `https://api.mehreganpakhshpart.ir${change.img}`,
+        quantity: change.quantity,
+      }));
+      setItemId(
+        Object.fromEntries(repaired.map((item) => [item.id, item.cartItemId])),
+      );
 
-        const response = await cartApi.get("/api/cart/")
-        console.log("CART REQUEST FINISHED");
-        const repaired = response.data.items.map(change => ({
-           id:change.product,
-           cartItemId:change.id,
-           name:change.product_name,
-           price:change.product_price,
-           img:`https://api.mehreganpakhshpart.ir${change.img}`,
-           quantity:change.quantity
+      dispatch({ type: "Sum", payload: response.data.subtotal });
 
-        }))
-        setItemId(
-  Object.fromEntries(
-    repaired.map(item => [item.id, item.cartItemId])
-  )
-);
-
-
-
-dispatch({ type: "Sum", payload: response.data.subtotal });
-
-        dispatch({type:"setItem", payload:repaired})
-        console.log("CART DISPATCH FINISHED");
-        console.log(response.data.items);
-        
-     }
-     firstloadBasket()
-  },[])
+      dispatch({ type: "setItem", payload: repaired });
+      console.log(response.data.items);
+    };
+    firstloadBasket();
+  }, []);
 
   const postcard = async (product, sendValue) => {
     setErrors("");
     try {
-      const response = await cartApi.post(
-        "/api/cart/items/",
-        {
-          product: product.id,
-          quantity: sendValue,
-        },
-      
-      );
+      const response = await cartApi.post("/api/cart/items/", {
+        product: product.id,
+        quantity: sendValue,
+      });
 
-      sessionStorage.setItem("guestToken",response.data.guest_token)
+      sessionStorage.setItem("guestToken", response.data.guest_token);
 
-       cartItemId.current = response.data.id;
+      cartItemId.current = response.data.id;
 
       setItemId((prev) => ({ ...prev, [product.id]: cartItemId.current }));
-       
+
       console.log(cartItemId);
     } catch (error) {
       setErrors("خطا در ارتباط با سرور");
@@ -254,11 +239,9 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
     console.log(itemId);
 
     try {
-      const response = await cartApi.patch(
-        `/api/cart/items/${cartItemId}/`,
-        { quantity: sendValue },
-        
-      );
+      const response = await cartApi.patch(`/api/cart/items/${cartItemId}/`, {
+        quantity: sendValue,
+      });
       console.log(response);
       console.log(cartItemId);
     } catch (error) {
@@ -271,10 +254,7 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
     setErrors("");
 
     try {
-      const response = await cartApi.delete(
-        `/api/cart/items/${cartItemId}/`,
-       
-      );
+      const response = await cartApi.delete(`/api/cart/items/${cartItemId}/`);
     } catch (error) {
       setErrors("محصولی برای حذف پیدا نشد ");
       throw error;
@@ -282,22 +262,14 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
   };
 
   const getpro = async (id) => {
-   
-      const response = await cartApi.get(
-        "/api/cart/"
-      );
+    const response = await cartApi.get("/api/cart/");
 
-      
+    dispatch({ type: "Sum", payload: response.data.subtotal });
 
-      
-      dispatch({ type: "Sum", payload: response.data.subtotal });
-
-      console.log("POST", response.data);
-    
+    console.log("POST", response.data);
   };
 
   useEffect(() => {
-    
     console.log(state.selectedItems);
     // console.log(total);
   }, [state.selectedItems]);
@@ -315,7 +287,6 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
         errors,
         setErrors,
         loadingRequest,
-       
       }}
     >
       {children}
