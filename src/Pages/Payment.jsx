@@ -41,7 +41,6 @@ const Payment = () => {
 }},[])
 
 useEffect(()=>{
-    console.log(saveOrders);
 
  localStorage.setItem('keepOrder',JSON.stringify(saveOrders))
 
@@ -61,7 +60,6 @@ useEffect(()=>{
    } catch (error) {
      setShowError(manageError(error))
 
-    console.log(showError);
     setTimeout(() => {
       setShowError("")
     }, 3000);

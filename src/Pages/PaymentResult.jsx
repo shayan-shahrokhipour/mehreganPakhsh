@@ -22,7 +22,6 @@ const PaymentResult = () => {
   const orderNumber = searchParams.get("order_number");
   const trackingCode = searchParams.get("tracking_code");
   const orderId = searchParams.get("order_id");
-  console.log(trackingCode, orderNumber, status, orderId);
 
   useEffect(() => {
    if(status === "success"){
@@ -34,7 +33,6 @@ const PaymentResult = () => {
 
         sessionStorage.removeItem("guestToken");
 
-        console.log(response);
       } catch (error) {
         if (error.response?.data?.code === "token_not_valid") {
           setError("توکن معتبر نیست");

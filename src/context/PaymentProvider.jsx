@@ -9,18 +9,15 @@ export const PaymentContext = createContext()
 
 const PaymentProvider = ({children}) => {
     const {orderId} = useContext(OrderContext)
-    console.log(orderId);
     
 
 
     const postPayment = async () =>{
-        console.log(orderId);
       
           const response = await api.post("api/payments/request/",{
             order_id:orderId.current
         })
 
-        console.log(response);
        const payUrl=response.data.pay_url; 
        if(payUrl){
        window.location.href=payUrl

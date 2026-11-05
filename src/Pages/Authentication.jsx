@@ -45,14 +45,12 @@ export const Authentication = () => {
 
     const orderHandler = async () =>{
      try {
-       console.log(order.customer.mobile);
        await verifyOTP(order.customer.mobile,code)
         
      
      
      } catch (error) {
       setErrors(error.response?.data?.code || "تایید کد ناموفق بود")
-      console.log(error.response);
       
       setTimeout(()=>{
         setErrors("")
@@ -62,7 +60,6 @@ export const Authentication = () => {
       try {
      
        const {name,family,province,city,address,mobile,postalCode} = order.customer
-       console.log(order);
        
        await postOrder(name,family,province,city,address,mobile,postalCode)
               navigate("/payment",{state:order})
@@ -89,7 +86,6 @@ export const Authentication = () => {
     
     const inputHandler =(e)=>{
       setCode(e.target.value)
-        console.log(code);
     }
 
   return (

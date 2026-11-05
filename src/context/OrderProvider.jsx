@@ -18,7 +18,6 @@ const orderId = useRef(null)
 
 const items = selectedItems.map(order => ({product_id:order.id,quantity:order.quantity}))
 
- console.log(items);
  
 
 
@@ -39,17 +38,13 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
   "discount_code": ""
 
  }
-    console.log(order);
 
  
    const response = await api.post("https://api.mehreganpakhshpart.ir/api/orders/",
     order)
   
-    console.log(response.data)
     
-    console.log(response.headers); 
      orderId.current = response.data.order_id
-    console.log(orderId.current);
     
   
 }

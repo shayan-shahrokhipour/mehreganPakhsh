@@ -72,14 +72,10 @@ const Information = ({getInfo,setGetInfo}) => {
       deliveryDate:"در حال بررسی",
        orderCode:uuidv4().slice(0,5)
      }
-     console.log(order);
        try {
     await requestOTP(mobile);
     navigate("/authentication", { state: order });
   } catch (error) {
-     console.log("Error:", error);
-  console.log("Response:", error.response);
-  console.log("Message:", error.message);
    setErrors(error.response?.data?.phone_number ||     "ارسال کد تأیید ناموفق بود. دوباره تلاش کنید."
 )
   }
@@ -88,10 +84,7 @@ const Information = ({getInfo,setGetInfo}) => {
 
    }
    
-useEffect(()=>{
-  console.log(errors);
-  
-},[])
+
 
   return (
     <>

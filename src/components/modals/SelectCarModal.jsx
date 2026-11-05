@@ -15,7 +15,6 @@ const SelectCarModal = ({ state, modalHandeler }) => {
   }
 
  const showInformation=()=>{
-    console.log(Model);
       if(Model==="همه"){
          
                   setFilterInfo(products)
@@ -30,7 +29,6 @@ const SelectCarModal = ({ state, modalHandeler }) => {
      modalHandeler()
 
     
-        console.log(filterInfo); 
  }
   
   return (

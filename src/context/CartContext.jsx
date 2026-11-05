@@ -91,8 +91,7 @@ const location = useLocation()
     const existingItem = state.selectedItems.find((item) => item.id === Info);
     const sendValue = existingItem ? existingItem.quantity + 1 : 1;
     const cartItemId = itemId[Info];
-    console.log(cartItemId);
-    console.log(itemId);
+   
 
     try {
       if (existingItem) {
@@ -125,10 +124,8 @@ const location = useLocation()
     const cartItemId = itemId[id];
     lockRequest.current[id] = true;
     setLoadingRequest((prev) => ({ ...prev, [id]: true }));
-    console.log(cartItemId);
 
     try {
-      console.log(state.selectedItems.quantity);
 
       await patchQuantity(cartItemId, sendValue);
       dispatch({ type: "Increase", payload: productIndex });
@@ -214,7 +211,6 @@ const location = useLocation()
 dispatch({ type: "Sum", payload: response.data.subtotal });
 
         dispatch({type:"setItem", payload:repaired})
-        console.log(response.data.items);
         
      }
      firstloadBasket()
@@ -238,25 +234,20 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
 
       setItemId((prev) => ({ ...prev, [product.id]: cartItemId.current }));
        
-      console.log(cartItemId);
     } catch (error) {
       setErrors("خطا در ارتباط با سرور");
-      console.error(error);
       throw error;
     }
   };
 
   const patchQuantity = async (cartItemId, sendValue) => {
     setErrors("");
-    console.log(itemId);
 
       const response = await cartApi.patch(
         `/api/cart/items/${cartItemId}/`,
         { quantity: sendValue },
         
       );
-      console.log(response);
-      console.log(cartItemId);
     
   };
 
@@ -285,16 +276,10 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
       
       dispatch({ type: "Sum", payload: response.data.subtotal });
 
-      console.log("POST", response.data);
     
   };
 
-  useEffect(() => {
-    
-    console.log(state.selectedItems);
-    // console.log(total);
-  }, [state.selectedItems]);
-
+  
   return (
     <BuyContext
       value={{

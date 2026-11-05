@@ -12,7 +12,6 @@ export const TrackOrder = () => {
   const [doitafterclick , setDoitafterclick]=useState("")
    const checkOrderCode=(event)=>{
     setCheckOrder(event.target.value)
-            console.log(checkOrder);
             
    }
 
@@ -23,9 +22,7 @@ export const TrackOrder = () => {
  //---------------------------------------------------//
   const [errorforordercode,setErrorForOrderCode]=useState("")
    
-  console.log(saveOrders);
   const orderValue = saveOrders.find((item) => item.orderCode === doitafterclick);
-   console.log(orderValue);
    
   
    
@@ -51,8 +48,6 @@ export const TrackOrder = () => {
     "سفارش آماده تحویل است"
    ]
 const [orderposition,setOrderposition]=useState(3)
- console.log(orderposition);
-    console.log(orderPositionText[orderposition-1]);
 
   const isActive = (stage) => orderposition >= stage;
   

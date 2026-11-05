@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
         
       );
 
-      console.log(response);
       
       setErrors(response.data.message)
        setTimeout(() => {
@@ -35,7 +34,6 @@ const AuthProvider = ({ children }) => {
        code:code 
     })
    
-     console.log(response);
     sessionStorage.setItem('accessToken',response.data.access)
     sessionStorage.setItem('refreshToken',response.data.refresh)
      
