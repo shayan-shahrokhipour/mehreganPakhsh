@@ -34,7 +34,8 @@ const PaymentResult = () => {
     
                             dispatch({type:"clearCard"})
 
-
+                            console.log("clear card");
+                            
             sessionStorage.removeItem("guestToken")  
             
            
