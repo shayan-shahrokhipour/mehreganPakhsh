@@ -16,7 +16,7 @@ const PaymentProvider = ({children}) => {
     const postPayment = async () =>{
         console.log(orderId);
       
-          const response = await api.post("https://api.mehreganpakhshpart.ir/api/payments/request/",{
+          const response = await api.post("api/payments/request/",{
             order_id:orderId.current
         })
 

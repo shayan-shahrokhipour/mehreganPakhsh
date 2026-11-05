@@ -11,6 +11,8 @@ const PaymentResult = () => {
   //useState
 
   const [error, setError] = useState("");
+
+  const [showstatus , setShowstatus] = useState("")
   //Context
   const { dispatch } = useContext(BuyContext);
   // const {accessToken}=useContext(AutContext)
@@ -23,7 +25,8 @@ const PaymentResult = () => {
   console.log(trackingCode, orderNumber, status, orderId);
 
   useEffect(() => {
-    const getShipment = async () => {
+   if(status === "success"){
+     const getShipment = async () => {
       try {
         const response = await api.get(`/api/shipments/${orderId}/`);
 
@@ -42,12 +45,24 @@ const PaymentResult = () => {
         }
       }
     };
+        getShipment();
+     return
+   } if(status === 'failed'){
+       setShowstatus("عملیات پرداخت با شکست مواجه شد")
+       return
+   }if(status === 'pending'){
+    setShowstatus("در انتظار بررسی")
+      return
+   }if (status === "review") {
+  setShowstatus("پرداخت موفق بود و سفارش نیازمند بررسی دستی است");
+  return;
+}
 
-    getShipment();
   }, []);
   return (
     <section>
       <p>{error}</p>
+      <p>{showstatus}</p>
     </section>
   );
 };
