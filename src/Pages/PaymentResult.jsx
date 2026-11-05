@@ -29,11 +29,11 @@ const PaymentResult = () => {
           
           try {
                  
-             dispatch({type:"clearCard"})
 
              const response = await api.get(`/api/shipments/${orderId}/`)
     
-               
+                            dispatch({type:"clearCard"})
+
 
             sessionStorage.removeItem("guestToken")  
             
