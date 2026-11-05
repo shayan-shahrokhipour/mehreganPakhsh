@@ -28,12 +28,16 @@ const PaymentResult = () => {
          const getShipment = async () =>{
           
           try {
+                 
+             dispatch({type:"clearCard"})
 
              const response = await api.get(`/api/shipments/${orderId}/`)
     
-                dispatch({type:"clearCard"})
+               
 
-            sessionStorage.removeItem("guestToken")    
+            sessionStorage.removeItem("guestToken")  
+            
+           
 
              console.log(response);
           } catch (error) {
