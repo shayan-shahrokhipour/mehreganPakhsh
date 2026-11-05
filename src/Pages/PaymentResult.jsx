@@ -32,7 +32,7 @@ const PaymentResult = () => {
         dispatch({ type: "clearCard" });
 
         sessionStorage.removeItem("guestToken");
-
+         status === "success" ? setShowstatus("پرداخت با موفقیت انجام شد") : ""
       } catch (error) {
         if (error.response?.data?.code === "token_not_valid") {
           setError("توکن معتبر نیست");
