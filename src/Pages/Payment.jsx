@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "../Pages/productDetails.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BuyContext } from "../context/CartContext";
@@ -25,11 +25,13 @@ const Payment = () => {
  const {dispatch} = useContext(BuyContext)
  const {saveOrders,setSaveOrders}=useContext(ProductContext)
  const {postPayment} = useContext(PaymentContext)
+
+ //useRef
+ const loading =useRef(false)
  
   //state
-    
     const [showError,setShowError] = useState("")
-
+    const [showLoading,setShowloading]=useState(false)
   //navigate when empty or transform to payment
   const navigate = useNavigate()
   const frozenOrder = useLocation().state;
@@ -47,6 +49,9 @@ useEffect(()=>{
 },[saveOrders])
   
   const successPayment= async ()=>{
+    if(loading.current) return
+    loading.current=true
+    setShowloading(true)
   setSaveOrders(item=>[...item,frozenOrder])
   
     
@@ -54,6 +59,8 @@ useEffect(()=>{
      await postPayment()
     
    } catch (error) {
+    loading.current=false
+    setShowloading(false)
      setShowError(manageError(error))
 
     setTimeout(() => {
@@ -119,7 +126,7 @@ useEffect(()=>{
           <p>{address}</p>
         </div>
       </div>
-      <button onClick={successPayment}  className={styles.goTopayment}>برو به درگاه پرداخت</button>
+      <button onClick={successPayment}  className={styles.goTopayment} disabled={showLoading}>برو به درگاه پرداخت</button>
       <p className={styles.showError}>{showError}</p>
     </section>
   );

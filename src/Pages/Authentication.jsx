@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import styles from "../Pages/authentication.module.css"
 import { BuyContext } from '../context/CartContext'
 import { AutContext } from '../context/AuthProvider'
@@ -30,10 +30,14 @@ const getOrderErrorMessage = (error) => {
 }
 
 export const Authentication = () => {
+ //-----------useRef--------------//
+   const disable = useRef(false)
+
+
   //-----------state-----------//
    const [code,setCode] = useState("")
-  
-   
+   const [disabled,setDisabled]=useState(false)
+   const [acceptDisabled,setAcceptDisabled]=useState(false)
   //-----------Context-------------//
     const {verifyOTP,requestOTP} = useContext(AutContext)
     const {errors,setErrors} = useContext(BuyContext)
@@ -44,6 +48,9 @@ export const Authentication = () => {
     const order = useLocation().state
 
     const orderHandler = async () =>{
+      if(disable.current) return
+      disable.current=true
+      setAcceptDisabled(true)
      try {
        await verifyOTP(order.customer.mobile,code)
         
@@ -55,6 +62,8 @@ export const Authentication = () => {
       setTimeout(()=>{
         setErrors("")
       },3000)
+      disable.current=false
+      setAcceptDisabled(false)
       return
      }
       try {
@@ -69,18 +78,26 @@ export const Authentication = () => {
               setTimeout(() => {
     setErrors("")
   }, 3000)
-      }
+                disable.current=false
+setAcceptDisabled(false)    
+  }
 
     }
 
     const errorRequestInotp = async () =>{
+       if(disable.current) return
+      disable.current=true
+      setDisabled(true)
       try {
        await requestOTP(order.customer.mobile)
       } catch (error) {
-        setErrors(error.response.data.phone_number)
+        setErrors(error.response?.data?.phone_number)
         setTimeout(() => {
            setErrors("")
         }, 3000);
+      }finally{
+        disable.current=false
+        setDisabled(false)
       }
     }
     
@@ -95,10 +112,10 @@ export const Authentication = () => {
         <p>(رمز یک بار مصرف برای شما از طریق پیام ارسال میشود)</p>
         <div className={styles.inputHolder}>
         <input type="text" placeholder='کد خود را وارد کنید' onChange={inputHandler} value={code}/>
-        <button onClick={orderHandler}>تایید کد</button>
+        <button onClick={orderHandler} disabled={acceptDisabled}>تایید کد</button>
         </div>
       </section>
-       <button className={styles.newRequest} onClick={errorRequestInotp}>درخواست مجدد کد یکبار مصرف</button>
+       <button className={styles.newRequest} onClick={errorRequestInotp} disabled={disabled}>درخواست مجدد کد یکبار مصرف</button>
       <p className={styles.errorParagraph}>{errors}</p>
     </section>
   )

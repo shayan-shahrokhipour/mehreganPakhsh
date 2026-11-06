@@ -366,6 +366,12 @@
     transition: all 200ms;
 }
 
+.goTopayment:disabled{
+   background-color: #aaa;
+  color: #666;
+    cursor: not-allowed;
+}
+
 .goTopayment:hover{
     background-color: var(--buttonHover);
 }

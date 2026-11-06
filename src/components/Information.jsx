@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from '../components/Basket/basket.module.css'
 import { useNavigate } from 'react-router-dom'
 import { BuyContext } from '../context/CartContext'
@@ -8,12 +8,16 @@ import { AutContext } from '../context/AuthProvider';
 import { OrderContext } from '../context/OrderProvider';
 
 const Information = ({getInfo,setGetInfo}) => {
+
+  //useRef
+  const busy = useRef(false)
  
    //context
    const {selectedItems,totalPrice} = useContext(BuyContext) 
    const {requestOTP} = useContext(AutContext)
    const {postOrder} = useContext(OrderContext)
-   
+   //state
+   const [disable,setDisable]=useState(false)
    const [errors,setErrors]=useState("");
    //props
    const {name,family,mobile,province,city,address,postalCode}=getInfo
@@ -32,6 +36,8 @@ const Information = ({getInfo,setGetInfo}) => {
     setGetInfo(item=> ({...item,[name]:val}))
       
    }
+
+   
 
    const validateforInformation=(data)=>{
     
@@ -58,12 +64,16 @@ const Information = ({getInfo,setGetInfo}) => {
    }
 
     const addHandler= async ()=>{
-     
+      if (busy.current) return
+
           const error =validateforInformation(getInfo)
         if(error){
             setErrors(error);
           return
         }
+        busy.current=true
+        setDisable(true)
+
      const order={
       customer:getInfo,
       accepted:selectedItems,
@@ -78,6 +88,8 @@ const Information = ({getInfo,setGetInfo}) => {
   } catch (error) {
    setErrors(error.response?.data?.phone_number ||     "ارسال کد تأیید ناموفق بود. دوباره تلاش کنید."
 )
+busy.current=false
+ setDisable(false)
   }
         
    
@@ -98,7 +110,7 @@ const Information = ({getInfo,setGetInfo}) => {
           <input type="text" placeholder='شهر' name='city' value={city}  onChange={getValue}/>
         <input className={styles.addressInp} type="text" placeholder='آدرس' name='address' value={address} onChange={getValue}/>
         <input className={styles.postalCodeInp} type="text" placeholder='کد پستی' name='postalCode' value={postalCode} onChange={getValue}/>
-        <button disabled={!name || !family || !mobile || !province || !city || !address || !postalCode} onClick={addHandler}> ثبت اطلاعات</button>
+        <button disabled={!name || !family || !mobile || !province || !city || !address || !postalCode || disable} onClick={addHandler}> ثبت اطلاعات</button>
      
           </div>
     </section>
