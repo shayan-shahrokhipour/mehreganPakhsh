@@ -25,14 +25,20 @@ const PaymentResult = () => {
 
   useEffect(() => {
    if(status === "success"){
+
+      status === "success" ? setShowstatus("پرداخت با موفقیت انجام شد") : ""
+
+     dispatch({ type: "clearCard" });
+
+        sessionStorage.removeItem("guestToken");
+
      const getShipment = async () => {
       try {
         const response = await api.get(`/api/shipments/${orderId}/`);
-
-        dispatch({ type: "clearCard" });
-
-        sessionStorage.removeItem("guestToken");
-         status === "success" ? setShowstatus("پرداخت با موفقیت انجام شد") : ""
+          
+        
+        
+        
       } catch (error) {
         if (error.response?.data?.code === "token_not_valid") {
           setError("توکن معتبر نیست");
@@ -54,6 +60,8 @@ const PaymentResult = () => {
    }if (status === "review") {
   setShowstatus("پرداخت موفق بود و سفارش نیازمند بررسی دستی است");
   return;
+}else{
+  setShowstatus("وضعیت پرداخت نا مشخص است")
 }
 
   }, []);
@@ -61,7 +69,9 @@ const PaymentResult = () => {
     <section>
       <p>{error}</p>
       <p>{showstatus}</p>
-    </section>
+      {orderNumber && <p>شماره سفارش :{orderNumber}</p>}
+      {trackingCode && <p>کد پیگیری پرداخت : {trackingCode}</p>} 
+       </section>
   );
 };
 

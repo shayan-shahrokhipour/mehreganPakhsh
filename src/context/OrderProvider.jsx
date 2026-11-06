@@ -40,7 +40,7 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
  }
 
  
-   const response = await api.post("https://api.mehreganpakhshpart.ir/api/orders/",
+   const response = await api.post("api/orders/",
     order)
   
     
