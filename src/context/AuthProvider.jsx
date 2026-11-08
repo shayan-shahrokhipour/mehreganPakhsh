@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useRef } from "react";
-import {api} from '../services/api'
+import {api, cartApi} from '../services/api'
 import { BuyContext } from "./CartContext";
 
 export const AutContext = createContext();
@@ -9,10 +9,9 @@ const AuthProvider = ({ children }) => {
   const { setErrors } = useContext(BuyContext);
 
 
-  
 
   const requestOTP = async (mobile) => {
-      const response = await api.post(
+      const response = await cartApi.post(
        "/api/accounts/auth/request-otp/",
         {
           phone_number: mobile,
@@ -30,7 +29,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const verifyOTP = async (mobile,code)=>{
-       const response = await api.post("/api/accounts/auth/verify-otp/",{phone_number:mobile,
+       const response = await cartApi.post("/api/accounts/auth/verify-otp/",{phone_number:mobile,
        code:code 
     })
    

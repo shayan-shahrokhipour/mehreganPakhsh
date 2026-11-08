@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { createContext, useContext, useRef, useState } from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { AutContext } from './AuthProvider'
 import { BuyContext } from './CartContext'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -11,7 +11,8 @@ export const OrderContext = createContext()
 
 
 const OrderProvider = ({children}) => {
-// const {accessToken}=useContext(AutContext)
+  //state
+  const [frozenOrder,setFrozenOrder]=useState("")
 const {selectedItems} = useContext(BuyContext)
 
 const orderId = useRef(null)
@@ -45,22 +46,24 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
   
     
      orderId.current = response.data.order_id
-    
-  
+   await getOrder()
 }
 
 const getOrder = async ()=>{
-  const response = await axios.get("api/orders/",
-  {headers:{"Authorization": `Bearer ${accessToken.current}`}})
-
+  const response = await api.get(`api/orders/${orderId.current}`,
+ )
+     setFrozenOrder(response.data)
    
     
 }
 
+useEffect(()=>{
+     console.log(frozenOrder);
 
+},[frozenOrder])
 
   return (
-     <OrderContext value={{postOrder,orderId}}>
+     <OrderContext value={{postOrder,orderId,frozenOrder}}>
             {children}
      </OrderContext>
   )

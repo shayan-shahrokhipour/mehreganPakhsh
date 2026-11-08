@@ -38,7 +38,9 @@ async (error) =>{
       "refresh" : refreshToken
     })
        sessionStorage.setItem("accessToken", response.data.access);
-
+        if(response.data.refresh){
+          sessionStorage.setItem("refreshToken" , response.data.refresh)
+        }
   
     error.config.headers.set(
     "Authorization",
