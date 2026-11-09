@@ -15,7 +15,7 @@ const OrderProvider = ({children}) => {
   const [frozenOrder,setFrozenOrder]=useState("")
 const {selectedItems} = useContext(BuyContext)
 
-const orderId = useRef(null)
+const orderId = useRef(sessionStorage.getItem("orderId"))
 
 const items = selectedItems.map(order => ({product_id:order.id,quantity:order.quantity}))
 
@@ -46,6 +46,8 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
   
     
      orderId.current = response.data.order_id
+     sessionStorage.setItem("orderId",orderId.current)
+     
    await getOrder()
 }
 
@@ -56,6 +58,12 @@ const getOrder = async ()=>{
    
     
 }
+
+useEffect(()=>{
+ if(orderId.current){
+   getOrder()
+ }
+},[])
 
 useEffect(()=>{
      console.log(frozenOrder);

@@ -27,6 +27,7 @@ const Payment = () => {
  const {saveOrders,setSaveOrders}=useContext(ProductContext)
  const {postPayment} = useContext(PaymentContext)
  const {frozenOrder}=useContext(OrderContext)
+ const {orderId}=useContext(OrderContext)
  //useRef
  const loading =useRef(false)
  
@@ -37,7 +38,7 @@ const Payment = () => {
   const navigate = useNavigate()
   
    useEffect(()=>{
-      if(!frozenOrder){
+      if(!orderId.current){
     navigate('/')
    
 }},[])

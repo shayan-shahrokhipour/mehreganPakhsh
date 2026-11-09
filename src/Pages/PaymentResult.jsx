@@ -28,9 +28,7 @@ const PaymentResult = () => {
 
       status === "success" ? setShowstatus("پرداخت با موفقیت انجام شد") : ""
 
-     dispatch({ type: "clearCard" });
-
-        sessionStorage.removeItem("guestToken");
+      sessionStorage.removeItem("orderId")
 
      const getShipment = async () => {
       try {

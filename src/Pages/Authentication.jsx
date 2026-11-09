@@ -40,7 +40,7 @@ export const Authentication = () => {
    const [acceptDisabled,setAcceptDisabled]=useState(false)
   //-----------Context-------------//
     const {verifyOTP,requestOTP} = useContext(AutContext)
-    const {errors,setErrors} = useContext(BuyContext)
+    const {errors,setErrors,dispatch} = useContext(BuyContext)
     const {postOrder} = useContext(OrderContext)
     
     //-----------useNavigation-------------//
@@ -71,6 +71,8 @@ export const Authentication = () => {
        const {name,family,province,city,address,mobile,postalCode} = order.customer
        
        await postOrder(name,family,province,city,address,mobile,postalCode)
+        dispatch({ type: "clearCard" });
+        sessionStorage.removeItem("guestToken");
               navigate("/payment",{state:order})
 
       } catch (error) {
