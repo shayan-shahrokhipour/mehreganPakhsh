@@ -73,7 +73,7 @@ export const Authentication = () => {
        await postOrder(name,family,province,city,address,mobile,postalCode)
         dispatch({ type: "clearCard" });
         sessionStorage.removeItem("guestToken");
-              navigate("/payment",{state:order})
+              navigate("/payment")
 
       } catch (error) {
             setErrors(getOrderErrorMessage(error))
