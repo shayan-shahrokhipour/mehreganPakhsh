@@ -118,8 +118,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   //slug
   const getSlug = async (productSlug) => {
       const response = await slug.get(`/api/catalog/products/${productSlug}/`)
-      
-        console.log(response.data);
+
 
         return response.data;
 

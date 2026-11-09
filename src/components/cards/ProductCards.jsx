@@ -10,7 +10,6 @@ import { ProductContext } from "../../context/ContextProvider";
 const ProductCards = ({ item }) => {
   const Info = item.id;
   const productSlug =item.slug
-    console.log(productSlug);
     
   const { showInfo } = useContext(BuyContext);
  
