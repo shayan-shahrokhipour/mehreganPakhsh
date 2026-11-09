@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import { slug } from "../services/api";
 
 //--------//
 //context//
@@ -52,6 +52,8 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+   
+
     //--------------------//
   //states for pagination//
   //-------------------//
@@ -98,10 +100,12 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
     const productdata = async () => {
       try {
         const response = await axios.get(`https://api.mehreganpakhshpart.ir/api/catalog/products/?page=${currentpage}`);
-       
+         
         setNext(response.data.next)
         setProducts(response.data.results);
         setLoading(false);
+       
+         
       } catch (error) {
         setError("خطا در برقراری ارتباط");
                 setLoading(false)
@@ -111,7 +115,16 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
     productdata();
   }, [currentpage]);
 
-  
+  //slug
+  const getSlug = async (productSlug) => {
+      const response = await slug.get(`/api/catalog/products/${productSlug}/`)
+      
+        console.log(response.data);
+
+        return response.data;
+
+      
+  }
 
   //------------------------------//
   //use effect for set filter info//
@@ -160,7 +173,7 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
           descriptions,
           saveOrders,
           setSaveOrders,
-         next ,currentpage,setCurrentpage
+         next ,currentpage,setCurrentpage,getSlug
         }}
       >
         {children}

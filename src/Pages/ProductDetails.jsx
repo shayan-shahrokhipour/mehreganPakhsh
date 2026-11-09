@@ -12,35 +12,41 @@ import Loading from "../Loading/Loading";
 
 const ProductDetails = () => {
 
-  const params = useParams();
 
-  let [searchParams, setSearchParams] = useSearchParams();
+  const {slug:productSlug} = useParams();
+
+  const [product, setProduct] = useState(null);
+
+
+
   //context
-  const { products, filterInfo } = useContext(ProductContext);
+  const { products,getSlug } = useContext(ProductContext);
 
   const { showInfo } = useContext(BuyContext);
 
-  const productsId = products.find((item) => item.id === params.id);
   //useEffect
-  useEffect(() => {
-    if (productsId) {
-      setSearchParams({ name: productsId.name }, { replace: true });
-      
-    }
-  }, []);
+  
+  useEffect(()=>{
+  const fetchProduct = async () =>{
+  const data = await getSlug(productSlug);
+    setProduct(data);
+  }
+    fetchProduct();
 
-  if (!productsId) {
+},[])
+
+  if (!product) {
     return <Loading />;
   }
 
   const sameProd = products.filter(
     (item) =>
-      item.id != productsId.id &&
-      item.cars.some((car) => productsId.cars.includes(car)),
+      item.id != product.id &&
+      item.cars.some((car) => product.cars.includes(car)),
   );
 
   const { name, img, brand, category, description, cars, price, stock } =
-    productsId;
+    product;
 
   return (
     <>
@@ -77,7 +83,7 @@ const ProductDetails = () => {
               <span>توضیحات : </span> {description}
             </p>
             <p>
-              <span>مورد استفاده : </span> {cars.join(" ")}
+              <span>مورد استفاده : </span> {cars?.join(" ")}
             </p>
             <p className={`${stock ? styles.true : styles.false}`}>
               <span>وضعیت : </span>
@@ -88,7 +94,7 @@ const ProductDetails = () => {
               {price.toLocaleString("fa-IR")}
             </p>
             <button
-              onClick={() => showInfo(productsId.id)}
+              onClick={() => showInfo(product.id)}
               className={styles.buyNow}
             >
               {" "}

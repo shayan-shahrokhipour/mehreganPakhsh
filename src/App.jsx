@@ -109,7 +109,7 @@ function App() {
             <Route path="aboutus" element={ <Aboutus/>}/>
             <Route path="trackOrder" element={<TrackOrder/>}/>
             <Route path="authentication" element={<Authentication/>}/>
-            <Route path="productDetails/:id" element={<ProductDetails />} />
+            <Route path="productDetails/:slug" element={<ProductDetails />} />
             <Route path="basket" element={<Basket />} />
             <Route path="payment" element={<Payment/>}/>
             <Route path="payment-result" element={<PaymentResult/>}/>

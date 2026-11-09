@@ -2,6 +2,8 @@ import axios from "axios";
 
 const api = axios.create({ baseURL: "https://api.mehreganpakhshpart.ir" });
 const cartApi = axios.create({baseURL:"https://api.mehreganpakhshpart.ir"});
+const slug = axios.create({ baseURL: "https://api.mehreganpakhshpart.ir" })
+
 //basketApi
 cartApi.interceptors.request.use((config)=>{
    const guestToken =  sessionStorage.getItem("guestToken")
@@ -59,4 +61,4 @@ async (error) =>{
 
 
 
-export {api,cartApi}
+export {api,cartApi,slug}
