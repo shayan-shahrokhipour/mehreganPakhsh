@@ -117,10 +117,18 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
 
   //slug
   const getSlug = async (productSlug) => {
-      const response = await slug.get(`/api/catalog/products/${productSlug}/`)
+      try {
+        const response = await slug.get(`/api/catalog/products/${productSlug}/`)
 
 
         return response.data;
+      } catch (error) {
+        setError(
+      error.response?.data?.detail ||
+      "دریافت اطلاعات محصول با مشکل مواجه شد."
+    );
+
+      }
 
       
   }

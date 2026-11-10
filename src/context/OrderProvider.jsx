@@ -52,10 +52,17 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
 }
 
 const getOrder = async ()=>{
-  const response = await api.get(`api/orders/${orderId.current}`,
+  try {
+    const response = await api.get(`api/orders/${orderId.current}`,
  )
      setFrozenOrder(response.data)
    
+  } catch (error) {
+      setErrors(
+      error.response?.data?.detail ||
+      "دریافت اطلاعات سفارش با مشکل مواجه شد."
+    );
+  }
     
 }
 

@@ -107,7 +107,7 @@ const location = useLocation()
         dispatch({ type: "AddItem", payload: product });
       }
       drawerHandeler();
-      getpro(Info);
+     await getpro(Info);
     } catch (error) {
       setErrors("محصول موجود نیست");
     }
@@ -129,7 +129,7 @@ const location = useLocation()
 
       await patchQuantity(cartItemId, sendValue);
       dispatch({ type: "Increase", payload: productIndex });
-      getpro(id);
+      await getpro(id);
     } catch (error) {
       setErrors(error.response?.data?.quantity);
     } finally {
@@ -153,7 +153,7 @@ const location = useLocation()
     try {
       await patchQuantity(cartItemId, sendValue);
       dispatch({ type: "Decrease", payload: productIndexdecrease });
-      getpro(id);
+      await getpro(id);
     } catch (error) {
       setErrors("کاهش تعداد با موفقیت انجام نشد");
     } finally {
@@ -175,7 +175,7 @@ const location = useLocation()
       await deleteProduct(cartItemId);
       dispatch({ type: "Delete", payload: deleteTheproduct });
 
-      getpro(id);
+      await getpro(id);
     } catch (error) {
       setErrors("عدم ارسال به سرور");
     } finally {
@@ -189,8 +189,8 @@ const location = useLocation()
       if (location.pathname === "/payment-result") return;
 
      const firstloadBasket = async () => {
-
-        const response = await cartApi.get("/api/cart/")
+       try {
+          const response = await cartApi.get("/api/cart/")
         const repaired = response.data.items.map(change => ({
            id:change.product,
            cartItemId:change.id,
@@ -212,6 +212,13 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
 
         dispatch({type:"setItem", payload:repaired})
         
+       } catch (error) {
+        setErrors(
+        error.response?.data?.detail ||
+        "دریافت اطلاعات سبد خرید با مشکل مواجه شد."
+      );
+       }
+       
      }
      firstloadBasket()
   },[])
@@ -267,7 +274,8 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
 
   const getpro = async (id) => {
    
-      const response = await cartApi.get(
+      try {
+        const response = await cartApi.get(
         "/api/cart/"
       );
 
@@ -275,6 +283,12 @@ dispatch({ type: "Sum", payload: response.data.subtotal });
 
       
       dispatch({ type: "Sum", payload: response.data.subtotal });
+      } catch (error) {
+         setErrors(
+      error.response?.data?.detail ||
+      "به‌روزرسانی اطلاعات سبد خرید با مشکل مواجه شد."
+    );
+      }
 
     
   };
