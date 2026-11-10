@@ -4,53 +4,53 @@ import { FaChevronDown, FaChevronUp, FaEnvelope, FaMobileAlt } from 'react-icons
 import {useValidate} from '../context/ContextProvider'
 const Calltous = () => {
   // const [errors , setErrors] = useState("")
-const [getInfo , setGetinfo]=useState({
-  name:"",
-  family:"",
-  mobile:"",
-  Message:""
-})
+// const [getInfo , setGetinfo]=useState({
+//   name:"",
+//   family:"",
+//   mobile:"",
+//   Message:""
+// })
 
-const {family,mobile,Message}=getInfo
+// const {family,mobile,Message}=getInfo
 
-const [message,setMessage]=useState(() => {
-  const savedMessages = localStorage.getItem("messages")
-    return savedMessages ? JSON.parse(savedMessages) : []
+// const [message,setMessage]=useState(() => {
+//   const savedMessages = localStorage.getItem("messages")
+//     return savedMessages ? JSON.parse(savedMessages) : []
 
 
-})
-useEffect(()=>{
-  localStorage.setItem("messages",JSON.stringify(message))
+// })
+// useEffect(()=>{
+//   localStorage.setItem("messages",JSON.stringify(message))
              
-},[message])
+// },[message])
 
 
-   const {errors,isvalidate,setErrors} =useValidate()
+//    const {errors,isvalidate,setErrors} =useValidate()
 
-  useEffect(()=>{
-     setErrors(isvalidate(getInfo))
-  },[getInfo])
+//   useEffect(()=>{
+//      setErrors(isvalidate(getInfo))
+//   },[getInfo])
 
   
  
 
-  const inputHandler=(event)=>{
-    const na = event.target.name
-    const val = event.target.value
-    setGetinfo(getInfo=>({...getInfo,[na]:val}))
+//   const inputHandler=(event)=>{
+//     const na = event.target.name
+//     const val = event.target.value
+//     setGetinfo(getInfo=>({...getInfo,[na]:val}))
    
     
 
-  }
+//   }
  
   
 
-  const saveInfo=()=>{
+  // const saveInfo=()=>{
    
-    if(errors){
-      return
-    }
-         setMessage(item=>[...item,getInfo])
+  //   if(errors){
+  //     return
+  //   }
+  //        setMessage(item=>[...item,getInfo])
     
 
      
@@ -58,12 +58,12 @@ useEffect(()=>{
       
    
 
-      setGetinfo({name:"",
-  family:"",
-  mobile:"",
-  Message:""})
+  //     setGetinfo({name:"",
+  // family:"",
+  // mobile:"",
+  // Message:""})
     
-  }
+  // }
   //---------------controll the accordion------------------//
  const [accordion,setAccordion]=useState({
   firstAcc:false,
@@ -109,12 +109,13 @@ useEffect(()=>{
        </div>
        <div className={styles.enterthecostumerInfo}>
          <div className={styles.inputHolder}>
-          <input type="text" name='name' value={getInfo.name} placeholder='نام ' onChange={inputHandler}/>
+          {/* <input type="text" name='name' value={getInfo.name} placeholder='نام ' onChange={inputHandler}/>
          <input type="text" name='family' value={getInfo.family}  placeholder='نام خانوادگی' onChange={inputHandler}/>
          <input type="number" name='mobile' value={getInfo.mobile}  placeholder='شماره تماس'onChange={inputHandler}/>
         <textarea className={styles.costumerText} name="Message" value={getInfo.Message} placeholder='پیام شما' id="" onChange={inputHandler}/>
          <button className={styles.sendInfo} disabled={!getInfo.name || !family || !mobile || !Message } onClick={saveInfo}>ارسال پیام</button>
-          <p className={styles.errorType}>{errors}</p>
+          <p className={styles.errorType}>{errors}</p> */}
+            <h3>در صورت نیاز با شماره <a className={styles.numberLink} href='tel:09190873814'>09190873814</a> تماس بگیرید</h3>
          </div>
        </div>
        <div className={styles.questionsandanswers}>

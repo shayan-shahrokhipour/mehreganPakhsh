@@ -583,6 +583,12 @@
    
 }
 
+.numberLink{
+    text-decoration: none;
+    color: #A938FA;
+  
+}
+
 .infoHolder{
      width: 95%;
     height: auto;
@@ -671,13 +677,14 @@
     width: 95%;
     height: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr ;
     justify-items: center;
     align-items: center;
        gap: 5px;
        margin: 10px auto;
        border: 1px solid var(--keys);
        border-radius: 5px;
+      
 }
 
 .inputHolder input{

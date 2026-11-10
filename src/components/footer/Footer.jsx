@@ -26,10 +26,10 @@ const Footer = () => {
           <h4>محصولات</h4>
            <div className={styles.categorySides}>
             <div className={styles.categoryFirstRow}>
-            {products.slice(0,12).map(item=> <Link key={item.id} to={`/productDetails/${item.id}`}>{item.name.slice(0,25)}</Link>)}
+            {products.slice(0,12).map(item=> <Link key={item.id} to={`/productDetails/${item.slug}`}>{item.name.slice(0,25)}</Link>)}
            </div>
            <div className={styles.categorySecondRow}>
-            {products.slice(12,22).map(item=> <Link key={item.id} to={`/productDetails/${item.id}`}>{item.name.slice(0,25)}</Link>)}
+            {products.slice(12,22).map(item=> <Link key={item.id} to={`/productDetails/${item.slug}`}>{item.name.slice(0,25)}</Link>)}
            </div>
            </div>
          </div>

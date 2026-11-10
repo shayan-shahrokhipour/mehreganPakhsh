@@ -33,7 +33,7 @@ const ProductDetails = () => {
   }
     fetchProduct();
 
-},[])
+},[productSlug])
 
   if (!product) {
     return <Loading />;
