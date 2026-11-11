@@ -41,6 +41,9 @@ const Footer = () => {
              <li><p>تهران , خیابان آزادی , خیابان حبیب الهی,بلوار تیموری شرقی ,پلاک 42</p></li>
           </ul> 
          </div>
+         <div className={styles.enamadLogo}>
+          <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=8632156&Code=0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a'><img referrerPolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=8632156&Code=0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a' alt='' style={{ cursor: "pointer" }} code='0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a'/></a>
+         </div>
     </footer>
   )
 }
