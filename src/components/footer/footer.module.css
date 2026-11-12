@@ -111,6 +111,8 @@
   color: var(--footerLink);
  }
 
+ 
+
  @media only screen and (max-width:1024px){
   .footerHolder , .categorySides{
     flex-direction: column;
@@ -133,6 +135,9 @@
   }.emailLink{
       overflow-wrap: anywhere;
 
+  }.enamadLogo {
+   display: flex;
+   justify-content: center;
   }
  
  }
