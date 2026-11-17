@@ -42,7 +42,10 @@ const Footer = () => {
           </ul> 
          </div>
          <div className={styles.enamadLogo}>
-          <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=8632156&Code=0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a'><img referrerPolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=8632156&Code=0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a' alt='' style={{ cursor: "pointer" }} code='0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a'/></a>
+          <a referrerPolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=8632156&Code=0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a'><img referrerPolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=8632156&Code=0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a' alt='' style={{ cursor: "pointer" }} code='0lLNt24WMrZJ5WJYSK7ocKmdeFFDEn9a'/></a>
+          <a href="https://gateway.zibal.ir/trustMe/mehreganpakhshpart.ir" target="_blank" rel="noopener">
+          <img style={{height: "85px"}} src="https://zibal.ir/trust/assets/2.png" alt="پرداخت آنلاین زیبال" />
+           </a>
          </div>
     </footer>
   )
