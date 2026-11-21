@@ -68,10 +68,6 @@ useEffect(()=>{
  }
 },[])
 
-useEffect(()=>{
-     console.log(frozenOrder);
-
-},[frozenOrder])
 
   return (
      <OrderContext value={{postOrder,orderId,frozenOrder}}>
