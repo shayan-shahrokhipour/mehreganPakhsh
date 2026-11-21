@@ -13,7 +13,7 @@ export const OrderContext = createContext()
 const OrderProvider = ({children}) => {
   //state
   const [frozenOrder,setFrozenOrder]=useState("")
-const {selectedItems} = useContext(BuyContext)
+const {selectedItems,setErrors} = useContext(BuyContext)
 
 const orderId = useRef(sessionStorage.getItem("orderId"))
 
@@ -52,23 +52,19 @@ const postOrder = async (name,family,province,city,address,mobile,postalCode)=>{
 }
 
 const getOrder = async ()=>{
-  try {
+
     const response = await api.get(`api/orders/${orderId.current}`,
  )
      setFrozenOrder(response.data)
    
-  } catch (error) {
-      setErrors(
-      error.response?.data?.detail ||
-      "دریافت اطلاعات سفارش با مشکل مواجه شد."
-    );
-  }
+  
     
 }
 
 useEffect(()=>{
  if(orderId.current){
-   getOrder()
+   getOrder().catch(error=>{setErrors(error.response?.data?.detail ||
+        "دریافت اطلاعات سفارش ناموفق بود.")})
  }
 },[])
 
