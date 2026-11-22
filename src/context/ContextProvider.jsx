@@ -115,6 +115,8 @@ const ContextProvider = ({ children, descriptions, descriptionHandler }) => {
     productdata();
   }, [currentpage]);
 
+  
+
   //slug
   const getSlug = async (productSlug) => {
       try {

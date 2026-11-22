@@ -3,8 +3,21 @@
     --linearsecond: #F8F5FC;
     --secondbackground: #D681FF;
     --backgroundCard: #e0f7e9;
+    --true: #38A169;
+     --false: #C53030;
 }
 
+.true{
+    color: var(--true);
+        font-size: 15px;
+
+}
+
+.false{
+    color: var(--false);
+        font-size: 15px;
+
+}
 
 .sliderHolder{
     width: 100%;
@@ -52,7 +65,10 @@
         margin-right: 15px;
         margin-top: auto;
         margin-bottom: 5px;
-
+        border: 1px solid var(--linearfirst);
+        background-color: var(--secondbackground);
+        cursor: pointer;
+        border-radius: 3px;
  }
 
  .cardHolder p,.detailsLinks{
@@ -88,6 +104,7 @@
         animation: slidingLeft 400ms ease;
 
 }
+
 
 @keyframes slidingRight{
  from{
@@ -144,7 +161,10 @@
     height: 100%;
 }
 
-
+.priceHolder{
+    display: flex;
+    gap: 5px;
+}
 
 @media only screen and (max-width:767px){
     .directionIcon{

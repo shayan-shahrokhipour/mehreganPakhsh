@@ -89,9 +89,10 @@ const ProductDetails = () => {
               <span>وضعیت : </span>
               {stock ? "موجود در انبار" : "موجود نیست"}
             </p>
-            <p>
+            <p className={styles.priceHolder}>
               <span>قیمت : </span>
               {price.toLocaleString("fa-IR")}
+              <span>تومان</span>
             </p>
             <button
               onClick={() => showInfo(product.id)}

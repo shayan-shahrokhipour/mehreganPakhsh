@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { OrderContext } from "../context/OrderProvider";
 import axios from "axios";
 import { AutContext } from "../context/AuthProvider";
-
+import styles from "../Pages/paymentresult.module.css"
 import { api } from "../services/api";
 import { BuyContext } from "../context/CartContext";
 
@@ -64,11 +64,11 @@ const PaymentResult = () => {
 
   }, []);
   return (
-    <section>
-      <p>{error}</p>
-      <p>{showstatus}</p>
-      {orderNumber && <p>شماره سفارش :{orderNumber}</p>}
-      {trackingCode && <p>کد پیگیری پرداخت : {trackingCode}</p>} 
+    <section className={styles.paymentresultHolder}>
+      <p className={styles.ShowError}>{error}</p>
+      <p className={styles.showStatus}>{showstatus}</p>
+      {orderNumber && <p className={styles.showStatus}>شماره سفارش :{orderNumber}</p>}
+      {trackingCode && <p className={styles.showStatus}>کد پیگیری پرداخت : {trackingCode}</p>} 
        </section>
   );
 };

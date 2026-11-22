@@ -70,7 +70,7 @@ const Basket = () => {
             <p className={styles.priceOfEachProduct}>{(item.price*item.quantity).toLocaleString("fa-IR")} ریال</p>
             </div>
         ))}
-        <p className={styles.total}>مبلغ قابل پرداخت : {totalPrice.toLocaleString("fa-IR")} ریال</p>
+        <p className={styles.total}>مبلغ قابل پرداخت : {totalPrice.toLocaleString("fa-IR")} تومان</p>
          <button onClick={collectTheinfo}>ثبت سفارش و پرداخت</button>
       </div>
       }

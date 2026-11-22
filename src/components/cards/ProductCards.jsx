@@ -12,8 +12,8 @@ const ProductCards = ({ item }) => {
   const productSlug =item.slug
     
   const { showInfo } = useContext(BuyContext);
- 
 
+   
 
   return (
     <>
@@ -27,10 +27,12 @@ const ProductCards = ({ item }) => {
           <CgDetailsMore className={styles.detailsIcon} />
           برای مطالعه جزئیات کلیک کنید
         </Link>
-        <p>
+        <p className={styles.priceHolder}>
           <span>قیمت : </span>
           {item.price.toLocaleString("fa-IR")}
+          <span>تومان</span>
         </p>
+         {item.stock ? <p className={styles.true}>محصول موجود است</p> :<p className={styles.false}>محصول موجود نیست</p>}
         <button onClick={() => showInfo(Info)}  className={styles.basketButton}>
           <BsFillBasket2Fill />
           خرید کالا
