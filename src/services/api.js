@@ -24,40 +24,88 @@ api.interceptors.request.use((config) => {
 });
 
 //refreshToken
-api.interceptors.response.use((response) =>{
-   return response
-  
-  
-},
+let refreshPromise = null;
 
-async (error) =>{
-   const refreshToken = sessionStorage.getItem("refreshToken")
-  
-   if(error.response?.status === 401 &&  !error.config._retry && refreshToken){
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+
+  async (error) => {
+    const refreshToken = sessionStorage.getItem("refreshToken");
+
+    if (
+      error.response?.status === 401 &&
+      !error.config?._retry
+    ) {
+      if (!refreshToken) {
+        sessionStorage.removeItem("accessToken");
+                  sessionStorage.removeItem("refreshToken");
+
+        sessionStorage.removeItem("orderId");
+
+         if (window.location.pathname !== "/") {
+     window.location.href = "/";
+  }
+        return Promise.reject(error);
+      }
+
       error.config._retry = true;
 
-    const response = await axios.post('https://api.mehreganpakhshpart.ir/api/accounts/auth/refresh/',{
-      "refresh" : refreshToken
-    })
-       sessionStorage.setItem("accessToken", response.data.access);
-        if(response.data.refresh){
-          sessionStorage.setItem("refreshToken" , response.data.refresh)
+      try {
+        if (!refreshPromise) {
+          refreshPromise = axios.post(
+            "https://api.mehreganpakhshpart.ir/api/accounts/auth/refresh/",
+            {
+              refresh: refreshToken,
+            }
+          ).finally(() => {
+            refreshPromise = null;
+          });
         }
-  
-    error.config.headers.set(
-    "Authorization",
-    `Bearer ${response.data.access}`
-  );
 
-  return api(error.config);
-   }
-            return Promise.reject(error);
+        const response = await refreshPromise;
 
- 
+        sessionStorage.setItem(
+          "accessToken",
+          response.data.access
+        );
 
-}
+        if (response.data.refresh) {
+          sessionStorage.setItem(
+            "refreshToken",
+            response.data.refresh
+          );
+        }
 
-)
+        error.config.headers.set(
+          "Authorization",
+          `Bearer ${response.data.access}`
+        );
+
+        return api(error.config);
+
+      } catch (refreshError) {
+        if (
+          refreshError.response?.status === 401 ||
+          refreshError.response?.status === 400
+        ) {
+          sessionStorage.removeItem("accessToken");
+          sessionStorage.removeItem("refreshToken");
+           sessionStorage.removeItem("orderId");
+           
+           if (window.location.pathname !== "/") {
+              window.location.href = "/";
+          }
+        }
+
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 
 

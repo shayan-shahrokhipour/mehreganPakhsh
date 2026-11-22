@@ -96,8 +96,8 @@ const Payment = () => {
           <div key={index} className={styles.productValue}>
             <p>{item.product_name}</p>
             <p>{item.quantity}</p>
-            <p>{item.unit_price.toLocaleString("fa-IR")}</p>
-            <p>{item.total_price.toLocaleString("fa-IR")}</p>
+            <p>{item.unit_price.toLocaleString("fa-IR")}تومان</p>
+            <p>{item.total_price.toLocaleString("fa-IR")} تومان</p>
           </div>
         ))}
         <p className={styles.total}>مبلغ قابل پرداخت :{frozenOrder.total_amount.toLocaleString("fa-IR")}</p>
