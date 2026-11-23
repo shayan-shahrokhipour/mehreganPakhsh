@@ -18,9 +18,9 @@ const SubMenuForDeskTop = ({drawerHandeler}) => {
        
               <Link to="/calltous">  ارتباط با ما و پشتیبانی</Link>
           </li>
-          <li className={styles.hoverAnimation}>
+          {/* <li className={styles.hoverAnimation}>
             <Link to={"/trackOrder"}>پیگیری سفارش</Link>
-          </li>
+          </li> */}
           
         </ul>
       </section>

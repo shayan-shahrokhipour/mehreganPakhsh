@@ -40,20 +40,20 @@ const DesktopHeader = ({drawerHandeler,state,modalHandeler,onmouseEnter,onmouseL
         </div>
         
         <div onMouseEnter={onmouseEnter} onMouseLeave={onmouseLeave}  className={`${styles.hoverAnimation} ${styles.signinboxforDesktop}`}>
-          <a  href="" className={styles.signinLinksDesktop}>
+          <div className={styles.signinLinksDesktop}>
             <span className={styles.signInTextDesktop}> سلام , ثبت نام</span>
             <br />
             <span className={styles.signinAccountsdesktop}>
               اکانت ها و لیست ها
             </span>
-          </a>
+          </div>
           <a href=""></a>
         </div>
         <div className={`${styles.hoverAnimation} ${styles.returnBox}`}>
-          <a href="" className={styles.returnsLink}>
+          <div className={styles.returnsLink}>
             <span className={styles.returns}>مرجوعی ها</span>
             <br /> <span className={styles.orders}>و سفارشات</span>
-          </a>
+          </div>
         </div>
         <div className={`${styles.hoverAnimation} ${styles.shoppingCart}`}>
           

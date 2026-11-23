@@ -52,6 +52,10 @@ const ProductDetails = () => {
     <>
 <title>{`مهرگان پخش | ${name}`}</title>
 <meta name="description" content={`خرید ${name} | ${description}`} />
+<link
+  rel="canonical"
+  href={`https://mehreganpakhshpart.ir/productDetails/${productSlug}`} 
+/>
  <section className={styles.trust}>
         <div className={styles.trustHolder}>
           <div className={styles.backgroundParagraph}>
