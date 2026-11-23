@@ -108,6 +108,9 @@ setAcceptDisabled(false)
     }
 
   return (
+    <>
+    <title>مهرگان پخش | احراز هویت</title>
+      <meta name="robots" content="noindex, follow" />
     <section className={styles.imgHolder}>
       <section className={styles.authenticationHolder}>
         <h3>لطفا رمز یک بار مصرف را وارد کنید</h3>
@@ -120,5 +123,6 @@ setAcceptDisabled(false)
        <button className={styles.newRequest} onClick={errorRequestInotp} disabled={disabled}>درخواست مجدد کد یکبار مصرف</button>
       <p className={styles.errorParagraph}>{errors}</p>
     </section>
+    </>
   )
 }

@@ -40,6 +40,9 @@ const Basket = () => {
       },[selectedItems.length,navigate])
   return (
     <>
+    <title>مهرگان پخش | سبدخرید</title>
+      <meta name="robots" content="noindex, follow" />
+
     <section className={styles.BasketHolder}>
       {selectedItems.length===0 ?
       <>
@@ -66,8 +69,8 @@ const Basket = () => {
             <div key={item.id} className={styles.countAndname}>
                <p className={styles.nameOfProduct}>{item.name}</p>
             <p>  {item.quantity.toLocaleString("fa-IR") } عدد</p>
-            <p> {item.price.toLocaleString("fa-IR") } ریال</p>
-            <p className={styles.priceOfEachProduct}>{(item.price*item.quantity).toLocaleString("fa-IR")} ریال</p>
+            <p> {item.price.toLocaleString("fa-IR") } تومان</p>
+            <p className={styles.priceOfEachProduct}>{(item.price*item.quantity).toLocaleString("fa-IR")} تومان</p>
             </div>
         ))}
         <p className={styles.total}>مبلغ قابل پرداخت : {totalPrice.toLocaleString("fa-IR")} تومان</p>

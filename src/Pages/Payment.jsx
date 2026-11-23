@@ -79,6 +79,9 @@ const Payment = () => {
    
 
   return (
+    <>
+    <title>مهرگان پخش | پرداخت</title>
+      <meta name="robots" content="noindex, follow" />
     <section className={styles.paymentHolder}>
       <div className={styles.payment}>
         <div className={styles.borderHolder}>
@@ -123,6 +126,7 @@ const Payment = () => {
       <button onClick={successPayment}  className={styles.goTopayment} disabled={showLoading}>برو به درگاه پرداخت</button>
       <p className={styles.showError}>{showError}</p>
     </section>
+    </>
   );
 };
 

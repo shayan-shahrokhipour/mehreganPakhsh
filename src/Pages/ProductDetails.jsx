@@ -50,7 +50,9 @@ const ProductDetails = () => {
 
   return (
     <>
-      <section className={styles.trust}>
+<title>{`مهرگان پخش | ${name}`}</title>
+<meta name="description" content={`خرید ${name} | ${description}`} />
+ <section className={styles.trust}>
         <div className={styles.trustHolder}>
           <div className={styles.backgroundParagraph}>
             <p>

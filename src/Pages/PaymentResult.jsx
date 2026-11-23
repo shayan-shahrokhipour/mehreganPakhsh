@@ -64,12 +64,16 @@ const PaymentResult = () => {
 
   }, []);
   return (
+    <>
+     <title>مهرگان پخش | نتیجه پرداخت</title>
+      <meta name="robots" content="noindex, follow" />
     <section className={styles.paymentresultHolder}>
       <p className={styles.ShowError}>{error}</p>
       <p className={styles.showStatus}>{showstatus}</p>
       {orderNumber && <p className={styles.showStatus}>شماره سفارش :{orderNumber}</p>}
       {trackingCode && <p className={styles.showStatus}>کد پیگیری پرداخت : {trackingCode}</p>} 
        </section>
+       </>
   );
 };
 
