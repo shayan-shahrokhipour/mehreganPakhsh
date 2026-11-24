@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mehrgan-frontend:latest
+    restart: unless-stopped
+    expose:
+      - "80"
+    networks:
+      - mehrgan_network
+
+networks:
+  mehrgan_network:
+    external: true
+    name: mehrgan-store_default
